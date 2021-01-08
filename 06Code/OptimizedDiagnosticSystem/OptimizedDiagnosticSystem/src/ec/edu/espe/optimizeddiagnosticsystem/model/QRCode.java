@@ -7,8 +7,16 @@ package ec.edu.espe.optimizeddiagnosticsystem.model;
 
 /**
  *
- * @author ruben
+ * @author Fail0verflow
  */
-public class ClinicHistory {
+public class QRCode {
+    
+    float heigth;
+    float width;
+    
+    String add (ClinicHistory clinicHistory) {
+        
+        return("0"); 
+    }
     
 }

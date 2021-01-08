@@ -7,10 +7,8 @@ package ec.edu.espe.optimizeddiagnosticsystem.model;
 
 /**
  *
- * @author ruben
+ * @author Fail0verflow
  */
-public class Diagnostic {
-    String cie10;
-    String name; 
+public class ClinicHistory {
     
 }

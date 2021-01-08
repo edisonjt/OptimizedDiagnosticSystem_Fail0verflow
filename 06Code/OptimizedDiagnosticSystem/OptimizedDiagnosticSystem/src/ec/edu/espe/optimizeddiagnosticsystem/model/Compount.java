@@ -7,8 +7,9 @@ package ec.edu.espe.optimizeddiagnosticsystem.model;
 
 /**
  *
- * @author ruben
+ * @author Fail0verflow
  */
-public class MedicalRecipe {
-    String type;
+public class Compount {
+    String chemicalSubstance;
+    String amountOfSubstance;
 }

@@ -7,28 +7,22 @@ package ec.edu.espe.optimizeddiagnosticsystem.model;
 
 /**
  *
- * @author ruben
+ * @author Fail0verflow
  */
-public class Doctor {
+public class Nurse {
+    
     String name; 
     int age;
-    String speciality;
     String subSpeciality;
-    String titleCode;
     String gender;
     
-    String takeExams (ClinicHistory clinicHistory) {
-        
-        
-        return("0"); 
-    }
-    
-    void performDiagnostic (Diagnostic diagnostic)
+ 
+    void suppliesMedication (MedicalRecipe medicalrecipe)
     {
         
     }
     
-    void makeRecipe (MedicalRecipe medicalrecipe){
+    void registerPatient (Patient patient){
         
     }
     
@@ -41,10 +35,15 @@ public class Doctor {
     {
         
     }
-    
-    MedicalExams requestMedicalExams (MedicalExams medicalExams){
+   
+    void takeASample ()
+    {
         
-        return(medicalExams);
+    }
+    
+    ClinicHistory transferPatients (ClinicHistory clinicHistory){
+        
+        return(clinicHistory);
     }
     
     
