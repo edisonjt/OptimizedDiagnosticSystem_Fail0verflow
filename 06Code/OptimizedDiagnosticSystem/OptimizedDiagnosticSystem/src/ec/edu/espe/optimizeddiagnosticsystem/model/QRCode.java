@@ -10,9 +10,25 @@ package ec.edu.espe.optimizeddiagnosticsystem.model;
  * @author Fail0verflow
  */
 public class QRCode {
-    
+
     float heigth;
     float width;
+    
+    public float getHeigth() {
+        return heigth;
+    }
+
+    public void setHeigth(float heigth) {
+        this.heigth = heigth;
+    }
+
+    public float getWidth() {
+        return width;
+    }
+
+    public void setWidth(float width) {
+        this.width = width;
+    }
     
     String add (ClinicHistory clinicHistory) {
         

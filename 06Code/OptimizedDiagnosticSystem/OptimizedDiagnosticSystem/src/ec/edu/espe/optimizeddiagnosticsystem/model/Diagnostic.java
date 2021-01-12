@@ -10,7 +10,24 @@ package ec.edu.espe.optimizeddiagnosticsystem.model;
  * @author Fail0verflow
  */
 public class Diagnostic {
+
     String cie10;
     String name; 
+    
+    public String getCie10() {
+        return cie10;
+    }
+
+    public void setCie10(String cie10) {
+        this.cie10 = cie10;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
     
 }

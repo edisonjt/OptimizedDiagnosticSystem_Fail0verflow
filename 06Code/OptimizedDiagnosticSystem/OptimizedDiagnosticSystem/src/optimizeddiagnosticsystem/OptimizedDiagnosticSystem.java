@@ -5,9 +5,10 @@
  */
 package optimizeddiagnosticsystem;
 
+
 /**
  *
- * @author ruben
+ * @author Fail0verflow
  */
 public class OptimizedDiagnosticSystem {
 

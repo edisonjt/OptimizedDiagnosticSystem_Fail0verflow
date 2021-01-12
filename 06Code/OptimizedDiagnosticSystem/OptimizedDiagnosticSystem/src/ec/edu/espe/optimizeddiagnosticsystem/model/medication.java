@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.espe.SimulatorofOptimizeddiagnosticsytem.model;
+package ec.edu.espe.optimizeddiagnosticsystem.model;
 
 /**
  *
  * @author Fail0verflow
  */
-public class medication {
+public class Medication {
     public String name;
     public String composition;
     public float concentration;
@@ -70,5 +70,4 @@ public class medication {
     public void setAdministrationMode(String administrationMode) {
         this.administrationMode = administrationMode;
     }
-
 }
