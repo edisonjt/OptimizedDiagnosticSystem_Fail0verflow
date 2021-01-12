@@ -11,7 +11,17 @@ package ec.edu.espe.optimizeddiagnosticsystem.model;
  */
 public class QRCode {
 
-    float heigth;
+    int codigo;
+    
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    /*float heigth;
     float width;
     
     public float getHeigth() {
@@ -33,6 +43,6 @@ public class QRCode {
     String add (ClinicHistory clinicHistory) {
         
         return("0"); 
-    }
+    }*/
     
 }
