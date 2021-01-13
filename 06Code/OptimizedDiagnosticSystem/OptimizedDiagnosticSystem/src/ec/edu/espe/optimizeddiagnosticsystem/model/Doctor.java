@@ -39,7 +39,7 @@ public class Doctor {
 
         System.out.println("Age: ");
         age = scan.nextInt();
-
+        
         System.out.println("Sub Speciality : ");
         subSpeciality= scan.nextLine();
       

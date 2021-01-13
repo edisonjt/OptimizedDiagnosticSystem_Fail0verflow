@@ -19,12 +19,11 @@ public class Menu {
     private int option2;
 
     public Menu() {
-        
+
     }
 
-    
     public void menuList() {
-        
+
         do {
             System.out.println("===================================================");
             System.out.println("       Hi! Choose the option you want to do...     ");
@@ -49,14 +48,27 @@ public class Menu {
                     option2 = op.nextInt();
 
                     if (option2 == 1) {
-                        Doctor doctor = new Doctor (); 
+                        Doctor doctor = new Doctor();
+                        doctor.registrer();
+
                         Diagnostic diagnostic = new Diagnostic();
+                        
+                        Scanner keyboard = new Scanner(System.in);
+                        System.out.print("Write the word to search in the file:");
+                        String data = keyboard.nextLine();
+                        System.out.println("\n --- > The name to Find is " + data + "\n ");
+                        String nameP = Data.find("cie-10.csv", data);
+                        System.out.println("|-------------------------------|");
+                        System.out.println("|" + nameP + "|");
+                        System.out.println("|-------------------------------|");
+                        diagnostic.resgister();
+                        
                     } else if (option2 == 2) {
                         MedicalRecipe medicalrecipe = new MedicalRecipe();
                     }
                 }
             }
-        } while (option!=3);
+        } while (option != 3);
 
     }
 

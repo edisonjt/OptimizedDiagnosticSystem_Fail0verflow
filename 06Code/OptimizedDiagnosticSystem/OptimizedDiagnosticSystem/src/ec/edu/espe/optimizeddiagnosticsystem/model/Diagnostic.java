@@ -5,6 +5,8 @@
  */
 package ec.edu.espe.optimizeddiagnosticsystem.model;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Fail0verflow
@@ -16,10 +18,18 @@ public class Diagnostic {
 
     public Diagnostic() {
     }
+    
 
-    public Diagnostic(String cie10, String name) {
-        this.cie10 = cie10;
-        this.name = name;
+    public void resgister() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("=======================================");
+        System.out.println("*****Cie-10 data*****");
+        
+        System.out.println("Name of diagnosis");
+        name = scan.nextLine();
+        
+        System.out.println("CIE-10: ");
+        cie10 = scan.nextLine();
     }
    
     public String getCie10() {
