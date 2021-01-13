@@ -5,6 +5,8 @@
  */
 package ec.edu.espe.optimizeddiagnosticsystem.model;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Fail0verflow
@@ -20,13 +22,30 @@ public class Doctor {
     public Doctor() {
     }
 
-    public Doctor(String name, int age, String speciality, String subSpeciality, String titleCode, String gender) {
-        this.name = name;
-        this.age = age;
-        this.speciality = speciality;
-        this.subSpeciality = subSpeciality;
-        this.titleCode = titleCode;
-        this.gender = gender;
+    public void  registrer() {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("=======================================");
+        System.out.println("*****Doctor's data*****");
+
+        System.out.println("Title code: ");
+        titleCode = scan.nextLine();
+
+        System.out.println("Gender: ");
+        gender = scan.nextLine();
+
+        System.out.println("Name: ");
+        name = scan.nextLine();
+
+        System.out.println("Age: ");
+        age = scan.nextInt();
+
+        System.out.println("Sub Speciality : ");
+        subSpeciality= scan.nextLine();
+      
+        System.out.println("Speciality : ");
+        speciality= scan.nextLine();
+
     }
     
     String takeExams (ClinicHistory clinicHistory) {

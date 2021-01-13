@@ -22,7 +22,7 @@ public class Patient {
     public String identificationCard;
     boolean option;
 
-    public void Register(){
+    public void register(){
         
         Scanner patient = new Scanner(System.in); 
         Scanner patientnum = new Scanner(System.in);
@@ -57,7 +57,7 @@ public class Patient {
         System.out.println("Emergency Contac: ");
         emergencyContact = patient.nextInt();
         
-        System.out.println("Do you want to save?");
+        System.out.println("Do you want to save? Please put True or False");
         option = patient.nextBoolean();
     } 
         

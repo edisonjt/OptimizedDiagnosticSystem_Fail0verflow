@@ -5,6 +5,8 @@
  */
 package ec.edu.espe.optimizeddiagnosticsystem.model;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Fail0verflow
@@ -17,35 +19,39 @@ public class Nurse {
     String gender;
 
     public Nurse() {
-    }
-
-    public Nurse(String name, int age, String subSpeciality, String gender) {
-        this.name = name;
-        this.age = age;
-        this.subSpeciality = subSpeciality;
-        this.gender = gender;
+        Scanner scan = new Scanner (System.in);
+        System.out.println("Please enter the name of the nurse");
+        name = scan.nextLine();
+        System.out.println("Please enter the age");
+        age = scan.nextInt();
+        System.out.println("Please enter the SubSpeciality");
+        subSpeciality = scan.nextLine();
+        System.out.println("Please enter the gender ");
+        gender = scan.nextLine();
     }
     
-    void suppliesMedication (MedicalRecipe medicalrecipe)
+ 
+    
+    public void suppliesMedication (MedicalRecipe medicalrecipe)
     {
         
     }
     
-    void registerPatient (Patient patient){
+    public void registerPatient (Patient patient){
         
     }
     
-    void showData ()
+    public void showData ()
     {
         
     }
     
-    void updateMedicalHistory (ClinicHistory clinicHistory)
+    public void updateMedicalHistory (ClinicHistory clinicHistory)
     {
         
     }
    
-    void takeASample ()
+    public void takeASample ()
     {
         
     }

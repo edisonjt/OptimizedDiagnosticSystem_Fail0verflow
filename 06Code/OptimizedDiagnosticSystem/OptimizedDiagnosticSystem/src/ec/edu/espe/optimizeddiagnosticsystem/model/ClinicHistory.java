@@ -59,4 +59,8 @@ public class ClinicHistory {
         this.nurse = nurse;
     }
     
+    public void saveHistory ()
+    {
+        
+    }
 }
