@@ -5,6 +5,7 @@
  */
 package ec.edu.espe.optimizeddiagnosticsystem.model;
 
+import com.google.gson.Gson;
 import ec.edu.espe.filemanager.utils.Data;
 import java.util.Scanner;
 
@@ -35,8 +36,17 @@ public class Menu {
             option = op.nextInt();
 
             if (option == 1) {
-                Patient patient = new Patient();
-                patient.register();
+                Patient regpatient = new Patient();
+                regpatient.register();
+                
+                Patient patient = new Patient(regpatient.getName(), regpatient.getAge(), regpatient.getWeight(), regpatient.getHeight(), regpatient.getBloodType(), regpatient.getAllergies(), regpatient.getGender(), regpatient.getEmergencyContact(), regpatient.getIdentificationCard());
+                Gson gson = new Gson();
+                String jsonPatient;
+                
+                //serialization
+                jsonPatient = gson.toJson(patient);
+                System.out.println("Patiente register --> " + jsonPatient);
+                Data.save("Patients.json", jsonPatient);
 
             } else if (option == 2) {
                 while (option2 != 3) {
@@ -52,7 +62,7 @@ public class Menu {
                         doctor.registrer();
 
                         Diagnostic diagnostic = new Diagnostic();
-                        
+
                         Scanner keyboard = new Scanner(System.in);
                         System.out.print("Write the word to search in the file:");
                         String data = keyboard.nextLine();
@@ -62,7 +72,7 @@ public class Menu {
                         System.out.println("|" + nameP + "|");
                         System.out.println("|-------------------------------|");
                         diagnostic.resgister();
-                        
+
                     } else if (option2 == 2) {
                         MedicalRecipe medicalrecipe = new MedicalRecipe();
                     }

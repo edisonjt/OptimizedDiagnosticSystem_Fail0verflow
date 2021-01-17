@@ -1,0 +1,12 @@
+{
+    "name": "1",
+    "age": 1,
+    "weight": 1.0,
+    "height": 1.0,
+    "bloodType": "1",
+    "allergies": "1",
+    "gender": "1",
+    "emergencyContact": 1,
+    "identificationCard": "1",
+    "option": false
+}

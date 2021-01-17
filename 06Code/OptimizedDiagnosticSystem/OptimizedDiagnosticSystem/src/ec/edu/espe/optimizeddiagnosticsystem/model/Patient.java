@@ -22,6 +22,22 @@ public class Patient {
     public String identificationCard;
     boolean option;
 
+    public Patient(String name, int age, float weight, float height, String bloodType, String allergies, String gender, int emergencyContact, String identificationCard) {
+        this.name = name;
+        this.age = age;
+        this.weight = weight;
+        this.height = height;
+        this.bloodType = bloodType;
+        this.allergies = allergies;
+        this.gender = gender;
+        this.emergencyContact = emergencyContact;
+        this.identificationCard = identificationCard;
+    }
+    
+    public Patient(){
+        
+    }
+
     public void register(){
         
         Scanner patient = new Scanner(System.in); 
