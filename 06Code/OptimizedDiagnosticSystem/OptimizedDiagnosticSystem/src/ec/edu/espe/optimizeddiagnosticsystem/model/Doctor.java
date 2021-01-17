@@ -72,11 +72,6 @@ public class Doctor {
     {
         
     }
-    
-    MedicalExams requestMedicalExams (MedicalExams medicalExams){
-        
-        return(medicalExams);
-    }
-    
+   
     
 }
