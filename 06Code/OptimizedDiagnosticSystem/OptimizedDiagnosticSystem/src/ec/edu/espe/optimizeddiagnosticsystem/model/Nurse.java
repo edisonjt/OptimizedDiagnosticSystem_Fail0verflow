@@ -15,31 +15,26 @@ public class Nurse {
     
     String name; 
     int age;
-    String subSpeciality;
     String gender;
 
-    public Nurse() {
+   public void registerPatient (){
         Scanner scan = new Scanner (System.in);
         System.out.println("Please enter the name of the nurse");
         name = scan.nextLine();
         System.out.println("Please enter the age");
         age = scan.nextInt();
-        System.out.println("Please enter the SubSpeciality");
-        subSpeciality = scan.nextLine();
         System.out.println("Please enter the gender ");
         gender = scan.nextLine();
+        
     }
     
- 
-    
+     
     public void suppliesMedication (MedicalRecipe medicalrecipe)
     {
         
     }
     
-    public void registerPatient (Patient patient){
-        
-    }
+    
     
     public void showData ()
     {
