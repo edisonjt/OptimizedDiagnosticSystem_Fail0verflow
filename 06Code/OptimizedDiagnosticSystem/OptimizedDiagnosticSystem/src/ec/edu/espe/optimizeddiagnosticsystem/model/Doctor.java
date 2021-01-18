@@ -12,14 +12,19 @@ import java.util.Scanner;
  * @author Fail0verflow
  */
 public class Doctor {
-    String name; 
-    int age;
-    String speciality;
-    String subSpeciality;
-    String titleCode;
-    String gender;
+    private String name; 
+    private int age;
+    private String speciality;
+    private String subSpeciality;
+    private String titleCode;
+    private String gender;
 
     public Doctor() {
+    }
+
+    @Override
+    public String toString() {
+        return "Doctor{" + "name=" + getName() + ", age=" + getAge() + ", speciality=" + getSpeciality() + ", subSpeciality=" + getSubSpeciality() + ", titleCode=" + getTitleCode() + ", gender=" + getGender() + '}';
     }
 
     public void  registrer() {
@@ -29,22 +34,22 @@ public class Doctor {
         System.out.println("*****Doctor's data*****");
 
         System.out.println("Title code: ");
-        titleCode = scan.nextLine();
+        setTitleCode(scan.nextLine());
 
         System.out.println("Gender: ");
-        gender = scan.nextLine();
+        setGender(scan.nextLine());
 
         System.out.println("Name: ");
-        name = scan.nextLine();
+        setName(scan.nextLine());
 
         System.out.println("Age: ");
-        age = scan.nextInt();
+        setAge(scan.nextInt());
         
         System.out.println("Sub Speciality : ");
-        subSpeciality= scan.nextLine();
+        setSubSpeciality(scan.nextLine());
       
         System.out.println("Speciality : ");
-        speciality= scan.nextLine();
+        setSpeciality(scan.nextLine());
 
     }
     
@@ -71,6 +76,90 @@ public class Doctor {
     void updateMedicalHistory (ClinicHistory clinicHistory)
     {
         
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the age
+     */
+    public int getAge() {
+        return age;
+    }
+
+    /**
+     * @param age the age to set
+     */
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    /**
+     * @return the speciality
+     */
+    public String getSpeciality() {
+        return speciality;
+    }
+
+    /**
+     * @param speciality the speciality to set
+     */
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
+    }
+
+    /**
+     * @return the subSpeciality
+     */
+    public String getSubSpeciality() {
+        return subSpeciality;
+    }
+
+    /**
+     * @param subSpeciality the subSpeciality to set
+     */
+    public void setSubSpeciality(String subSpeciality) {
+        this.subSpeciality = subSpeciality;
+    }
+
+    /**
+     * @return the titleCode
+     */
+    public String getTitleCode() {
+        return titleCode;
+    }
+
+    /**
+     * @param titleCode the titleCode to set
+     */
+    public void setTitleCode(String titleCode) {
+        this.titleCode = titleCode;
+    }
+
+    /**
+     * @return the gender
+     */
+    public String getGender() {
+        return gender;
+    }
+
+    /**
+     * @param gender the gender to set
+     */
+    public void setGender(String gender) {
+        this.gender = gender;
     }
    
     

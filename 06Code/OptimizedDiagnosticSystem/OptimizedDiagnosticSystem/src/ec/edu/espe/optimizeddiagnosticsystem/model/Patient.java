@@ -11,16 +11,16 @@ import java.util.*;
  */
 public class Patient {
     
-    public String name; 
-    public int age;
-    public float weight;
-    public float height;
-    public String bloodType;
-    public String allergies;
-    public String gender;
-    public int emergencyContact;
-    public String identificationCard;
-    boolean option;
+    private String name; 
+    private int age;
+    private float weight;
+    private float height;
+    private String bloodType;
+    private String allergies;
+    private String gender;
+    private int emergencyContact;
+    private String identificationCard;
+    private boolean option;
 
     public Patient(String name, int age, float weight, float height, String bloodType, String allergies, String gender, int emergencyContact, String identificationCard) {
         this.name = name;
@@ -32,6 +32,11 @@ public class Patient {
         this.gender = gender;
         this.emergencyContact = emergencyContact;
         this.identificationCard = identificationCard;
+    }
+
+    @Override
+    public String toString() {
+        return "Patient{" + "name=" + getName() + ", age=" + getAge() + ", weight=" + getWeight() + ", height=" + getHeight() + ", bloodType=" + getBloodType() + ", allergies=" + getAllergies() + ", gender=" + getGender() + ", emergencyContact=" + getEmergencyContact() + ", identificationCard=" + getIdentificationCard() + ", option=" + isOption() + '}';
     }
     
     public Patient(){
@@ -47,34 +52,34 @@ public class Patient {
         System.out.println("*****Patient's data*****");
         
         System.out.println("Identification Card: ");
-        identificationCard = patient.nextLine();
+        setIdentificationCard(patient.nextLine());
         
         System.out.println("Gander: ");
-        gender = patient.nextLine();
+        setGender(patient.nextLine());
         
         System.out.println("Name: ");
-        name = patient.nextLine();
+        setName(patient.nextLine());
         
         System.out.println("Age: ");
-        age = patient.nextInt();
+        setAge(patient.nextInt());
         
         System.out.println("Blood Type: ");
-        bloodType = patientnum.nextLine();
+        setBloodType(patientnum.nextLine());
         
         System.out.println("Weight: ");
-        weight = patient.nextFloat();
+        setWeight(patient.nextFloat());
         
         System.out.println("Height: ");
-        height = patient.nextFloat();
+        setHeight(patient.nextFloat());
         
         System.out.println("Allergies: ");
-        allergies = patientnum.nextLine();
+        setAllergies(patientnum.nextLine());
         
         System.out.println("Emergency Contac: ");
-        emergencyContact = patient.nextInt();
+        setEmergencyContact(patient.nextInt());
         
         System.out.println("Do you want to save? Please put True or False");
-        option = patient.nextBoolean();
+        setOption(patient.nextBoolean());
     } 
         
     
@@ -160,6 +165,20 @@ public class Patient {
 
     public void setIdentificationCard(String identificationCard) {
         this.identificationCard = identificationCard;
+    }
+
+    /**
+     * @return the option
+     */
+    public boolean isOption() {
+        return option;
+    }
+
+    /**
+     * @param option the option to set
+     */
+    public void setOption(boolean option) {
+        this.option = option;
     }
     
     

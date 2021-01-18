@@ -10,12 +10,17 @@ package ec.edu.espe.optimizeddiagnosticsystem.model;
  * @author Fail0verflow
  */
 public class MedicalRecipe {
-    public String instructions;
-    public String nameOfPacient;
-    public String date;
-    public String medications;
+    private String instructions;
+    private String nameOfPacient;
+    private String date;
+    private String medications;
 
     public MedicalRecipe() {
+    }
+
+    @Override
+    public String toString() {
+        return "MedicalRecipe{" + "instructions=" + getInstructions() + ", nameOfPacient=" + getNameOfPacient() + ", date=" + getDate() + ", medications=" + getMedications() + '}';
     }
 
     public MedicalRecipe(String instructions, String nameOfPacient, String date, String medications) {

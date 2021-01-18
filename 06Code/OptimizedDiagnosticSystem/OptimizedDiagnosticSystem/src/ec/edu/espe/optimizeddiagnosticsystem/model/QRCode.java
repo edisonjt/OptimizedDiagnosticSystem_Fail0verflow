@@ -11,7 +11,12 @@ package ec.edu.espe.optimizeddiagnosticsystem.model;
  */
 public class QRCode {
 
-    int codigo;
+    private int codigo;
+
+    @Override
+    public String toString() {
+        return "QRCode{" + "codigo=" + getCodigo() + '}';
+    }
 
     public QRCode() {
     }

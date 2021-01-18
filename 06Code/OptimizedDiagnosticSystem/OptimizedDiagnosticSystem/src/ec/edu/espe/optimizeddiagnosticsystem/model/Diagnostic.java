@@ -13,10 +13,15 @@ import java.util.Scanner;
  */
 public class Diagnostic {
 
-    String cie10;
-    String name; 
+    private String cie10;
+    private String name; 
 
     public Diagnostic() {
+    }
+
+    @Override
+    public String toString() {
+        return "Diagnostic{" + "cie10=" + getCie10() + ", name=" + getName() + '}';
     }
     
 
@@ -26,10 +31,10 @@ public class Diagnostic {
         System.out.println("*****Cie-10 data*****");
         
         System.out.println("Name of diagnosis");
-        name = scan.nextLine();
+        setName(scan.nextLine());
         
         System.out.println("CIE-10: ");
-        cie10 = scan.nextLine();
+        setCie10(scan.nextLine());
     }
    
     public String getCie10() {

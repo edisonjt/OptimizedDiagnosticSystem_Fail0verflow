@@ -11,56 +11,85 @@ package ec.edu.espe.optimizeddiagnosticsystem.model;
  */
 public class ClinicHistory {
 
-    String patient;
-    String doctor;
-    String diagnostic;
-    String nurse;
+    private Patient patient;
+    private Doctor doctor;
+    private Diagnostic diagnostic;
+    private Nurse nurse;
+
+    public ClinicHistory(Patient patient, Doctor doctor, Diagnostic diagnostic, Nurse nurse) {
+        this.patient = patient;
+        this.doctor = doctor;
+        this.diagnostic = diagnostic;
+        this.nurse = nurse;
+    }
 
     public ClinicHistory() {
     }
 
-    public ClinicHistory(String patient, String doctor, String diagnostic, String nurse) {
-        this.patient = patient;
-        this.doctor = doctor;
-        this.diagnostic = diagnostic;
-        this.nurse = nurse;
+    @Override
+    public String toString() {
+        return "ClinicHistory{" + "patient=" + patient + ", doctor=" + doctor + ", diagnostic=" + diagnostic + ", nurse=" + nurse + '}';
     }
-
-    
-    public String getPatient() {
-        return patient;
-    }
-
-    public void setPatient(String patient) {
-        this.patient = patient;
-    }
-
-    public String getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(String doctor) {
-        this.doctor = doctor;
-    }
-
-    public String getDiagnostic() {
-        return diagnostic;
-    }
-
-    public void setDiagnostic(String diagnostic) {
-        this.diagnostic = diagnostic;
-    }
-
-    public String getNurse() {
-        return nurse;
-    }
-
-    public void setNurse(String nurse) {
-        this.nurse = nurse;
-    }
+  
     
     public void saveHistory ()
     {
         
+    }
+
+    /**
+     * @return the patient
+     */
+    public Patient getPatient() {
+        return patient;
+    }
+
+    /**
+     * @param patient the patient to set
+     */
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    /**
+     * @return the doctor
+     */
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+    /**
+     * @param doctor the doctor to set
+     */
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
+
+    /**
+     * @return the diagnostic
+     */
+    public Diagnostic getDiagnostic() {
+        return diagnostic;
+    }
+
+    /**
+     * @param diagnostic the diagnostic to set
+     */
+    public void setDiagnostic(Diagnostic diagnostic) {
+        this.diagnostic = diagnostic;
+    }
+
+    /**
+     * @return the nurse
+     */
+    public Nurse getNurse() {
+        return nurse;
+    }
+
+    /**
+     * @param nurse the nurse to set
+     */
+    public void setNurse(Nurse nurse) {
+        this.nurse = nurse;
     }
 }

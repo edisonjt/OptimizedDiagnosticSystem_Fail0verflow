@@ -13,18 +13,23 @@ import java.util.Scanner;
  */
 public class Nurse {
     
-    String name; 
-    int age;
-    String gender;
+    private String name; 
+    private int age;
+    private String gender;
+
+    @Override
+    public String toString() {
+        return "Nurse{" + "name=" + getName() + ", age=" + getAge() + ", gender=" + getGender() + '}';
+    }
 
    public void registerPatient (){
         Scanner scan = new Scanner (System.in);
         System.out.println("Please enter the name of the nurse");
-        name = scan.nextLine();
+        setName(scan.nextLine());
         System.out.println("Please enter the age");
-        age = scan.nextInt();
+        setAge(scan.nextInt());
         System.out.println("Please enter the gender ");
-        gender = scan.nextLine();
+        setGender(scan.nextLine());
         
     }
     
@@ -54,6 +59,48 @@ public class Nurse {
     ClinicHistory transferPatients (ClinicHistory clinicHistory){
         
         return(clinicHistory);
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the age
+     */
+    public int getAge() {
+        return age;
+    }
+
+    /**
+     * @param age the age to set
+     */
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    /**
+     * @return the gender
+     */
+    public String getGender() {
+        return gender;
+    }
+
+    /**
+     * @param gender the gender to set
+     */
+    public void setGender(String gender) {
+        this.gender = gender;
     }
     
     
