@@ -43,6 +43,7 @@ public class Menu {
             if (getOption() == 1) {
                 Patient regpatient = new Patient();
                 regpatient.register();
+               
                 
                 Patient patient = new Patient(regpatient.getName(), regpatient.getAge(), regpatient.getWeight(), regpatient.getHeight(), regpatient.getBloodType(), regpatient.getAllergies(), regpatient.getGender(), regpatient.getEmergencyContact(), regpatient.getIdentificationCard());
                 Gson gson = new Gson();
@@ -51,7 +52,7 @@ public class Menu {
                 //serialization
                 jsonPatient = gson.toJson(patient);
                 System.out.println("Patiente register --> " + jsonPatient);
-                Data.save("Patients.json", jsonPatient);
+                Data.save("Patients.json", jsonPatient, regpatient.isOption());
 
             } else if (getOption() == 2) {
                 while (getOption2() != 3) {
@@ -63,8 +64,8 @@ public class Menu {
                     setOption2(op.nextInt());
 
                     if (getOption2() == 1) {
-                        Doctor doctor = new Doctor();
-                        doctor.registrer();
+                        //Doctor doctor = new Doctor();
+                        //doctor.registrer();
 
                         Diagnostic diagnostic = new Diagnostic();
 

@@ -12,53 +12,63 @@ import java.util.Scanner;
  * @author Fail0verflow
  */
 public class Nurse {
-    
-    private String name; 
+
+    private String name;
     private int age;
     private String gender;
+    private boolean option;
 
     @Override
     public String toString() {
-        return "Nurse{" + "name=" + getName() + ", age=" + getAge() + ", gender=" + getGender() + '}';
+        return "Nurse{" + "name=" + name + ", age=" + age + ", gender=" + gender + ", option=" + option + '}';
     }
 
-   public void registerPatient (){
-        Scanner scan = new Scanner (System.in);
+    public Nurse(String name, int age, String gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
+    
+    public Nurse(){
+        
+    }
+
+    public void registerPatient() {
+        Scanner scan = new Scanner(System.in);
+
         System.out.println("Please enter the name of the nurse");
         setName(scan.nextLine());
+
         System.out.println("Please enter the age");
         setAge(scan.nextInt());
+
         System.out.println("Please enter the gender ");
         setGender(scan.nextLine());
-        
+
+        System.out.println("Do you want to save? Please put True or False");
+        setOption(scan.nextBoolean());
+
     }
-    
-     
-    public void suppliesMedication (MedicalRecipe medicalrecipe)
-    {
-        
+
+    public void suppliesMedication(MedicalRecipe medicalrecipe) {
+
     }
-    
-    
-    
-    public void showData ()
-    {
-        
+
+    public void showData() {
+
     }
-    
-    public void updateMedicalHistory (ClinicHistory clinicHistory)
-    {
-        
+
+    public void updateMedicalHistory(ClinicHistory clinicHistory) {
+
     }
-   
-    public void takeASample ()
-    {
-        
+
+    public void takeASample() {
+
     }
-    
-    ClinicHistory transferPatients (ClinicHistory clinicHistory){
-        
-        return(clinicHistory);
+
+    ClinicHistory transferPatients(ClinicHistory clinicHistory) {
+
+        return (clinicHistory);
     }
 
     /**
@@ -102,6 +112,19 @@ public class Nurse {
     public void setGender(String gender) {
         this.gender = gender;
     }
-    
-    
+
+    /**
+     * @return the option
+     */
+    public boolean isOption() {
+        return option;
+    }
+
+    /**
+     * @param option the option to set
+     */
+    public void setOption(boolean option) {
+        this.option = option;
+    }
+
 }

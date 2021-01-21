@@ -18,13 +18,24 @@ public class Doctor {
     private String subSpeciality;
     private String titleCode;
     private String gender;
+    private boolean option;
 
     public Doctor() {
     }
 
     @Override
     public String toString() {
-        return "Doctor{" + "name=" + getName() + ", age=" + getAge() + ", speciality=" + getSpeciality() + ", subSpeciality=" + getSubSpeciality() + ", titleCode=" + getTitleCode() + ", gender=" + getGender() + '}';
+        return "Doctor{" + "name=" + name + ", age=" + age + ", speciality=" + speciality + ", subSpeciality=" + subSpeciality + ", titleCode=" + titleCode + ", gender=" + gender + ", option=" + option + '}';
+    }
+
+
+    public Doctor(String name, int age, String speciality, String subSpeciality, String titleCode, String gender) {
+        this.name = name;
+        this.age = age;
+        this.speciality = speciality;
+        this.subSpeciality = subSpeciality;
+        this.titleCode = titleCode;
+        this.gender = gender;
     }
 
     public void  registrer() {
@@ -50,6 +61,9 @@ public class Doctor {
       
         System.out.println("Speciality : ");
         setSpeciality(scan.nextLine());
+        
+        System.out.println("Do you want to save? Please put True or False");
+        setOption(scan.nextBoolean());
 
     }
     
@@ -160,6 +174,20 @@ public class Doctor {
      */
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    /**
+     * @return the option
+     */
+    public boolean isOption() {
+        return option;
+    }
+
+    /**
+     * @param option the option to set
+     */
+    public void setOption(boolean option) {
+        this.option = option;
     }
    
     
