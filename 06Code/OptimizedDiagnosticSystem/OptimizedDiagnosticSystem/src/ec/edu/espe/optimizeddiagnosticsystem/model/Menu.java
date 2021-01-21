@@ -32,40 +32,39 @@ public class Menu {
 
         do {
             System.out.println("===================================================");
-            System.out.println("*       Hi! Choose the option you want to do...   * ");
-            System.out.println("* 1. New patient (recommended)                    * ");
-            System.out.println("* 2. Old patient                                  * ");
-            System.out.println("* 3. Exit                                         * ");
+            System.out.println("       Hi! Choose the option you want to do...     ");
+            System.out.println("1. New patient (recommended)");
+            System.out.println("2. Old patient ");
+            System.out.println("3. Exit ");
             System.out.println("===================================================");
             Scanner op = new Scanner(System.in);
-            setOption(op.nextInt());
+            option = op.nextInt();
 
-            if (getOption() == 1) {
+            if (option == 1) {
                 Patient regpatient = new Patient();
                 regpatient.register();
-               
-                
+
                 Patient patient = new Patient(regpatient.getName(), regpatient.getAge(), regpatient.getWeight(), regpatient.getHeight(), regpatient.getBloodType(), regpatient.getAllergies(), regpatient.getGender(), regpatient.getEmergencyContact(), regpatient.getIdentificationCard());
                 Gson gson = new Gson();
                 String jsonPatient;
-                
+
                 //serialization
                 jsonPatient = gson.toJson(patient);
                 System.out.println("Patiente register --> " + jsonPatient);
                 Data.save("Patients.json", jsonPatient, regpatient.isOption());
 
-            } else if (getOption() == 2) {
-                while (getOption2() != 3) {
+            } else if (option == 2) {
+                while (option2 != 3) {
 
                     System.out.println("===================================================");
                     System.out.println("1. Perform diagnosis ");
                     System.out.println("2. Make a prescription ");
                     System.out.println("3. Exit");
-                    setOption2(op.nextInt());
+                    option2 = op.nextInt();
 
-                    if (getOption2() == 1) {
-                        //Doctor doctor = new Doctor();
-                        //doctor.registrer();
+                    if (option2 == 1) {
+                        Doctor doctor = new Doctor();
+                        doctor.registrer();
 
                         Diagnostic diagnostic = new Diagnostic();
 
@@ -79,12 +78,12 @@ public class Menu {
                         System.out.println("|-------------------------------|");
                         diagnostic.resgister();
 
-                    } else if (getOption2() == 2) {
+                    } else if (option2 == 2) {
                         MedicalRecipe medicalrecipe = new MedicalRecipe();
                     }
                 }
             }
-        } while (getOption() != 3);
+        } while (option != 3);
 
     }
 

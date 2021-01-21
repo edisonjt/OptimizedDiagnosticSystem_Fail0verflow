@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Jhonatan
+ * @author Fail0verflow
  */
 public class ExternalMenu {
 
