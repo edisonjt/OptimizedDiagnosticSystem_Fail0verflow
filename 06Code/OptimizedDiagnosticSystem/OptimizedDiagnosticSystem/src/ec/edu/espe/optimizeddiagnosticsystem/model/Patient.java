@@ -87,9 +87,6 @@ public class Patient {
         return true;
     }
     
-    void takeMedication (MedicalRecipe medicalrecipe){
-        
-    }
     
     boolean  urination () {
         return true;
