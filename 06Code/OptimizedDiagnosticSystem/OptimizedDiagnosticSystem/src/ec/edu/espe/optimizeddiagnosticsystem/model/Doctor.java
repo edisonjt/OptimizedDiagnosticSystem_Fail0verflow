@@ -54,7 +54,7 @@ public class Doctor {
         setName(scan.nextLine());
 
         System.out.println("Age: ");
-        setAge(scan.nextInt());
+        setAge(Integer.parseInt(scan.nextLine()));
         
         System.out.println("Sub Speciality : ");
         setSubSpeciality(scan.nextLine());

@@ -33,7 +33,7 @@ public class Nurse {
         
     }
 
-    public void registerPatient() {
+    public void register() {
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Please enter the name of the nurse");

@@ -45,7 +45,7 @@ public class ExternalMenu {
                 Data.save("Doctors.json", jsonDoctor, regdoctor.isOption());
 
                 Menu menu = new Menu();
-                menu.menuList();
+             //   menu.menuList();
                 
             } else if (option == 2) {
                 Nurse regnurse = new Nurse();
@@ -61,7 +61,7 @@ public class ExternalMenu {
                 Data.save("Nurses.json", jsonNurse, regnurse.isOption());
 
                 Menu menu = new Menu();
-                menu.menuList();
+                //menu.menuList();
             }
 
         } while (option != 3);

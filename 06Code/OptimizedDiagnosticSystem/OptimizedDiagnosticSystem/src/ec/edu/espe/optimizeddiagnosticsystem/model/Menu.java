@@ -23,12 +23,7 @@ public class Menu {
 
     }
 
-    @Override
-    public String toString() {
-        return "Menu{" + "option=" + getOption() + ", name=" + getName() + ", option2=" + getOption2() + '}';
-    }
-
-    public void menuList() {
+    /*public void menuList() {
 
         do {
             System.out.println("===================================================");
@@ -85,48 +80,81 @@ public class Menu {
             }
         } while (option != 3);
 
+    }*/
+    public void options1() {
+        System.out.println("1.-Personnel registration");
+        System.out.println("2.-Clinical histories");
+
     }
 
-    /**
-     * @return the option
-     */
-    public int getOption() {
-        return option;
+    public void optionsRegister() {
+        System.out.println("1. Register a new doctor");
+        System.out.println("2. Register a new nurse");
     }
 
-    /**
-     * @param option the option to set
-     */
-    public void setOption(int option) {
-        this.option = option;
+    public Patient registerP() {
+        Patient patient = new Patient();
+        patient.register();
+
+        return patient;
     }
 
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
+    public void registerD() {
+        Scanner scan = new Scanner(System.in);
+        Doctor doctor = new Doctor();
+        doctor.registrer();
+        String dataToSave=doctor.getName()+","+doctor.getTitleCode()+","+doctor.getSpeciality()
+                +","+doctor.getSubSpeciality()+","+doctor.getAge()+","+doctor.getGender()+"\n";
+        Data.save("doctors.csv", dataToSave, true);
+        System.out.println("Enter the new password");
+        String pass = scan.nextLine();
+        String userToSave = doctor.getName() + "," + pass;
+        Data.save("users.csv", userToSave, true);
+        //return doctor;
     }
 
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
+    public Nurse registerN() {
+        Nurse nurse = new Nurse();
+        nurse.register();
+        return nurse;
+
     }
 
-    /**
-     * @return the option2
-     */
-    public int getOption2() {
-        return option2;
+    public Diagnostic diagnostic() {
+        Diagnostic diagnostic = new Diagnostic();
+        return diagnostic;
     }
 
-    /**
-     * @param option2 the option2 to set
-     */
-    public void setOption2(int option2) {
-        this.option2 = option2;
+    public Boolean login(String pass) {
+        Boolean validate = false;
+        if (Data.find("pass.csv", pass).equalsIgnoreCase(pass)) {
+            validate = true;
+        } else {
+            validate = false;
+        }
+
+        return validate;
+    }
+
+    public Boolean loginHistoryUpdater(String user, String pass) {
+        Boolean validate = false;
+        String cadena = Data.find("users.csv", user);
+        String[] split = cadena.split(",");
+        String p1 = split[0];
+        String p2 = split[1];
+        if (p1.equalsIgnoreCase(user)) {
+            System.out.println("The user exist");
+            if (p1.equalsIgnoreCase(user) && p2.equalsIgnoreCase(pass)) {
+                validate = true;
+                System.out.println("The password is correct!");
+            }
+
+        } else {
+            validate = false;
+            System.out.println("The password isn't correct, please try again! ");
+        }
+
+        return validate;
     }
 
 }
