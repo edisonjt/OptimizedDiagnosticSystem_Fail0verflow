@@ -78,10 +78,6 @@ public class Doctor {
         
     }
     
-    void makeRecipe (MedicalRecipe medicalrecipe){
-        
-    }
-    
     void showData ()
     {
         

@@ -50,9 +50,6 @@ public class Nurse {
 
     }
 
-    public void suppliesMedication(MedicalRecipe medicalrecipe) {
-
-    }
 
     public void showData() {
 
