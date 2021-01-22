@@ -49,7 +49,7 @@ public class ExternalMenu {
                 
             } else if (option == 2) {
                 Nurse regnurse = new Nurse();
-                regnurse.registerPatient();
+                //regnurse.registerPatient();
                 
                 Nurse nurse = new Nurse(regnurse.getName(), regnurse.getAge(), regnurse.getGender()); 
                 Gson gson = new Gson();

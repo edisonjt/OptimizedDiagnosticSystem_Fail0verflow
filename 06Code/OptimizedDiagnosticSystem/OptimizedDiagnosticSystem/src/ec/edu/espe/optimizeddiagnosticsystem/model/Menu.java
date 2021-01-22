@@ -84,6 +84,7 @@ public class Menu {
     public void options1() {
         System.out.println("1.-Personnel registration");
         System.out.println("2.-Clinical histories");
+        System.out.println("3.- Exit");
 
     }
 
@@ -99,7 +100,7 @@ public class Menu {
         return patient;
     }
 
-    public void registerD() {
+    public Doctor registerD() {
         Scanner scan = new Scanner(System.in);
         Doctor doctor = new Doctor();
         doctor.registrer();
@@ -110,12 +111,14 @@ public class Menu {
         String pass = scan.nextLine();
         String userToSave = doctor.getName() + "," + pass;
         Data.save("users.csv", userToSave, true);
-        //return doctor;
+        return doctor;
     }
 
     public Nurse registerN() {
         Nurse nurse = new Nurse();
         nurse.register();
+        String dataToSave = nurse.getName()+","+nurse.getAge()+","+nurse.getGender()+"\n";
+        Data.save("nurse.csv", dataToSave, true);
         return nurse;
 
     }

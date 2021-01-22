@@ -21,26 +21,31 @@ public class OptimizedDiagnosticSystem {
     public static void main(String[] args) {
         // TODO code application logic here
         Scanner scan = new Scanner(System.in);
-        int option;
+        int option, option1;
         Menu menu = new Menu();
         if (menu.login("c2") == true) {
             System.out.println("Hola");
             menu.loginHistoryUpdater("edison", "171");
             menu.options1();
-            option = Integer.parseInt(scan.next());
-            switch (option) {
+            int caseOption = Integer.parseInt(scan.next());
+            switch (caseOption) {
                 case 1:
                     menu.optionsRegister();
-                    if (Integer.parseInt(scan.next()) == 1)
+                    option1= scan.nextInt();
+                    if (option1 == 1)
                      {
                          menu.registerD();
                     }
-                    if (Integer.parseInt(scan.next()) == 2)
+
+                    if (option1 == 2)
                     {
                         menu.registerN();
                     }
+                    break;
+                case 2:
                     
                     break;
+                    
             }
 
         }
