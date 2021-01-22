@@ -5,8 +5,9 @@
  */
 package optimizeddiagnosticsystem;
 
-import ec.edu.espe.optimizeddiagnosticsystem.model.ExternalMenu;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Menu;
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -20,34 +21,50 @@ public class OptimizedDiagnosticSystem {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Scanner scan = new Scanner(System.in);
-        int option, option1;
-        Menu menu = new Menu();
-        if (menu.login("c2") == true) {
-            System.out.println("Hola");
-            menu.loginHistoryUpdater("edison", "171");
-            menu.options1();
-            int caseOption = Integer.parseInt(scan.next());
-            switch (caseOption) {
-                case 1:
-                    menu.optionsRegister();
-                    option1= scan.nextInt();
-                    if (option1 == 1)
-                     {
-                         menu.registerD();
-                    }
+        try {
+            Scanner scan = new Scanner(System.in);
+            String username;
+            int option, option1;
+            Menu menu = new Menu();
+            if (menu.login("c2") == true) {
+                menu.options1();
+                int caseOption = Integer.parseInt(scan.nextLine());
+                switch (caseOption) {
+                    case 1:
+                        menu.optionsRegister();
+                        option1 = scan.nextInt();
+                        if (option1 == 1) {
+                            menu.registerD();
+                        }
 
-                    if (option1 == 2)
-                    {
-                        menu.registerN();
-                    }
-                    break;
-                case 2:
-                    
-                    break;
-                    
+                        if (option1 == 2) {
+                            menu.registerN();
+                        }
+                        break;
+                    case 2:
+                        System.out.println("Please enter the username");
+                        username = scan.nextLine();
+                        System.out.println("Please enter the Password");
+                        String pass = scan.nextLine();
+                        menu.loginHistoryUpdater(username, pass);
+                        System.out.println("What do you want to do?");
+                        System.out.println("1.- Create a new Histry Clinic");
+                        option1 = scan.nextInt();
+                        if (option1 == 1) {
+                            menu.clinicHistoryRegister(username);
+                        }
+                        break;
+
+                }
+
             }
-
+        } catch (InputMismatchException ex) {
+            System.out.println("The option no exist! The System will close");
         }
+        catch(NumberFormatException e)
+        {
+            System.out.println("The option no exist! The System will close");
+        }
+
     }
 }

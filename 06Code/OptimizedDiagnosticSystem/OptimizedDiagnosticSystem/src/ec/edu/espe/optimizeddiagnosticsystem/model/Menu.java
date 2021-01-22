@@ -5,9 +5,14 @@
  */
 package ec.edu.espe.optimizeddiagnosticsystem.model;
 
+
 import com.google.gson.Gson;
 import ec.edu.espe.filemanager.utils.Data;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import ec.edu.espe.optimizeddiagnosticsystem.model.Doctor;
+import java.util.Iterator;
 
 /**
  *
@@ -22,65 +27,7 @@ public class Menu {
     public Menu() {
 
     }
-
-    /*public void menuList() {
-
-        do {
-            System.out.println("===================================================");
-            System.out.println("       Hi! Choose the option you want to do...     ");
-            System.out.println("1. New patient (recommended)");
-            System.out.println("2. Old patient ");
-            System.out.println("3. Exit ");
-            System.out.println("===================================================");
-            Scanner op = new Scanner(System.in);
-            option = op.nextInt();
-
-            if (option == 1) {
-                Patient regpatient = new Patient();
-                regpatient.register();
-
-                Patient patient = new Patient(regpatient.getName(), regpatient.getAge(), regpatient.getWeight(), regpatient.getHeight(), regpatient.getBloodType(), regpatient.getAllergies(), regpatient.getGender(), regpatient.getEmergencyContact(), regpatient.getIdentificationCard());
-                Gson gson = new Gson();
-                String jsonPatient;
-
-                //serialization
-                jsonPatient = gson.toJson(patient);
-                System.out.println("Patiente register --> " + jsonPatient);
-                Data.save("Patients.json", jsonPatient, regpatient.isOption());
-
-            } else if (option == 2) {
-                while (option2 != 3) {
-
-                    System.out.println("===================================================");
-                    System.out.println("1. Perform diagnosis ");
-                    System.out.println("2. Make a prescription ");
-                    System.out.println("3. Exit");
-                    option2 = op.nextInt();
-
-                    if (option2 == 1) {
-                        Doctor doctor = new Doctor();
-                        doctor.registrer();
-
-                        Diagnostic diagnostic = new Diagnostic();
-
-                        Scanner keyboard = new Scanner(System.in);
-                        System.out.print("Write the word to search in the file:");
-                        String data = keyboard.nextLine();
-                        System.out.println("\n --- > The name to Find is " + data + "\n ");
-                        String nameP = Data.find("cie-10.csv", data);
-                        System.out.println("|-------------------------------|");
-                        System.out.println("|" + nameP + "|");
-                        System.out.println("|-------------------------------|");
-                        diagnostic.resgister();
-
-                    } else if (option2 == 2) {
-                        MedicalRecipe medicalrecipe = new MedicalRecipe();
-                    }
-                }
-            }
-        } while (option != 3);
-
-    }*/
+    
     public void options1() {
         System.out.println("1.-Personnel registration");
         System.out.println("2.-Clinical histories");
@@ -104,8 +51,8 @@ public class Menu {
         Scanner scan = new Scanner(System.in);
         Doctor doctor = new Doctor();
         doctor.registrer();
-        String dataToSave=doctor.getName()+","+doctor.getTitleCode()+","+doctor.getSpeciality()
-                +","+doctor.getSubSpeciality()+","+doctor.getAge()+","+doctor.getGender()+"\n";
+        String dataToSave = doctor.getName() + "," + doctor.getTitleCode() + "," + doctor.getSpeciality()
+                + "," + doctor.getSubSpeciality() + "," + doctor.getAge() + "," + doctor.getGender() + "\n";
         Data.save("doctors.csv", dataToSave, true);
         System.out.println("Enter the new password");
         String pass = scan.nextLine();
@@ -117,7 +64,7 @@ public class Menu {
     public Nurse registerN() {
         Nurse nurse = new Nurse();
         nurse.register();
-        String dataToSave = nurse.getName()+","+nurse.getAge()+","+nurse.getGender()+"\n";
+        String dataToSave = nurse.getName() + "," + nurse.getAge() + "," + nurse.getGender() + "\n";
         Data.save("nurse.csv", dataToSave, true);
         return nurse;
 
@@ -158,6 +105,77 @@ public class Menu {
         }
 
         return validate;
+    }
+
+    public void clinicHistoryRegister(String user) {
+        int doctorControl = 1;
+        Patient patient = new Patient();
+        List doctors ;
+        doctors = new ArrayList();
+        Scanner scan = new Scanner(System.in);
+        patient.register();
+        System.out.println("===================================== ");
+        System.out.println("===========The Nurse List ========== ");
+        System.out.println("===================================== ");
+        Data.printN("nurse.csv");
+        System.out.println("Enter the name and last name of the nurse in charge of the patient");
+        String nurseN = scan.nextLine();
+        String chainN = Data.find("nurse.csv", nurseN);
+        String[] splitN = chainN.split(",");
+        String nameN = splitN[0];
+        String ageN = splitN[1];
+        String gN = splitN[2];
+        System.out.println("" + nameN + "" + ageN + "" + gN);
+        Nurse nurse = new Nurse(nameN, Integer.parseInt(ageN), gN);
+        while (doctorControl != 0) {
+            System.out.println("===================================== ");
+            System.out.println("===========The Doctor List ========== ");
+            System.out.println("===================================== ");
+            Data.printD("doctors.csv");
+            String chainD = Data.find("doctors.csv", user);
+            System.out.println("Added doctor: " + chainD);
+            String[] splitD = chainD.split(",");
+            String nameD = splitD[0];
+            String title = splitD[1];
+            String spec = splitD[2];
+            String subSpec = splitD[3];
+            String age = splitD[4];
+            String gender = splitD[5];
+            Doctor doctor = new Doctor(nameD, Integer.parseInt(age), spec, subSpec, title, gender);
+            doctors.add(doctor);
+            System.out.println("You need to add more doctors? please press 1 to add more or 0 to continue");
+            doctorControl= Integer.parseInt(scan.nextLine());
+            if(doctorControl==1)
+            {
+                System.out.println("Please put the name of the doctor");
+                user= scan.nextLine();
+            }
+        }
+
+        System.out.print("Write the CIE10 DIAGNOSTIC to search in the file:");
+        String data = scan.nextLine();
+        System.out.println("\n --- > The name to Find is " + data + "\n ");
+        String nameP = Data.find("cie-10.csv", data);
+        System.out.println("|-------------------------------|");
+        System.out.println("|" + nameP + "|");
+        System.out.println("|-------------------------------|");
+        Diagnostic diagnostic = new Diagnostic();
+        diagnostic.resgister();
+        ClinicHistory clinicHistory = new ClinicHistory(patient, (Doctor) doctors.get(0), diagnostic, nurse);
+        Gson gson = new Gson();
+        String jsonClinicHistory;
+        String jsonDoctors= gson.toJson(doctors.get(0));
+
+        //serialization
+        
+        for(int i=1; i<doctors.size();i++)
+        {
+            jsonDoctors = jsonDoctors + gson.toJson(doctors.get(i));
+        }
+        jsonClinicHistory = gson.toJson(clinicHistory)+jsonDoctors;
+        System.out.println("Patient register --> " + jsonClinicHistory);
+        Data.save("clinicHistory.json", jsonClinicHistory, true);
+        
     }
 
 }
