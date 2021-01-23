@@ -14,10 +14,10 @@ public class ClinicHistory {
 
     private Patient patient;
     private ArrayList<Doctor> doctor = new ArrayList();
-    private Diagnostic diagnostic;
+    private ArrayList<Diagnostic> diagnostic = new ArrayList();
     private Nurse nurse;
 
-    public ClinicHistory(Patient patient, ArrayList<Doctor> doctor, Diagnostic diagnostic, Nurse nurse) {
+    public ClinicHistory(Patient patient, ArrayList<Doctor> doctor, ArrayList<Diagnostic> diagnostic, Nurse nurse) {
         this.patient = patient;
         this.doctor = doctor;
         this.diagnostic = diagnostic;
@@ -30,11 +30,6 @@ public class ClinicHistory {
     @Override
     public String toString() {
         return "ClinicHistory{" + "patient=" + getPatient() + ", doctor=" + getDoctor() + ", diagnostic=" + getDiagnostic() + ", nurse=" + getNurse() + '}';
-    }
-    
-    public void saveHistory ()
-    {
-        
     }
 
     /**
@@ -68,14 +63,14 @@ public class ClinicHistory {
     /**
      * @return the diagnostic
      */
-    public Diagnostic getDiagnostic() {
+    public ArrayList<Diagnostic> getDiagnostic() {
         return diagnostic;
     }
 
     /**
      * @param diagnostic the diagnostic to set
      */
-    public void setDiagnostic(Diagnostic diagnostic) {
+    public void setDiagnostic(ArrayList<Diagnostic> diagnostic) {
         this.diagnostic = diagnostic;
     }
 

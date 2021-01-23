@@ -5,11 +5,9 @@
  */
 package ec.edu.espe.optimizeddiagnosticsystem.model;
 
-
 import com.google.gson.Gson;
 import ec.edu.espe.filemanager.utils.Data;
 import java.util.*;
-
 
 /**
  *
@@ -24,7 +22,7 @@ public class Menu {
     public Menu() {
 
     }
-    
+
     public void options1() {
         System.out.println("1.-Personnel registration");
         System.out.println("2.-Clinical histories");
@@ -43,11 +41,11 @@ public class Menu {
 
         return patient;
     }*/
-
     public Doctor registerD() {
         Scanner scan = new Scanner(System.in);
         Doctor doctor = new Doctor();
         doctor.registrer();
+        
         String dataToSave = doctor.getName() + "," + doctor.getTitleCode() + "," + doctor.getSpeciality()
                 + "," + doctor.getSubSpeciality() + "," + doctor.getAge() + "," + doctor.getGender() + "\n";
         Data.save("doctors.csv", dataToSave, true);
@@ -55,25 +53,27 @@ public class Menu {
         String pass = scan.nextLine();
         String userToSave = doctor.getName() + "," + pass;
         Data.save("users.csv", userToSave, true);
+        
         return doctor;
     }
 
     public Nurse registerN() {
         Nurse nurse = new Nurse();
         nurse.register();
+        
         String dataToSave = nurse.getName() + "," + nurse.getAge() + "," + nurse.getGender() + "\n";
         Data.save("nurse.csv", dataToSave, true);
+        
         return nurse;
-
     }
 
     /*public Diagnostic diagnostic() {
         Diagnostic diagnostic = new Diagnostic();
         return diagnostic;
     }*/
-
     public Boolean login(String pass) {
         Boolean validate = false;
+        
         if (Data.find("pass.csv", pass).equalsIgnoreCase(pass)) {
             validate = true;
         } else {
@@ -85,10 +85,12 @@ public class Menu {
 
     public Boolean loginHistoryUpdater(String user, String pass) {
         Boolean validate = false;
+        
         String cadena = Data.find("users.csv", user);
         String[] split = cadena.split(",");
         String p1 = split[0];
         String p2 = split[1];
+        
         if (p1.equalsIgnoreCase(user)) {
             System.out.println("The user exist");
             if (p1.equalsIgnoreCase(user) && p2.equalsIgnoreCase(pass)) {
@@ -106,15 +108,18 @@ public class Menu {
 
     public void clinicHistoryRegister(String user) {
         int doctorControl = 1;
-        
+
         Patient patient = new Patient();
         patient.register();
-        
-        List doctors ;
+
+        List doctors;
         doctors = new ArrayList();
-        
+
+        List diagnostics;
+        diagnostics = new ArrayList();
+
         Scanner scan = new Scanner(System.in);
-        
+
         System.out.println("===================================== ");
         System.out.println("===========The Nurse List ========== ");
         System.out.println("===================================== ");
@@ -128,9 +133,9 @@ public class Menu {
         String gN = splitN[2];
         System.out.println("" + nameN + "" + ageN + "" + gN);
         Nurse nurse = new Nurse(nameN, Integer.parseInt(ageN), gN);
-        
+
         while (doctorControl != 0) {
-            
+
             System.out.println("===================================== ");
             System.out.println("===========The Doctor List ========== ");
             System.out.println("===================================== ");
@@ -147,12 +152,11 @@ public class Menu {
             Doctor doctor = new Doctor(nameD, Integer.parseInt(age), spec, subSpec, title, gender);
             doctors.add(doctor);
             System.out.println("You need to add more doctors? please press 1 to add more or 0 to continue");
-            doctorControl= Integer.parseInt(scan.nextLine());
-            
-            if(doctorControl==1)
-            {
+            doctorControl = Integer.parseInt(scan.nextLine());
+
+            if (doctorControl == 1) {
                 System.out.println("Please put the name of the doctor");
-                user= scan.nextLine();
+                user = scan.nextLine();
             }
         }
 
@@ -165,7 +169,8 @@ public class Menu {
         System.out.println("|-------------------------------|");
         Diagnostic diagnostic = new Diagnostic();
         diagnostic.resgister();
-        
+        diagnostics.add(diagnostic);
+
         Gson gson = new Gson();
         String jsonClinicHistory;
         /*String jsonDoctors= gson.toJson(doctors.get(0));
@@ -173,13 +178,13 @@ public class Menu {
         {
             jsonDoctors = jsonDoctors + gson.toJson(doctors.get(i));
         }*/
-        ClinicHistory clinicHistory = new ClinicHistory(patient, (ArrayList<Doctor>) doctors, diagnostic, nurse);
+        ClinicHistory clinicHistory = new ClinicHistory(patient, (ArrayList<Doctor>) doctors, (ArrayList<Diagnostic>) diagnostics, nurse);
 
         //serialization
         jsonClinicHistory = gson.toJson(clinicHistory);
         System.out.println("Patient register --> " + jsonClinicHistory);
         Data.save("clinicHistory.json", jsonClinicHistory, true);
-        
+
     }
 
 }

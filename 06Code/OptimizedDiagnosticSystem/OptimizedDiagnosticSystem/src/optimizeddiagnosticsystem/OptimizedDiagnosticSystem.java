@@ -23,10 +23,19 @@ public class OptimizedDiagnosticSystem {
         // TODO code application logic here
         try {
             Scanner scan = new Scanner(System.in);
+            Scanner scanp = new Scanner(System.in);
             String username;
+            String password;
             int option, option1;
             Menu menu = new Menu();
-            if (menu.login("c2") == true) {
+            
+            System.out.println("Enter password: ");
+            password = scanp.next();
+            
+            if (menu.login(password) == true) {
+                
+                System.out.println("=========== Welcome ===========");
+                
                 menu.options1();
                 int caseOption = Integer.parseInt(scan.nextLine());
                 switch (caseOption) {
