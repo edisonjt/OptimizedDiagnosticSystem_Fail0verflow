@@ -24,22 +24,27 @@ public class OptimizedDiagnosticSystem {
         try {
             Scanner scan = new Scanner(System.in);
             Scanner scanp = new Scanner(System.in);
+
             String username;
             String password;
-            int option, option1;
+            int option = 0, option1;
+
             Menu menu = new Menu();
-            
+
             System.out.println("Enter password: ");
             password = scanp.next();
-            
+
             if (menu.login(password) == true) {
-                
-                System.out.println("=========== Welcome ===========");
-                
-                menu.options1();
-                int caseOption = Integer.parseInt(scan.nextLine());
-                switch (caseOption) {
-                    case 1:
+
+                while (option != 3) {
+
+                    System.out.println("=========== Welcome ===========");
+
+                    menu.options1();
+                    option = scan.nextInt();
+
+                    if (option == 1) {
+
                         menu.optionsRegister();
                         option1 = scan.nextInt();
                         if (option1 == 1) {
@@ -49,8 +54,8 @@ public class OptimizedDiagnosticSystem {
                         if (option1 == 2) {
                             menu.registerN();
                         }
-                        break;
-                    case 2:
+                    } else if (option == 2) {
+
                         System.out.println("Please enter the username");
                         username = scan.nextLine();
                         System.out.println("Please enter the Password");
@@ -62,16 +67,13 @@ public class OptimizedDiagnosticSystem {
                         if (option1 == 1) {
                             menu.clinicHistoryRegister(username);
                         }
-                        break;
 
+                    }
                 }
-
             }
         } catch (InputMismatchException ex) {
             System.out.println("The option no exist! The System will close");
-        }
-        catch(NumberFormatException e)
-        {
+        } catch (NumberFormatException e) {
             System.out.println("The option no exist! The System will close");
         }
 

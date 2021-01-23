@@ -39,11 +39,11 @@ public class Nurse {
         System.out.println("Please enter the name of the nurse");
         setName(scan.nextLine());
 
-        System.out.println("Please enter the age");
-        setAge(scan.nextInt());
-
         System.out.println("Please enter the gender ");
         setGender(scan.nextLine());
+
+        System.out.println("Please enter the age");
+        setAge(scan.nextInt());
 
         System.out.println("Do you want to save? Please put True or False");
         setOption(scan.nextBoolean());
