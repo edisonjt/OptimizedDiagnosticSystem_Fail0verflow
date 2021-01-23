@@ -8,11 +8,8 @@ package ec.edu.espe.optimizeddiagnosticsystem.model;
 
 import com.google.gson.Gson;
 import ec.edu.espe.filemanager.utils.Data;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import ec.edu.espe.optimizeddiagnosticsystem.model.Doctor;
-import java.util.Iterator;
+import java.util.*;
+
 
 /**
  *
@@ -40,12 +37,12 @@ public class Menu {
         System.out.println("2. Register a new nurse");
     }
 
-    public Patient registerP() {
+    /*public Patient registerP() {
         Patient patient = new Patient();
         patient.register();
 
         return patient;
-    }
+    }*/
 
     public Doctor registerD() {
         Scanner scan = new Scanner(System.in);
@@ -70,10 +67,10 @@ public class Menu {
 
     }
 
-    public Diagnostic diagnostic() {
+    /*public Diagnostic diagnostic() {
         Diagnostic diagnostic = new Diagnostic();
         return diagnostic;
-    }
+    }*/
 
     public Boolean login(String pass) {
         Boolean validate = false;
@@ -109,11 +106,15 @@ public class Menu {
 
     public void clinicHistoryRegister(String user) {
         int doctorControl = 1;
+        
         Patient patient = new Patient();
+        patient.register();
+        
         List doctors ;
         doctors = new ArrayList();
+        
         Scanner scan = new Scanner(System.in);
-        patient.register();
+        
         System.out.println("===================================== ");
         System.out.println("===========The Nurse List ========== ");
         System.out.println("===================================== ");
@@ -127,7 +128,9 @@ public class Menu {
         String gN = splitN[2];
         System.out.println("" + nameN + "" + ageN + "" + gN);
         Nurse nurse = new Nurse(nameN, Integer.parseInt(ageN), gN);
+        
         while (doctorControl != 0) {
+            
             System.out.println("===================================== ");
             System.out.println("===========The Doctor List ========== ");
             System.out.println("===================================== ");
@@ -145,6 +148,7 @@ public class Menu {
             doctors.add(doctor);
             System.out.println("You need to add more doctors? please press 1 to add more or 0 to continue");
             doctorControl= Integer.parseInt(scan.nextLine());
+            
             if(doctorControl==1)
             {
                 System.out.println("Please put the name of the doctor");
@@ -161,18 +165,18 @@ public class Menu {
         System.out.println("|-------------------------------|");
         Diagnostic diagnostic = new Diagnostic();
         diagnostic.resgister();
-        ClinicHistory clinicHistory = new ClinicHistory(patient, (Doctor) doctors.get(0), diagnostic, nurse);
+        
         Gson gson = new Gson();
         String jsonClinicHistory;
-        String jsonDoctors= gson.toJson(doctors.get(0));
-
-        //serialization
-        
+        /*String jsonDoctors= gson.toJson(doctors.get(0));
         for(int i=1; i<doctors.size();i++)
         {
             jsonDoctors = jsonDoctors + gson.toJson(doctors.get(i));
-        }
-        jsonClinicHistory = gson.toJson(clinicHistory)+jsonDoctors;
+        }*/
+        ClinicHistory clinicHistory = new ClinicHistory(patient, (ArrayList<Doctor>) doctors, diagnostic, nurse);
+
+        //serialization
+        jsonClinicHistory = gson.toJson(clinicHistory);
         System.out.println("Patient register --> " + jsonClinicHistory);
         Data.save("clinicHistory.json", jsonClinicHistory, true);
         

@@ -5,6 +5,7 @@
  */
 package ec.edu.espe.optimizeddiagnosticsystem.model;
 
+import java.util.*;
 /**
  *
  * @author Fail0verflow
@@ -12,11 +13,11 @@ package ec.edu.espe.optimizeddiagnosticsystem.model;
 public class ClinicHistory {
 
     private Patient patient;
-    private Doctor doctor;
+    private ArrayList<Doctor> doctor = new ArrayList();
     private Diagnostic diagnostic;
     private Nurse nurse;
 
-    public ClinicHistory(Patient patient, Doctor doctor, Diagnostic diagnostic, Nurse nurse) {
+    public ClinicHistory(Patient patient, ArrayList<Doctor> doctor, Diagnostic diagnostic, Nurse nurse) {
         this.patient = patient;
         this.doctor = doctor;
         this.diagnostic = diagnostic;
@@ -28,9 +29,8 @@ public class ClinicHistory {
 
     @Override
     public String toString() {
-        return "ClinicHistory{" + "patient=" + patient + ", doctor=" + doctor + ", diagnostic=" + diagnostic + ", nurse=" + nurse + '}';
+        return "ClinicHistory{" + "patient=" + getPatient() + ", doctor=" + getDoctor() + ", diagnostic=" + getDiagnostic() + ", nurse=" + getNurse() + '}';
     }
-  
     
     public void saveHistory ()
     {
@@ -54,14 +54,14 @@ public class ClinicHistory {
     /**
      * @return the doctor
      */
-    public Doctor getDoctor() {
+    public ArrayList<Doctor> getDoctor() {
         return doctor;
     }
 
     /**
      * @param doctor the doctor to set
      */
-    public void setDoctor(Doctor doctor) {
+    public void setDoctor(ArrayList<Doctor> doctor) {
         this.doctor = doctor;
     }
 
@@ -92,4 +92,5 @@ public class ClinicHistory {
     public void setNurse(Nurse nurse) {
         this.nurse = nurse;
     }
+
 }
