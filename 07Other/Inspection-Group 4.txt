@@ -1,0 +1,35 @@
+Inspector: Group four (MAJOF Developers) Moromenacho Tipan, Mishell Estefania
+					 Navarro Zambrano, Johny Nicolay
+					 Ocaña Bolaños, Francisco Javier
+					 Pallasco Mancero, Oscar Fernando
+					 Pazmiño Gordon, Bryan Alexander
+
+
+
+                        
+                                       Roles                           
+
+Authors:                   OptimizedDiagnosticSystem_Fail0verflow
+ 
+Reviewer:                 Group four (MAJOF Developers) 
+
+
+Requirements
+
+1. In the IEEE requirements document it was noted that some fields were not completed correctly but the document was reviewed by team members.
+
+Class diagram inspection
+
+1. Methods and relationships in the diagram do not match the methods in the code.
+2. In the "04UMLDiagrams" folder there are no separate folders for the two diagrams.
+3. Documents in the folder "04UMLDiagrams" are repeated.
+
+Execution Proyect
+
+1. The options are not so understandable for users who do not have knowledge of the subject.
+2. At the time of saving the data it gave us a confirmation message, which we put it that if we want to save or not save, it saves the data.
+3. The data types are not validated, because at the time of entering a data there is no error message regarding the type of data entered
+4. The data added in the doctor and Nurse is saved in the same line of the csv file
+5. In the medical history menu, you must enter the user who registered in the registration menu, but if any other user is entered, the program continues running without showing an error message saying that said user is not registered.
+6. When the option appears, you want to add more doctors. Press option 1 to add and 0 to continue. When another number is crushed the program does nothing, a message should appear saying that you only have to enter the required numbers.
+7. The project prints the data on the screen in json format, but does not store it in a file.
