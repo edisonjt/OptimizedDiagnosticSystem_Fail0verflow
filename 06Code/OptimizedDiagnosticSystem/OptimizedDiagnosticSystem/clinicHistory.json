@@ -38,4 +38,4 @@
         "gender": "female",
         "option": false
     }
-}
+}{"patient":{"name":"Jhon","age":23,"weight":10.0,"height":10.0,"bloodType":"o+","allergies":"ninguna","gender":"male","emergencyContact":122345,"identificationCard":"12345","option":true},"doctor":[{"name":"Jhonatan Tituana","age":23,"speciality":"Cirugian","subSpeciality":"Sub Cirugian","titleCode":"F444","gender":"male","option":false},{"name":"Samantha Tipanguano","age":23,"speciality":"Cirugian","subSpeciality":"Sub Cirugian","titleCode":"F444","gender":"male","option":false}],"diagnostic":[{"cie10":"R35","name":"Poliuria"}],"nurse":{"name":"Juliana Andes","age":21,"gender":"female","option":false}}

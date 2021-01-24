@@ -24,6 +24,7 @@ public class OptimizedDiagnosticSystem {
         try {
             Scanner scan = new Scanner(System.in);
             Scanner scanp = new Scanner(System.in);
+            Scanner scanpd = new Scanner(System.in);
 
             String username;
             String password;
@@ -57,9 +58,9 @@ public class OptimizedDiagnosticSystem {
                     } else if (option == 2) {
 
                         System.out.println("Please enter the username");
-                        username = scan.nextLine();
+                        username = scanpd.nextLine();
                         System.out.println("Please enter the Password");
-                        String pass = scan.nextLine();
+                        String pass = scanpd.next();
                         menu.loginHistoryUpdater(username, pass);
                         System.out.println("What do you want to do?");
                         System.out.println("1.- Create a new Histry Clinic");
