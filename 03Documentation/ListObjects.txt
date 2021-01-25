@@ -1,0 +1,22 @@
+**********************************************************************************
+
+List of nouns and possible objects to be used in the Optimized Diagnostic System
+
+**********************************************************************************
+
+ -System
+ -Admnistration
+ -Patient
+ -Institution
+ -Damage
+ -Hospital
+ -Doctor
+ -Document
+ -Health
+ -Instrument
+ -Nurse
+ -Diagnostic
+ -Error
+ -Death
+ -Human
+ -Exam
