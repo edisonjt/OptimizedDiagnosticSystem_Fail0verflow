@@ -36,6 +36,7 @@ public class Diagnostic {
         System.out.println("CIE-10: ");
         setCie10(scan.nextLine());
     }
+    
    
     public String getCie10() {
         return cie10;

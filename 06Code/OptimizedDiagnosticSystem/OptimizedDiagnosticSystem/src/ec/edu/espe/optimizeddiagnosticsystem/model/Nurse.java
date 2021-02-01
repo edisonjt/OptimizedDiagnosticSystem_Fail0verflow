@@ -36,13 +36,16 @@ public class Nurse {
     public void register() {
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Please enter the name of the nurse");
+        System.out.println("=======================================");
+        System.out.println("*****Nurse's data*****");
+        
+        System.out.println("Name");
         setName(scan.nextLine());
 
-        System.out.println("Please enter the gender ");
+        System.out.println("Gender ");
         setGender(scan.nextLine());
 
-        System.out.println("Please enter the age");
+        System.out.println("Age");
         setAge(scan.nextInt());
 
         System.out.println("Do you want to save? Please put True or False");
