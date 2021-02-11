@@ -5,7 +5,8 @@
  */
 package ec.edu.espe.optimizeddiagnosticsystem.model;
 
-import java.util.Scanner;
+import ec.edu.espe.filemanager.utils.Data;
+import java.util.*;
 
 /**
  *
@@ -50,25 +51,23 @@ public class Nurse {
 
         System.out.println("Do you want to save? Please put True or False");
         setOption(scan.nextBoolean());
+        
+        String dataToSave = getName() + "," + getAge() + "," + getGender() + "\n";
+        Data.save("nurse.csv", dataToSave, isOption());
 
     }
 
 
     public void showData() {
-
+        
     }
 
     public void updateMedicalHistory(ClinicHistory clinicHistory) {
-
+        
     }
 
     public void takeASample() {
-
-    }
-
-    ClinicHistory transferPatients(ClinicHistory clinicHistory) {
-
-        return (clinicHistory);
+        
     }
 
     /**

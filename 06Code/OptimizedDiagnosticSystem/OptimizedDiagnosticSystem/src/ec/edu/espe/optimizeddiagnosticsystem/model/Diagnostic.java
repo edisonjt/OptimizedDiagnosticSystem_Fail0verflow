@@ -5,7 +5,7 @@
  */
 package ec.edu.espe.optimizeddiagnosticsystem.model;
 
-import java.util.Scanner;
+import java.util.*;
 
 /**
  *

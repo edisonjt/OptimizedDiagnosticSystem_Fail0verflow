@@ -5,14 +5,16 @@
  */
 package ec.edu.espe.optimizeddiagnosticsystem.model;
 
-import java.util.Scanner;
+import ec.edu.espe.filemanager.utils.Data;
+import java.util.*;
 
 /**
  *
  * @author Fail0verflow
  */
 public class Doctor {
-    private String name; 
+
+    private String name;
     private int age;
     private String speciality;
     private String subSpeciality;
@@ -28,7 +30,6 @@ public class Doctor {
         return "Doctor{" + "name=" + name + ", age=" + age + ", speciality=" + speciality + ", subSpeciality=" + subSpeciality + ", titleCode=" + titleCode + ", gender=" + gender + ", option=" + option + '}';
     }
 
-
     public Doctor(String name, int age, String speciality, String subSpeciality, String titleCode, String gender) {
         this.name = name;
         this.age = age;
@@ -38,7 +39,7 @@ public class Doctor {
         this.gender = gender;
     }
 
-    public void  registrer() {
+    public void registrer() {
         Scanner scan = new Scanner(System.in);
 
         System.out.println("=======================================");
@@ -55,37 +56,43 @@ public class Doctor {
 
         System.out.println("Age: ");
         setAge(Integer.parseInt(scan.nextLine()));
-        
+
         System.out.println("Sub Speciality : ");
         setSubSpeciality(scan.nextLine());
-      
+
         System.out.println("Speciality : ");
         setSpeciality(scan.nextLine());
-        
+
         System.out.println("Do you want to save? Please put True or False");
         setOption(scan.nextBoolean());
+        
+        String dataToSave = getName() + "," + getTitleCode() + "," + getSpeciality()
+                + "," + getSubSpeciality() + "," + getAge() + "," + getGender() + "\n";
+        Data.save("doctors.csv", dataToSave, isOption());
+        if (isOption()) {
+            System.out.println("Enter the new password");
+            String pass = scan.nextLine();
+            String userToSave = getName() + "," + pass;
+            Data.save("users.csv", userToSave, true);
+        }
 
     }
-    
-    String takeExams (ClinicHistory clinicHistory) {
-        
-        
-        return("0"); 
+
+    String takeExams(ClinicHistory clinicHistory) {
+
+        return ("0");
     }
-    
-    void performDiagnostic (Diagnostic diagnostic)
-    {
-        
+
+    void performDiagnostic(Diagnostic diagnostic) {
+
     }
-    
-    void showData ()
-    {
-        
+
+    void showData() {
+
     }
-    
-    void updateMedicalHistory (ClinicHistory clinicHistory)
-    {
-        
+
+    void updateMedicalHistory(ClinicHistory clinicHistory) {
+
     }
 
     /**
@@ -185,6 +192,5 @@ public class Doctor {
     public void setOption(boolean option) {
         this.option = option;
     }
-   
-    
+
 }

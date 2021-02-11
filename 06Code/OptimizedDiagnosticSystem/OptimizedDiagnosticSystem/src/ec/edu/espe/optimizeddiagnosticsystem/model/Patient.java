@@ -13,8 +13,8 @@ public class Patient {
     
     private String name; 
     private int age;
-    private float weight;
-    private float height;
+    private int weight;
+    private int height;
     private String bloodType;
     private String allergies;
     private String gender;
@@ -22,7 +22,7 @@ public class Patient {
     private String identificationCard;
     private boolean option;
 
-    public Patient(String name, int age, float weight, float height, String bloodType, String allergies, String gender, int emergencyContact, String identificationCard) {
+    public Patient(String name, int age, int weight, int height, String bloodType, String allergies, String gender, int emergencyContact, String identificationCard) {
         this.name = name;
         this.age = age;
         this.weight = weight;
@@ -36,9 +36,10 @@ public class Patient {
 
     @Override
     public String toString() {
-        return "Patient{" + "name=" + getName() + ", age=" + getAge() + ", weight=" + getWeight() + ", height=" + getHeight() + ", bloodType=" + getBloodType() + ", allergies=" + getAllergies() + ", gender=" + getGender() + ", emergencyContact=" + getEmergencyContact() + ", identificationCard=" + getIdentificationCard() + ", option=" + isOption() + '}';
+        return "Patient{" + "name=" + name + ", age=" + age + ", weight=" + weight + ", height=" + height + ", bloodType=" + bloodType + ", allergies=" + allergies + ", gender=" + gender + ", emergencyContact=" + emergencyContact + ", identificationCard=" + identificationCard + ", option=" + option + '}';
     }
-    
+
+
     public Patient(){
         
     }
@@ -66,11 +67,11 @@ public class Patient {
         System.out.println("Blood Type: ");
         setBloodType(patientnum.nextLine());
         
-        System.out.println("Weight: ");
-        setWeight(patient.nextFloat());
+        System.out.println("Weight(in kilos): ");
+        setWeight(patient.nextInt());
         
-        System.out.println("Height: ");
-        setHeight(patient.nextFloat());
+        System.out.println("Height(in centimetres): ");
+        setHeight(patient.nextInt());
         
         System.out.println("Allergies: ");
         setAllergies(patientnum.nextLine());
@@ -81,16 +82,6 @@ public class Patient {
         System.out.println("Do you want to save? Please put True or False");
         setOption(patient.nextBoolean());
     } 
-        
-    
-    boolean  eat () {
-        return true;
-    }
-    
-    
-    boolean  urination () {
-        return true;
-    }
 
     public String getName() {
         return name;
@@ -112,7 +103,7 @@ public class Patient {
         return weight;
     }
 
-    public void setWeight(float weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 
@@ -120,7 +111,7 @@ public class Patient {
         return height;
     }
 
-    public void setHeight(float height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
@@ -164,16 +155,10 @@ public class Patient {
         this.identificationCard = identificationCard;
     }
 
-    /**
-     * @return the option
-     */
     public boolean isOption() {
         return option;
     }
 
-    /**
-     * @param option the option to set
-     */
     public void setOption(boolean option) {
         this.option = option;
     }

@@ -5,9 +5,11 @@
  */
 package optimizeddiagnosticsystem;
 
-import java.io.IOException;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import ec.edu.espe.optimizeddiagnosticsystem.controller.Login;
+import ec.edu.espe.optimizeddiagnosticsystem.model.ClinicHistory;
+import ec.edu.espe.optimizeddiagnosticsystem.model.Doctor;
+import ec.edu.espe.optimizeddiagnosticsystem.model.Nurse;
+import java.util.*;
 
 /**
  *
@@ -24,36 +26,44 @@ public class OptimizedDiagnosticSystem {
             Scanner scannum = new Scanner(System.in);
             Scanner scantext = new Scanner(System.in);
 
-            String username;
+            String nameDoctor;
             String password;
+            String passwordDoctor;
             int option = 0, option1 = 0;
+            
+            Login login = new Login();
 
-            Menu menu = new Menu();
+            System.out.println("Enter password: ");
             do {
-                System.out.println("Enter password: ");
                 password = scantext.nextLine();
 
-                if (menu.login(password)) {
+                if (login.login(password)) {
 
                     while (option != 3) {
 
                         System.out.println("============= FailOverflow =============");
 
-                        menu.options1();
+                        System.out.println("1.-Personnel registration");
+                        System.out.println("2.-Clinical histories");
+                        System.out.println("3.- Exit");
                         option = scannum.nextInt();
 
                         if (option == 1) {
 
                             while (option1 != 3) {
                                 System.out.println("============= Register =============");
-                                menu.optionsRegister();
+                                System.out.println("1. Register a new doctor");
+                                System.out.println("2. Register a new nurse");
+                                System.out.println("3.- Exit");
                                 option1 = scannum.nextInt();
                                 if (option1 == 1) {
-                                    menu.registerDoctor();
+                                    Doctor doctor = new Doctor();
+                                    doctor.registrer();
                                 }
 
                                 if (option1 == 2) {
-                                    menu.registerNurse();
+                                    Nurse nurse = new Nurse();
+                                    nurse.register();
                                 }
                             }
 
@@ -64,33 +74,32 @@ public class OptimizedDiagnosticSystem {
                             do {
 
                                 System.out.println("Please enter the username");
-                                username = scantext.nextLine();
+                                nameDoctor = scantext.nextLine();
                                 System.out.println("Please enter the Password");
-                                password = scantext.nextLine();
+                                passwordDoctor = scantext.nextLine();
 
-                                if (menu.loginHistoryUpdater(username, password)) {
+                                if (login.loginHistoryUpdater(nameDoctor, passwordDoctor)) {
 
                                     System.out.println("What do you want to do?");
                                     System.out.println("1.- Create a new Histry Clinic");
                                     option1 = scannum.nextInt();
 
                                     if (option1 == 1) {
-                                        menu.clinicHistoryRegister(username);
+                                        ClinicHistory clinicHistory = new ClinicHistory();
+                                        clinicHistory.register(nameDoctor);
                                     }
                                 } else {
                                     System.out.println("The password or user isn't correct, please try again! ");
                                 }
-                            } while (!menu.loginHistoryUpdater(username, password));
+                            } while (!login.loginHistoryUpdater(nameDoctor, passwordDoctor));
 
                         }
                     }
                 } else {
                     System.out.println("The password isn't correct, please try again! ");
                 }
-            } while (!menu.login(password));
-        } catch (InputMismatchException ex) {
-            System.out.println("The option no exist! The System will close");
-        } catch (NumberFormatException e) {
+            } while (!login.login(password));
+        } catch (InputMismatchException | NumberFormatException ex) {
             System.out.println("The option no exist! The System will close");
         }
 
