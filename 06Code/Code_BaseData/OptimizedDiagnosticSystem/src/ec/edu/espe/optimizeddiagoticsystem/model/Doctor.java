@@ -6,7 +6,7 @@
 package ec.edu.espe.optimizeddiagoticsystem.model;
 
 
-import ec.edu.espe.optimizeddiagoticsystem.control.BaseData;
+
 import java.util.Scanner;
 
 /**
@@ -33,14 +33,7 @@ public class Doctor {
     }
 
 
-    public Doctor(String titleCode,String gender,String name,int age,String subSpeciality,String speciality) {
-        this.name = name;
-        this.age = age;
-        this.speciality = speciality;
-        this.subSpeciality = subSpeciality;
-        this.titleCode = titleCode;
-        this.gender = gender;
-    }
+    
 
     public void registrer() {
         Scanner scan = new Scanner(System.in);

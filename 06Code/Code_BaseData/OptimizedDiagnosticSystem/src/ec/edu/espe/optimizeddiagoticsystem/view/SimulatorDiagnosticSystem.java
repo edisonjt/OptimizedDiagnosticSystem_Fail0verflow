@@ -8,6 +8,7 @@ package ec.edu.espe.optimizeddiagoticsystem.view;
 import ec.edu.espe.optimizeddiagoticsystem.control.BaseData;
 import ec.edu.espe.optimizeddiagoticsystem.control.Login;
 import ec.edu.espe.optimizeddiagoticsystem.model.Doctor;
+import ec.edu.espe.optimizeddiagoticsystem.model.Nurse;
 import java.util.Scanner;
 
 /**
@@ -63,9 +64,17 @@ public class SimulatorDiagnosticSystem {
                                 savedoctor.Connection();
                                 doctor.registrer();                              
                                 savedoctor.FileDoctor("Doctors.json", doctor, true);
-                                savedoctor.view();
+                                savedoctor.view();                               
+                            }
+                            if(opRegister == 2){
+                                BaseData savenurse = new BaseData();
+                                Nurse nurse = new Nurse();
+                                savenurse.Connection();
+                                nurse.register();
+                                savenurse.FileNurse("Nurse.json", nurse, true);
+                                savenurse.view();
                                 
-
+                            
                             }
 
                         } while (opRegister != 3);

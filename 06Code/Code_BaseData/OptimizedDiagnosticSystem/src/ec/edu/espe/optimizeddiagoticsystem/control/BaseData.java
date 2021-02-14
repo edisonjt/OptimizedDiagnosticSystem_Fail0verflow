@@ -13,6 +13,7 @@ import com.mongodb.DBCursor;
 import com.mongodb.Mongo;
 import ec.edu.espe.filemanager.utils.Data;
 import ec.edu.espe.optimizeddiagoticsystem.model.Doctor;
+import ec.edu.espe.optimizeddiagoticsystem.model.Nurse;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -45,10 +46,10 @@ public class BaseData {
     public void FileDoctor(String doctorsjson, Doctor doctor, boolean Option) {
         // SAVE GSON
         Gson gson = new Gson();
-        String jsonRecord;
-        jsonRecord = gson.toJson(doctor);
-        Data.save(doctorsjson, jsonRecord + "\n", doctor.isOption());
-        // SAVE DATABASE
+        String jsonDoctor;
+        jsonDoctor = gson.toJson(doctor);
+        Data.save(doctorsjson, jsonDoctor + "\n", doctor.isOption());
+        // SAVE DATABASE MONGODB
         if (doctor.isOption() == true) {
             document.put("Age", "´" + doctor.getAge() + "´");
             document.put("Gender", "´" + doctor.getGender() + "´");
@@ -72,15 +73,35 @@ public class BaseData {
             collection = basedata.getCollection("PassDoctor");
             BasicDBObject document1 = new BasicDBObject();
             document1.put("Name", "´" + doctor.getName() + "´");
-            document1.put("Password", pass);
+            document1.put("Password", "´" + pass + "´");
             collection.insert(document1);
 
         }
     }
 
-    public boolean CollectionDoctor(Doctor doctor) {
+    public void FileNurse(String doctorsjson, Nurse nurse, boolean Option) {
 
-        return true;
+        // SAVE GSON
+        Gson gson = new Gson();
+        String jsonNurse;
+        jsonNurse = gson.toJson(nurse);
+        Data.save(doctorsjson, jsonNurse + "\n", nurse.isOption());
+        // SAVE DATABASE MONGODB
+        if (nurse.isOption() == true) {
+            collection = basedata.getCollection("Nurse");
+            document.put("SureName","´"+nurse.getSurname()+"´");
+            document.put("Name", "´" + nurse.getName() + "´");
+            document.put("Age", "´" + nurse.getAge() + "´");
+            document.put("Gender", "´" + nurse.getGender() + "´");
+            document.put("Cell Phone", "´" + nurse.getCellphone()+ "´");
+            document.put("Home Address", "´" + nurse.getHomeaddress()+ "´");
+            document.put("Turn","´" + nurse.getTurn()+ "´");                   
+            collection.insert(document);
+        } else {
+            System.out.println("unsaved data");
+
+        }
+
     }
 
     public void view() {
