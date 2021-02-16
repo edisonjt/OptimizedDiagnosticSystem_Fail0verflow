@@ -9,7 +9,7 @@ import ec.edu.espe.filemanager.utils.Data;
 
 /**
  *
- * @author Jhonatan
+ * @author FailOverflow
  */
 public class Login {
     
@@ -33,7 +33,7 @@ public class Login {
     
     public boolean login(String pass) {
         boolean validate = false;
-        if (Data.find("pass.csv", pass).equalsIgnoreCase(pass)) {
+        if ("12345".equalsIgnoreCase(pass)) {
             validate = true;
         }
 

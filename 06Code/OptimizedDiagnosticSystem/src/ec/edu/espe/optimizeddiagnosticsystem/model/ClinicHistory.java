@@ -31,69 +31,15 @@ public class ClinicHistory {
     }
 
     public void register(String user) {
-        int doctorControl = 1;
 
         Patient patientClass = new Patient();
         patientClass.register();
 
-        List doctors;
-        doctors = new ArrayList();
+        Nurse nurseClass = chooseNurse();
 
-        List diagnostics;
-        diagnostics = new ArrayList();
-
-        Scanner scan = new Scanner(System.in);
-
-        System.out.println("===================================== ");
-        System.out.println("===========The Nurse List ========== ");
-        System.out.println("===================================== ");
-        Data.printNurse("nurse.csv");
-        System.out.println("Enter the name and last name of the nurse in charge of the patient");
-        String nurseName = scan.nextLine();
-        String chainNurse = Data.find("nurse.csv", nurseName);
-        String[] splitNurse = chainNurse.split(",");
-        String nameNurse = splitNurse[0];
-        String ageNurse = splitNurse[1];
-        String genderNurse = splitNurse[2];
-        System.out.println("Name: " + nameNurse + ", Age: " + ageNurse + ", Gender:" + genderNurse);
-        Nurse nurseClass = new Nurse(nameNurse, Integer.parseInt(ageNurse), genderNurse);
-
-        while (doctorControl != 0) {
-
-            System.out.println("===================================== ");
-            System.out.println("===========The Doctor List ========== ");
-            System.out.println("===================================== ");
-            Data.printDoctor("doctors.csv");
-            String chainDoctor = Data.find("doctors.csv", user);
-            System.out.println("Added doctor: " + chainDoctor);
-            String[] splitDoctor = chainDoctor.split(",");
-            String nameDoctor = splitDoctor[0];
-            String titleDoctor = splitDoctor[1];
-            String espDoctor = splitDoctor[2];
-            String subEspDoctor = splitDoctor[3];
-            String ageDoctor = splitDoctor[4];
-            String genderDoctor = splitDoctor[5];
-            Doctor doctorClass = new Doctor(nameDoctor, Integer.parseInt(ageDoctor), espDoctor, subEspDoctor, titleDoctor, genderDoctor);
-            doctors.add(doctorClass);
-            System.out.println("You need to add more doctors? please press 1 to add more or 0 to continue");
-            doctorControl = Integer.parseInt(scan.nextLine());
-
-            if (doctorControl == 1) {
-                System.out.println("Please put the name of the doctor");
-                user = scan.nextLine();
-            }
-        }
-
-        System.out.print("Write the CIE10 DIAGNOSTIC to search in the file:");
-        String data = scan.nextLine();
-        System.out.println("\n --- > The name to Find is " + data + "\n ");
-        String nameP = Data.find("cie-10.csv", data);
-        System.out.println("|-------------------------------|");
-        System.out.println("|" + nameP + "|");
-        System.out.println("|-------------------------------|");
-        Diagnostic diagnosticClass = new Diagnostic();
-        diagnosticClass.resgister();
-        diagnostics.add(diagnosticClass);
+        ArrayList<Doctor> doctors = addDoctor(user);
+        
+        ArrayList<Diagnostic> diagnostics = addDiagnostic();
         
         Gson gson = new Gson();
         String jsonClinicHistory;
@@ -109,6 +55,107 @@ public class ClinicHistory {
     @Override
     public String toString() {
         return "ClinicHistory{" + "patient=" + getPatient() + ", doctor=" + getDoctor() + ", diagnostic=" + getDiagnostic() + ", nurse=" + getNurse() + '}';
+    }
+
+    public Nurse chooseNurse() {
+
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("===================================== ");
+        System.out.println("===========The Nurse List ========== ");
+        System.out.println("===================================== ");
+        
+        Data.printNurse("nurse.csv");
+        
+        System.out.println("Enter the name and last name of the nurse in charge of the patient");
+        String nurseName = scan.nextLine();
+
+        String chainNurse = Data.find("nurse.csv", nurseName);
+        String[] splitNurse = chainNurse.split(",");
+        String nameNurse = splitNurse[0];
+        String ageNurse = splitNurse[1];
+        String genderNurse = splitNurse[2];
+
+        System.out.println("\n===================================== ");
+        System.out.println("Name: " + nameNurse + "\nAge: " + ageNurse + "\nGender:" + genderNurse);
+
+        Nurse nurseClass = new Nurse(nameNurse, Integer.parseInt(ageNurse), genderNurse);
+
+        return nurseClass;
+    }
+
+    public ArrayList addDoctor(String user) {
+
+        ArrayList doctors = new ArrayList();
+
+        Scanner scan = new Scanner(System.in);
+
+        int doctorControl = 1;
+
+        while (doctorControl != 0) {
+
+            System.out.println("===================================== ");
+            System.out.println("===========The Doctor List ========== ");
+            System.out.println("===================================== ");
+            
+            Data.printDoctor("doctors.csv");
+            
+            String chainDoctor = Data.find("doctors.csv", user);
+            String[] splitDoctor = chainDoctor.split(",");
+            String nameDoctor = splitDoctor[0];
+            String titleDoctor = splitDoctor[1];
+            String espDoctor = splitDoctor[2];
+            String subEspDoctor = splitDoctor[3];
+            String ageDoctor = splitDoctor[4];
+            String genderDoctor = splitDoctor[5];
+            
+            System.out.println("\n===================================== ");
+            System.out.println("Added doctor: \n" + "Name: " + nameDoctor + "\nTitle Code: " + titleDoctor);
+            
+            Doctor doctorClass = new Doctor(nameDoctor, Integer.parseInt(ageDoctor), espDoctor, subEspDoctor, titleDoctor, genderDoctor);
+            
+            doctors.add(doctorClass);
+            
+            System.out.println("You need to add more doctors? please press 1 to add more or 0 to continue");
+            doctorControl = Integer.parseInt(scan.nextLine());
+
+            if (doctorControl == 1) {
+                System.out.println("Please put the name of the doctor");
+                user = scan.nextLine();
+            }
+        }
+
+        return doctors;
+    }
+
+    public ArrayList addDiagnostic() {
+
+        ArrayList diagnostics = new ArrayList();
+
+        Scanner scan = new Scanner(System.in);
+
+        int diagnosticControl = 1;
+
+        while (diagnosticControl != 0) {
+
+            System.out.print("Write the CIE10 DIAGNOSTIC to search in the file:");
+            String diagnosisCode = scan.nextLine();
+            
+            System.out.println("\n --- > The name to Find is " + diagnosisCode + "\n ");
+            String diagnosisName = Data.find("cie-10.csv", diagnosisCode);
+            System.out.println("|-------------------------------|");
+            System.out.println("|" + diagnosisName + "|");
+            System.out.println("|-------------------------------|");
+            
+            Diagnostic diagnosticClass = new Diagnostic();
+            diagnosticClass.resgister();
+            diagnostics.add(diagnosticClass);
+            
+            System.out.println("You need to add more diagnostics? please press 1 to add more or 0 to continue");
+            diagnosticControl = Integer.parseInt(scan.nextLine());
+        }
+
+        return diagnostics;
     }
 
     /**
