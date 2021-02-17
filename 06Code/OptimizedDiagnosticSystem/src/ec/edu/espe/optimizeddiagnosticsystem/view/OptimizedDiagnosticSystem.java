@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package optimizeddiagnosticsystem;
+package ec.edu.espe.optimizeddiagnosticsystem.view;
 
 import ec.edu.espe.optimizeddiagnosticsystem.controller.Login;
 import ec.edu.espe.optimizeddiagnosticsystem.model.ClinicHistory;
@@ -60,7 +60,7 @@ public class OptimizedDiagnosticSystem {
 
                                     if (option1 == 1) {
                                         Doctor doctor = new Doctor();
-                                        doctor.registrer();
+                                        doctor.register();
                                     }
 
                                     if (option1 == 2) {

@@ -39,7 +39,7 @@ public class Doctor {
         this.gender = gender;
     }
 
-    public void registrer() {
+    public void register() {
         Scanner scan = new Scanner(System.in);
 
         System.out.println("=======================================");
