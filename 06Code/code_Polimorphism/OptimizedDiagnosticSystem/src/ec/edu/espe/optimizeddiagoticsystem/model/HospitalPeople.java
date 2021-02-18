@@ -5,9 +5,7 @@
  */
 package ec.edu.espe.optimizeddiagoticsystem.model;
 
-import com.google.gson.Gson;
-import ec.edu.espe.filemanager.utils.Data;
-import java.util.Scanner;
+
 
 /**
  *
@@ -51,6 +49,8 @@ public class HospitalPeople {
     public void setName(String name) {
         this.name = name;
     }
+    
+    
 
     public void setAge(int age) {
         this.age = age;

@@ -8,6 +8,8 @@ package ec.edu.espe.optimizeddiagoticsystem.view;
 import ec.edu.espe.filemanager.utils.Data2;
 import ec.edu.espe.optimizeddiagoticsystem.control.Login;
 import ec.edu.espe.optimizeddiagoticsystem.model.Doctor;
+import ec.edu.espe.optimizeddiagoticsystem.model.HospitalPeople;
+import ec.edu.espe.optimizeddiagoticsystem.model.MedicalStaff;
 import ec.edu.espe.optimizeddiagoticsystem.model.Nurse;
 import java.util.Scanner;
 
@@ -17,7 +19,7 @@ import java.util.Scanner;
  */
 public class SimulatorDiagnosticSystem {
 
-    public static void MenuSystem() {
+    public static void menuSystem() {
 
         System.out.println("============= FailOverflow =============");
         System.out.println("**** Welcome to the hospital system ****");
@@ -28,7 +30,7 @@ public class SimulatorDiagnosticSystem {
 
     }
 
-    public static void MenuRegister() {
+    public static void menuRegister() {
         System.out.println("============= Register =============");
         System.out.println("1. Register a new doctor");
         System.out.println("2. Register a new nurse");
@@ -51,25 +53,39 @@ public class SimulatorDiagnosticSystem {
             if (login.System(password)) {
 
                 do {
-                    MenuSystem();
+                    menuSystem();
                     opSystem = scannum.nextInt();
                     if (opSystem == 1) {
 
                         do {
-                            MenuRegister();
+                            menuRegister();
                             opRegister = scannum.nextInt();
                             if (opRegister == 1) {
-                                Doctor doctor = new Doctor();
+
+                                MedicalStaff pass = new Doctor();
+                                HospitalPeople doctor = new Doctor();
                                 doctor.register();
-                                Data2.save("Doctors.json", doctor, doctor.isOption());
-                                doctor.createPass(doctor.isOption());
+                                Data2.save("registerDoctor.json", doctor, doctor.isOption());
+                                pass.createPass(doctor.isOption());
 
                             }
                             if (opRegister == 2) {
-                                Nurse nurse = new Nurse();
+
+                                MedicalStaff pass = new Nurse();
+                                HospitalPeople nurse = new Nurse();
                                 nurse.register();
-                                Data2.save("Nurse.json", nurse, nurse.isOption());
-                                nurse.createPass(nurse.isOption());
+                                Data2.save("registerNurse.json", nurse, nurse.isOption());
+                                pass.createPass(nurse.isOption());
+
+                            }
+                            if (opRegister == 3) {
+                                System.out.println("");
+                                break;
+
+                            }
+                            if (opRegister > 3) {
+                                System.out.println("The option no exist! The System will close");
+                                return;
 
                             }
 
@@ -77,6 +93,12 @@ public class SimulatorDiagnosticSystem {
                     }
                     if (opSystem == 3) {
                         System.out.println("GOODBYE");
+                        break;
+                    }
+                    if (opSystem > 3) {
+                        System.out.println("The option no exist! The System will close");
+                        return;
+
                     }
 
                 } while (opSystem != 3);

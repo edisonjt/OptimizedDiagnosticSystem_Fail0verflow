@@ -38,38 +38,47 @@ public class Doctor extends MedicalStaff {
         System.out.println("=======================================");
         System.out.println("*****Doctor's data*****");
         System.out.println("");
-        System.out.println("Surname: ");
-        setSurname(scan.nextLine());
         System.out.println("Name: ");
         setName(scan.nextLine());
-        System.out.println("Age: ");
-        setAge(Integer.parseInt(scan.nextLine()));
-         System.out.println("Sub Speciality : ");
+        System.out.println("Surname: ");
+        setSurname(scan.nextLine());
+        try {
+            System.out.println("Age: ");
+            setAge(Integer.parseInt(scan.nextLine()));
+            System.out.println("Emergency Number: ");
+            setEmergencyNumber(Integer.parseInt(scan.nextLine()));
+        } catch (NumberFormatException ex) {
+            System.out.println("very large number");
+        }
+        System.out.println("Sub Speciality : ");
         setSubSpeciality(scan.nextLine());
         System.out.println("Speciality : ");
         setSpeciality(scan.nextLine());
         System.out.println("Home Address: ");
         setHomeAddress(scan.nextLine());
-        System.out.println("Emergency Number: ");
-        setEmergencyNumber(Integer.parseInt(scan.nextLine()));
-         System.out.println("Title code: ");
+
+        System.out.println("Title code: ");
         setTitleCode(scan.nextLine());
         System.out.println("Do you want to save? Please put True or False");
         setOption(scan.nextBoolean());
 
     }
+
     @Override
-     public void createPass(boolean option) {
-        if(option==true){
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter the new password");
-        String pass = scan.nextLine();
-        String userToSave = getName() + "," + pass;
-        Data.save("PassDoctor.csv", userToSave + "\n", true);
+    public void createPass(boolean option) {
+        if (option == true) {
+            Scanner scan = new Scanner(System.in);
+            System.out.println("Enter the new password");
+            String pass = scan.nextLine();
+            String userToSave =  pass+","+getName() ;
+            Data.save("LoginDoctor.csv", userToSave + "\n", true);
+            String doctorToSave =  pass;
+            Data.save("PassDocSystem.csv", doctorToSave+"\n", true);
         }
+
     }
-     
- //SETT AND GETT
+
+    //SETT AND GETT
     public void setSpeciality(String speciality) {
         this.speciality = speciality;
     }
@@ -77,8 +86,5 @@ public class Doctor extends MedicalStaff {
     public void setSubSpeciality(String subSpeciality) {
         this.subSpeciality = subSpeciality;
     }
-    
-    
-    
 
 }

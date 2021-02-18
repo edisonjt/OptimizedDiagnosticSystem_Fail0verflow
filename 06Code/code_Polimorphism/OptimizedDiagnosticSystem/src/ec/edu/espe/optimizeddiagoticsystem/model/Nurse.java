@@ -33,36 +33,42 @@ public class Nurse extends MedicalStaff {
         System.out.println("*****Nurse's data*****");
         System.out.println("");
         Scanner scan = new Scanner(System.in);
-        System.out.println("Surname: ");
-        setSurname(scan.nextLine());
         System.out.println("Name: ");
         setName(scan.nextLine());
-        System.out.println("Age: ");
-        setAge(Integer.parseInt(scan.nextLine()));
+        System.out.println("Surname: ");
+        setSurname(scan.nextLine());
+        try {
+            System.out.println("Age: ");
+            setAge(Integer.parseInt(scan.nextLine()));
+            System.out.println("Emergency Number: ");
+            setEmergencyNumber(Integer.parseInt(scan.nextLine()));
+        } catch (NumberFormatException ex) {
+            System.out.println("very large number");
+        }
         System.out.println("Home Address: ");
         setHomeAddress(scan.nextLine());
         System.out.println("Work Shift");
         setWorkShift(scan.nextLine());
-        System.out.println("Emergency Number: ");
-        setEmergencyNumber(Integer.parseInt(scan.nextLine()));
         System.out.println("Title code: ");
         setTitleCode(scan.nextLine());
         System.out.println("Do you want to save? Please put True or False");
         setOption(scan.nextBoolean());
 
     }
+
     @Override
-     public void createPass(boolean option) {
-        if(option==true){
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter the new password");
-        String pass = scan.nextLine();
-        String userToSave = getName() + "," + pass;
-        Data.save("PassNurse.csv", userToSave + "\n", true);
+    public void createPass(boolean option) {
+        if (option == true) {
+            Scanner scan = new Scanner(System.in);
+            System.out.println("Enter the new password");
+            String pass = scan.nextLine();
+            String nurseToSave = pass;
+            Data.save("PassNursSystem.csv", nurseToSave + "\n", true);
         }
+
     }
 
-      //SETT AND GETT
+    //SETT AND GETT
     public void setWorkShift(String workShift) {
         this.workShift = workShift;
     }

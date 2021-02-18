@@ -7,6 +7,8 @@ package ec.edu.espe.optimizeddiagoticsystem.model;
 
 
 
+
+
 /**
  *
  * @author luist
@@ -28,6 +30,7 @@ public class MedicalStaff extends HospitalPeople {
 
     //METHODS
     public void createPass(boolean option) {
+        
        
     }
     

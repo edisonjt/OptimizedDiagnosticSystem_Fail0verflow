@@ -14,9 +14,11 @@ public class Login {
     
      public boolean System(String pass) {
         boolean validate = false;        
-        if (Data.find("PassSystem.csv", pass).equalsIgnoreCase(pass)|| pass.equalsIgnoreCase("rootpass")) {
+        if (Data.find("PassDocSystem.csv", pass).equalsIgnoreCase(pass)|| pass.equalsIgnoreCase("rootpass")){
             validate = true;
-        }
+        } else if (Data.find("PassNursSystem.csv", pass).equalsIgnoreCase(pass)) {
+            validate = true;
+         }
         return validate;
     }
      
