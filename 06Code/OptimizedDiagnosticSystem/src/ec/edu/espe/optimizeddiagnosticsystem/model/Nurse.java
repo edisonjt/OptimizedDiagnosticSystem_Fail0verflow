@@ -12,52 +12,46 @@ import java.util.*;
  *
  * @author Fail0verflow
  */
-public class Nurse {
+public class Nurse extends HospitalPeople{
 
-    private String name;
-    private int age;
-    private String gender;
+    private boolean prescription;
     private boolean option;
+
+    public Nurse(boolean prescription, String name, String gender, String dateOfBirth) {
+        super(name, gender, dateOfBirth);
+        this.prescription = prescription;
+    }
+
+    public Nurse() {
+    }
 
     @Override
     public String toString() {
-        return "Nurse{" + "name=" + name + ", age=" + age + ", gender=" + gender + ", option=" + option + '}';
+        return "Nurse{" + "name=" + getName() + ", age=" + getDateOfBirth() + 
+                ", gender=" + getGender() + ", prescription=" + isPrescription() + '}';
     }
 
-    public Nurse(String name, int age, String gender) {
-        this.name = name;
-        this.age = age;
-        this.gender = gender;
+    public boolean prescription(){
+        setPrescription(true);
+        return isPrescription();
     }
     
-    public Nurse(){
-        
-    }
-
-    public void register() {
+    @Override
+    public void register(){
         Scanner scan = new Scanner(System.in);
-
-        System.out.println("=======================================");
+        
+        System.out.println("\n=======================================");
         System.out.println("*****Nurse's data*****");
         
-        System.out.println("Name");
-        setName(scan.nextLine());
-
-        System.out.println("Gender ");
-        setGender(scan.nextLine());
-
-        System.out.println("Age");
-        setAge(scan.nextInt());
-
+        super.register();
+        
         System.out.println("Do you want to save? Please put True or False");
         setOption(scan.nextBoolean());
         
-        String dataToSave = getName() + "," + getAge() + "," + getGender() + "\n";
+        String dataToSave = getName() + "," + getDateOfBirth() + "," + getGender() + "\n";
         Data.save("nurse.csv", dataToSave, isOption());
-
     }
-
-
+    
     public void showData() {
         
     }
@@ -69,47 +63,19 @@ public class Nurse {
     public void takeASample() {
         
     }
-
+    
     /**
-     * @return the name
+     * @return the prescription
      */
-    public String getName() {
-        return name;
+    public boolean isPrescription() {
+        return prescription;
     }
 
     /**
-     * @param name the name to set
+     * @param prescription the prescription to set
      */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * @return the age
-     */
-    public int getAge() {
-        return age;
-    }
-
-    /**
-     * @param age the age to set
-     */
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    /**
-     * @return the gender
-     */
-    public String getGender() {
-        return gender;
-    }
-
-    /**
-     * @param gender the gender to set
-     */
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setPrescription(boolean prescription) {
+        this.prescription = prescription;
     }
 
     /**

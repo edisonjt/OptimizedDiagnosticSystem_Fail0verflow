@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.espe.optimizeddiagnosticsystem.view;
+package optimizeddiagnosticsystem;
 
 import ec.edu.espe.optimizeddiagnosticsystem.controller.Login;
 import ec.edu.espe.optimizeddiagnosticsystem.model.ClinicHistory;
@@ -22,6 +22,7 @@ public class OptimizedDiagnosticSystem {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+
         try {
             Scanner scannum = new Scanner(System.in);
             Scanner scantext = new Scanner(System.in);

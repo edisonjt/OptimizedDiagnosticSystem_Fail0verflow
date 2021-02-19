@@ -9,159 +9,166 @@ import java.util.*;
  *
  * @author Fail0verflow
  */
-public class Patient {
+public class Patient extends HospitalPeople {
     
-    private String name; 
-    private int age;
-    private int weight;
-    private int height;
+    private float weight;
+    private float height;
     private String bloodType;
     private String allergies;
-    private String gender;
     private int emergencyContact;
     private String identificationCard;
     private boolean option;
 
-    public Patient(String name, int age, int weight, int height, String bloodType, String allergies, String gender, int emergencyContact, String identificationCard) {
-        this.name = name;
-        this.age = age;
+    public Patient(float weight, float height, String bloodType, String allergies, 
+            int emergencyContact, String identificationCard, String name, 
+            String gender, String dateOfBirth) {   
+        super(name, gender, dateOfBirth);
         this.weight = weight;
         this.height = height;
         this.bloodType = bloodType;
         this.allergies = allergies;
-        this.gender = gender;
         this.emergencyContact = emergencyContact;
         this.identificationCard = identificationCard;
     }
 
+    public Patient() {
+    }
+
     @Override
     public String toString() {
-        return "Patient{" + "name=" + name + ", age=" + age + ", weight=" + weight + ", height=" + height + ", bloodType=" + bloodType + ", allergies=" + allergies + ", gender=" + gender + ", emergencyContact=" + emergencyContact + ", identificationCard=" + identificationCard + ", option=" + option + '}';
+        return "Patient{" + "name=" + getName() 
+                + ", age=" + getDateOfBirth() + ", weight=" + getWeight() 
+                + ", height=" + getHeight() + ", bloodType=" + getBloodType() 
+                + ", allergies=" + getAllergies() + ", gender=" + getGender() 
+                + ", emergencyContact=" + getEmergencyContact() 
+                + ", identificationCard=" + getIdentificationCard() + '}';
     }
 
-
-    public Patient(){
-        
-    }
-
+    @Override
     public void register(){
-        
         Scanner patient = new Scanner(System.in); 
-        Scanner patientnum = new Scanner(System.in);
         
-        System.out.println("=======================================");
+        System.out.println("\n=======================================");
         System.out.println("*****Patient's data*****");
+        
+        super.register();
         
         System.out.println("Identification Card: ");
         setIdentificationCard(patient.nextLine());
         
-        System.out.println("Gander: ");
-        setGender(patient.nextLine());
-        
-        System.out.println("Name: ");
-        setName(patient.nextLine());
-        
-        System.out.println("Age: ");
-        setAge(patient.nextInt());
+        System.out.println("Allergies: ");
+        setAllergies(patient.nextLine());
         
         System.out.println("Blood Type: ");
-        setBloodType(patientnum.nextLine());
+        setBloodType(patient.nextLine());
         
-        System.out.println("Weight(in kilos): ");
-        setWeight(patient.nextInt());
+        System.out.println("Weight: ");
+        setWeight(patient.nextFloat());
         
-        System.out.println("Height(in centimetres): ");
-        setHeight(patient.nextInt());
-        
-        System.out.println("Allergies: ");
-        setAllergies(patientnum.nextLine());
+        System.out.println("Height: ");
+        setHeight(patient.nextFloat());
         
         System.out.println("Emergency Contac: ");
         setEmergencyContact(patient.nextInt());
         
         System.out.println("Do you want to save? Please put True or False");
         setOption(patient.nextBoolean());
-    } 
-
-    public String getName() {
-        return name;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
+    /**
+     * @return the weight
+     */
     public float getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    /**
+     * @param weight the weight to set
+     */
+    public void setWeight(float weight) {
         this.weight = weight;
     }
 
+    /**
+     * @return the height
+     */
     public float getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    /**
+     * @param height the height to set
+     */
+    public void setHeight(float height) {
         this.height = height;
     }
 
+    /**
+     * @return the bloodType
+     */
     public String getBloodType() {
         return bloodType;
     }
 
+    /**
+     * @param bloodType the bloodType to set
+     */
     public void setBloodType(String bloodType) {
         this.bloodType = bloodType;
     }
 
+    /**
+     * @return the allergies
+     */
     public String getAllergies() {
         return allergies;
     }
 
+    /**
+     * @param allergies the allergies to set
+     */
     public void setAllergies(String allergies) {
         this.allergies = allergies;
     }
 
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
+    /**
+     * @return the emergencyContact
+     */
     public int getEmergencyContact() {
         return emergencyContact;
     }
 
+    /**
+     * @param emergencyContact the emergencyContact to set
+     */
     public void setEmergencyContact(int emergencyContact) {
         this.emergencyContact = emergencyContact;
     }
 
+    /**
+     * @return the identificationCard
+     */
     public String getIdentificationCard() {
         return identificationCard;
     }
 
+    /**
+     * @param identificationCard the identificationCard to set
+     */
     public void setIdentificationCard(String identificationCard) {
         this.identificationCard = identificationCard;
-    }
+    }  
 
+    /**
+     * @return the option
+     */
     public boolean isOption() {
         return option;
     }
 
+    /**
+     * @param option the option to set
+     */
     public void setOption(boolean option) {
         this.option = option;
     }
-    
-    
 }

@@ -12,50 +12,35 @@ import java.util.*;
  *
  * @author Fail0verflow
  */
-public class Doctor {
+public class Doctor extends HospitalPeople {
 
-    private String name;
-    private int age;
     private String speciality;
     private String subSpeciality;
     private String titleCode;
-    private String gender;
     private boolean option;
 
-    public Doctor() {
-    }
-
-    @Override
-    public String toString() {
-        return "Doctor{" + "name=" + name + ", age=" + age + ", speciality=" + speciality + ", subSpeciality=" + subSpeciality + ", titleCode=" + titleCode + ", gender=" + gender + ", option=" + option + '}';
-    }
-
-    public Doctor(String name, int age, String speciality, String subSpeciality, String titleCode, String gender) {
-        this.name = name;
-        this.age = age;
+    public Doctor(String speciality, String subSpeciality, String titleCode, String name, String gender, String dateOfBirth) {
+        super(name, gender, dateOfBirth);
         this.speciality = speciality;
         this.subSpeciality = subSpeciality;
         this.titleCode = titleCode;
-        this.gender = gender;
     }
 
+    public Doctor() {
+
+    }
+
+    @Override
     public void register() {
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("=======================================");
+        System.out.println("\n=======================================");
         System.out.println("*****Doctor's data*****");
+
+        super.register();
 
         System.out.println("Title code: ");
         setTitleCode(scan.nextLine());
-
-        System.out.println("Gender: ");
-        setGender(scan.nextLine());
-
-        System.out.println("Name: ");
-        setName(scan.nextLine());
-
-        System.out.println("Age: ");
-        setAge(Integer.parseInt(scan.nextLine()));
 
         System.out.println("Sub Speciality : ");
         setSubSpeciality(scan.nextLine());
@@ -65,17 +50,26 @@ public class Doctor {
 
         System.out.println("Do you want to save? Please put True or False");
         setOption(scan.nextBoolean());
-        
+
         String dataToSave = getName() + "," + getTitleCode() + "," + getSpeciality()
-                + "," + getSubSpeciality() + "," + getAge() + "," + getGender() + "\n";
+                + "," + getSubSpeciality() + "," + getDateOfBirth() + "," + getGender() + "\n";
+
         Data.save("doctors.csv", dataToSave, isOption());
+
         if (isOption()) {
             System.out.println("Enter the new password");
-            String pass = scan.nextLine();
-            String userToSave = getName() + "," + pass;
+            String pass = scan.next();
+            String userToSave = getName() + ", " + pass + "\n";
             Data.save("users.csv", userToSave, true);
         }
+    }
 
+    @Override
+    public String toString() {
+        return "Doctor{" + "name=" + getName() + ", age="
+                + getDateOfBirth() + ", speciality=" + speciality
+                + ", subSpeciality=" + subSpeciality + ", titleCode="
+                + titleCode + ", gender=" + getGender() + '}';
     }
 
     String takeExams(ClinicHistory clinicHistory) {
@@ -93,34 +87,6 @@ public class Doctor {
 
     void updateMedicalHistory(ClinicHistory clinicHistory) {
 
-    }
-
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * @return the age
-     */
-    public int getAge() {
-        return age;
-    }
-
-    /**
-     * @param age the age to set
-     */
-    public void setAge(int age) {
-        this.age = age;
     }
 
     /**
@@ -163,20 +129,6 @@ public class Doctor {
      */
     public void setTitleCode(String titleCode) {
         this.titleCode = titleCode;
-    }
-
-    /**
-     * @return the gender
-     */
-    public String getGender() {
-        return gender;
-    }
-
-    /**
-     * @param gender the gender to set
-     */
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     /**

@@ -77,9 +77,9 @@ public class ClinicHistory {
         String genderNurse = splitNurse[2];
 
         System.out.println("\n===================================== ");
-        System.out.println("Name: " + nameNurse + "\nAge: " + ageNurse + "\nGender:" + genderNurse);
+        System.out.println("Added nurse: \n" + "Name: " + nameNurse + "\nAge: " + ageNurse + "\nGender:" + genderNurse);
 
-        Nurse nurseClass = new Nurse(nameNurse, Integer.parseInt(ageNurse), genderNurse);
+        Nurse nurseClass = new Nurse(true, nameNurse, genderNurse, ageNurse);
 
         return nurseClass;
     }
@@ -104,15 +104,15 @@ public class ClinicHistory {
             String[] splitDoctor = chainDoctor.split(",");
             String nameDoctor = splitDoctor[0];
             String titleDoctor = splitDoctor[1];
-            String espDoctor = splitDoctor[2];
+            String specialityDoctor = splitDoctor[2];
             String subEspDoctor = splitDoctor[3];
-            String ageDoctor = splitDoctor[4];
+            String dateOfBirthDoctor = splitDoctor[4];
             String genderDoctor = splitDoctor[5];
             
             System.out.println("\n===================================== ");
             System.out.println("Added doctor: \n" + "Name: " + nameDoctor + "\nTitle Code: " + titleDoctor);
             
-            Doctor doctorClass = new Doctor(nameDoctor, Integer.parseInt(ageDoctor), espDoctor, subEspDoctor, titleDoctor, genderDoctor);
+            Doctor doctorClass = new Doctor(specialityDoctor, subEspDoctor, titleDoctor, nameDoctor, genderDoctor, dateOfBirthDoctor);
             
             doctors.add(doctorClass);
             
