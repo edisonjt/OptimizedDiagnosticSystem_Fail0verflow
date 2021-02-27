@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.espe.optimizeddiagnosticsystem.controller;
+package ec.edu.espe.optimizeddiagnosticsystem.utils;
 
 import ec.edu.espe.filemanager.utils.Data;
 

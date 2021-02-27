@@ -5,8 +5,9 @@
  */
 package ec.edu.espe.optimizeddiagnosticsystem.model;
 
-import com.google.gson.Gson;
+import com.mongodb.BasicDBObject;
 import ec.edu.espe.filemanager.utils.Data;
+import ec.edu.espe.optimizeddiagnosticsystem.utils.Database;
 import java.util.*;
 
 /**
@@ -19,6 +20,7 @@ public class ClinicHistory {
     private ArrayList<Doctor> doctor = new ArrayList();
     private ArrayList<Diagnostic> diagnostic = new ArrayList();
     private Nurse nurse;
+    Database dataBase = new Database();
 
     public ClinicHistory(Patient patient, ArrayList<Doctor> doctor, ArrayList<Diagnostic> diagnostic, Nurse nurse) {
         this.patient = patient;
@@ -33,23 +35,13 @@ public class ClinicHistory {
     public void register(String user) {
 
         Patient patientClass = new Patient();
+        BasicDBObject document = new BasicDBObject();
+        
         patientClass.register();
-
-        Nurse nurseClass = chooseNurse();
-
-        ArrayList<Doctor> doctors = addDoctor(user);
         
-        ArrayList<Diagnostic> diagnostics = addDiagnostic();
-        
-        Gson gson = new Gson();
-        String jsonClinicHistory;
+        dataBase.dBPatient(patientClass, "Clinic History");
 
-        ClinicHistory clinicHistory = new ClinicHistory(patientClass, (ArrayList<Doctor>) doctors, (ArrayList<Diagnostic>) diagnostics, nurseClass);
-
-        //serialization
-        jsonClinicHistory = gson.toJson(clinicHistory);
-        System.out.println("Patient register --> " + jsonClinicHistory);
-        Data.save("clinicHistory.json", jsonClinicHistory + "\n", true);
+        dataBase.saveDatabase("Clinic History", document, "Clinic History");
     }
 
     @Override
@@ -80,6 +72,7 @@ public class ClinicHistory {
         System.out.println("Added nurse: \n" + "Name: " + nameNurse + "\nAge: " + ageNurse + "\nGender:" + genderNurse);
 
         Nurse nurseClass = new Nurse(true, nameNurse, genderNurse, ageNurse);
+        dataBase.dBNurse(nurseClass, "Clinic History");
 
         return nurseClass;
     }
@@ -113,6 +106,7 @@ public class ClinicHistory {
             System.out.println("Added doctor: \n" + "Name: " + nameDoctor + "\nTitle Code: " + titleDoctor);
             
             Doctor doctorClass = new Doctor(specialityDoctor, subEspDoctor, titleDoctor, nameDoctor, genderDoctor, dateOfBirthDoctor);
+            dataBase.dBDoctor(doctorClass, "Clinic History");
             
             doctors.add(doctorClass);
             
@@ -149,6 +143,7 @@ public class ClinicHistory {
             
             Diagnostic diagnosticClass = new Diagnostic();
             diagnosticClass.resgister();
+            dataBase.dBDiagnostic(diagnosticClass, "Clinic History");
             diagnostics.add(diagnosticClass);
             
             System.out.println("You need to add more diagnostics? please press 1 to add more or 0 to continue");

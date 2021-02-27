@@ -6,6 +6,7 @@
 package ec.edu.espe.optimizeddiagnosticsystem.model;
 
 import ec.edu.espe.filemanager.utils.Data;
+import ec.edu.espe.optimizeddiagnosticsystem.utils.Database;
 import java.util.*;
 
 /**
@@ -18,6 +19,7 @@ public class Doctor extends HospitalPeople {
     private String subSpeciality;
     private String titleCode;
     private boolean option;
+    private String password;
 
     public Doctor(String speciality, String subSpeciality, String titleCode, String name, String gender, String dateOfBirth) {
         super(name, gender, dateOfBirth);
@@ -32,6 +34,7 @@ public class Doctor extends HospitalPeople {
 
     @Override
     public void register() {
+        Database database = new Database();
         Scanner scan = new Scanner(System.in);
 
         System.out.println("\n=======================================");
@@ -57,9 +60,12 @@ public class Doctor extends HospitalPeople {
         Data.save("doctors.csv", dataToSave, isOption());
 
         if (isOption()) {
+            
             System.out.println("Enter the new password");
-            String pass = scan.next();
-            String userToSave = getName() + ", " + pass + "\n";
+            setPassword(scan.next());
+            String userToSave = getName() + ", " + getPassword() + "\n";
+            database.dbUsersPassword(getName(), getPassword());
+            
             Data.save("users.csv", userToSave, true);
         }
     }
@@ -143,6 +149,20 @@ public class Doctor extends HospitalPeople {
      */
     public void setOption(boolean option) {
         this.option = option;
+    }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }

@@ -6,6 +6,7 @@
 package ec.edu.espe.optimizeddiagnosticsystem.model;
 
 import ec.edu.espe.filemanager.utils.Data;
+import ec.edu.espe.optimizeddiagnosticsystem.utils.Database;
 import java.util.*;
 
 /**
@@ -16,6 +17,7 @@ public class Nurse extends HospitalPeople{
 
     private boolean prescription;
     private boolean option;
+    private String password;
 
     public Nurse(boolean prescription, String name, String gender, String dateOfBirth) {
         super(name, gender, dateOfBirth);
@@ -49,7 +51,19 @@ public class Nurse extends HospitalPeople{
         setOption(scan.nextBoolean());
         
         String dataToSave = getName() + "," + getDateOfBirth() + "," + getGender() + "\n";
+        
         Data.save("nurse.csv", dataToSave, isOption());
+        
+        if (isOption()) {
+            Database database = new Database();
+            
+            System.out.println("Enter the new password");
+            setPassword(scan.next());
+            String userToSave = getName() + ", " + getPassword() + "\n";
+            database.dbUsersPassword(getName(), getPassword());
+            
+            Data.save("users.csv", userToSave, true);
+        }
     }
     
     public void showData() {
@@ -90,6 +104,20 @@ public class Nurse extends HospitalPeople{
      */
     public void setOption(boolean option) {
         this.option = option;
+    }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }
