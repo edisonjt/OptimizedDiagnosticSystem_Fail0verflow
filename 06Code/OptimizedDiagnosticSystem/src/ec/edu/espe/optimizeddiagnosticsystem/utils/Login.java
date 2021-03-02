@@ -9,9 +9,21 @@ import ec.edu.espe.filemanager.utils.Data;
 
 /**
  *
- * @author FailOverflow
+ * @author luist
  */
 public class Login {
+
+    public boolean system(String pass) {
+        boolean validate = false;
+        if (Data.find("PassDocSystem.csv", pass).equalsIgnoreCase(pass)) {
+            validate = true;
+        } else if (Data.find("PassNursSystem.csv", pass).equalsIgnoreCase(pass)) {
+            validate = true;
+        } else if (pass.equalsIgnoreCase("rootpass")) {
+            validate = true;
+        }         
+        return validate;
+    }
     
     public boolean loginHistoryUpdater(String user, String pass) {
         boolean validate = false;
@@ -30,14 +42,6 @@ public class Login {
 
         return validate;
     }
-    
-    public boolean login(String pass) {
-        boolean validate = false;
-        if ("12345".equalsIgnoreCase(pass)) {
-            validate = true;
-        }
 
-        return validate;
-    }
-    
+   
 }

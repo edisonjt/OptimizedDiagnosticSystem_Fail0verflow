@@ -5,87 +5,111 @@
  */
 package ec.edu.espe.optimizeddiagnosticsystem.model;
 
-import java.util.Scanner;
+
 
 /**
  *
- * @author FailOverflow
+ * @author luist
  */
-public class HospitalPeople {
+public abstract class HospitalPeople {
+
+    private String surname;
     private String name;
+    private int age;
+    private String homeAddress;
     private String gender;
     private String dateOfBirth;
-    
+    private int emergencyNumber;
+    private boolean option;
+
+    //CONSTRUCTORS
+    public HospitalPeople(String surname, String name, int age, String homeAddress, String gender, String dateOfBirth, int emergencyNumber, boolean option) {
+        this.surname = surname;
+        this.name = name;
+        this.age = age;
+        this.homeAddress = homeAddress;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.emergencyNumber = emergencyNumber;
+        this.option = option;
+    }
+
     public HospitalPeople(String name, String gender, String dateOfBirth) {
         this.name = name;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
     }
     
-    public HospitalPeople(){
-        
+
+    public HospitalPeople() {
     }
 
-    @Override
-    public String toString() {
-        return "Person{" + "name=" + name + ", gender=" + gender + ", dateOfBirth=" + dateOfBirth + '}';
-    }
-    
-    public void register(){
-        Scanner scan = new Scanner(System.in);
+    //METHODS
+    public abstract void register();
 
-        System.out.println("=======================================\n");
-        
-        System.out.println("Name");
-        setName(scan.nextLine());
-
-        System.out.println("Gender ");
-        setGender(scan.nextLine());
-
-        System.out.println("Date of birth");
-        setDateOfBirth(scan.nextLine());
-
+    //SETT AND GETT
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     * @return the gender
-     */
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setHomeAddress(String homeAddress) {
+        this.homeAddress = homeAddress;
+    }
+
+    public void setEmergencyNumber(int emergencyNumber) {
+        this.emergencyNumber = emergencyNumber;
+    }
+
+    public void setOption(boolean option) {
+        this.option = option;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getHomeAddress() {
+        return homeAddress;
+    }
+
+    public int getEmergencyNumber() {
+        return emergencyNumber;
+    }
+
+    public boolean isOption() {
+        return option;
+    }
+
     public String getGender() {
         return gender;
     }
 
-    /**
-     * @param gender the gender to set
-     */
     public void setGender(String gender) {
         this.gender = gender;
     }
 
-    /**
-     * @return the dateOfBirth
-     */
     public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    /**
-     * @param dateOfBirth the dateOfBirth to set
-     */
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
+
 }

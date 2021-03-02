@@ -5,30 +5,21 @@
  */
 package ec.edu.espe.optimizeddiagnosticsystem.model;
 
-import java.util.*;
+import java.util.Scanner;
 
 /**
  *
- * @author Fail0verflow
+ * @author luist
  */
 public class Diagnostic {
-
-    private String cie10;
-    private String name; 
-
-    public Diagnostic() {
-    }
-
-    @Override
-    public String toString() {
-        return "Diagnostic{" + "cie10=" + getCie10() + ", name=" + getName() + '}';
-    }
     
-
+    private String cie10;
+    private String name;
+    
     public void resgister() {
         Scanner scan = new Scanner(System.in);
         System.out.println("=======================================");
-        System.out.println("*****Cie-10 data*****");
+        System.out.println("                            *****Cie-10 data*****                             ");
         
         System.out.println("Name of diagnosis");
         setName(scan.nextLine());
@@ -36,8 +27,8 @@ public class Diagnostic {
         System.out.println("CIE-10: ");
         setCie10(scan.nextLine());
     }
+
     
-   
     public String getCie10() {
         return cie10;
     }
@@ -53,5 +44,6 @@ public class Diagnostic {
     public void setName(String name) {
         this.name = name;
     }
+    
     
 }

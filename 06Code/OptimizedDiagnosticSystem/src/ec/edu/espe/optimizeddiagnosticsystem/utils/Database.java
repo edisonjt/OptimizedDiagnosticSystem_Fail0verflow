@@ -85,7 +85,7 @@ public class Database {
         document.put("Height", patient.getHeight());
         document.put("Weight", patient.getWeight());
         document.put("Allergies", patient.getAllergies());
-        document.put("Emergency Contact", patient.getEmergencyContact());
+        document.put("Emergency Contact", patient.getEmergencyNumber());
 
         if ("Clinic History".equals(option)) {
             mainDocument.put("Patient", document);

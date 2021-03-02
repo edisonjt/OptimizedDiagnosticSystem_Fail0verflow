@@ -4,171 +4,116 @@
  * and open the template in the editor.
  */
 package ec.edu.espe.optimizeddiagnosticsystem.model;
-import java.util.*;
+
+import java.util.Scanner;
+
 /**
  *
- * @author Fail0verflow
+ * @author luist
  */
 public class Patient extends HospitalPeople {
-    
-    private float weight;
-    private float height;
+
+    private int weight;
+    private int height;
     private String bloodType;
     private String allergies;
-    private int emergencyContact;
     private String identificationCard;
-    private boolean option;
 
-    public Patient(float weight, float height, String bloodType, String allergies, 
-            int emergencyContact, String identificationCard, String name, 
-            String gender, String dateOfBirth) {   
-        super(name, gender, dateOfBirth);
+    //CONSTRUCTORS
+    public Patient(int weight, int height, String bloodType, String allergies, String identificationCard, String surname, String name, int age, String homeAddress, String gender, String dateOfBirth, int emergencyNumber, boolean option) {
+        super(surname, name, age, homeAddress, gender, dateOfBirth, emergencyNumber, option);
         this.weight = weight;
         this.height = height;
         this.bloodType = bloodType;
         this.allergies = allergies;
-        this.emergencyContact = emergencyContact;
         this.identificationCard = identificationCard;
     }
 
     public Patient() {
+
     }
 
+    // METHODS
     @Override
-    public String toString() {
-        return "Patient{" + "name=" + getName() 
-                + ", age=" + getDateOfBirth() + ", weight=" + getWeight() 
-                + ", height=" + getHeight() + ", bloodType=" + getBloodType() 
-                + ", allergies=" + getAllergies() + ", gender=" + getGender() 
-                + ", emergencyContact=" + getEmergencyContact() 
-                + ", identificationCard=" + getIdentificationCard() + '}';
-    }
+    public void register() {
+        Scanner patient = new Scanner(System.in);
+        System.out.println("=======================================");
+        System.out.println("                       *****Patient's data*****                               ");
+        System.out.println("");
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Name: ");
+        setName(scan.nextLine());
+        System.out.println("Surname: ");
+        setSurname(scan.nextLine());
+        System.out.println("Gender ");
+        setGender(scan.nextLine());
+        System.out.println("Date of birth");
+        setDateOfBirth(scan.nextLine());
+        try {
+            System.out.println("Age: ");
+            setAge(Integer.parseInt(scan.nextLine()));
+            System.out.println("Emergency Number: ");
+            setEmergencyNumber(Integer.parseInt(scan.nextLine()));
+        } catch (NumberFormatException ex) {
+            System.out.println("very large number");
+        }
 
-    @Override
-    public void register(){
-        Scanner patient = new Scanner(System.in); 
-        
-        System.out.println("\n=======================================");
-        System.out.println("*****Patient's data*****");
-        
-        super.register();
-        
+        System.out.println("Home Address: ");
+        setHomeAddress(scan.nextLine());
         System.out.println("Identification Card: ");
         setIdentificationCard(patient.nextLine());
-        
-        System.out.println("Allergies: ");
-        setAllergies(patient.nextLine());
-        
         System.out.println("Blood Type: ");
         setBloodType(patient.nextLine());
-        
-        System.out.println("Weight: ");
-        setWeight(patient.nextFloat());
-        
-        System.out.println("Height: ");
-        setHeight(patient.nextFloat());
-        
-        System.out.println("Emergency Contac: ");
-        setEmergencyContact(patient.nextInt());
-        
+        System.out.println("Weight(in kilos): ");
+        setWeight(patient.nextInt());
+        System.out.println("Height(in centimetres): ");
+        setHeight(patient.nextInt());
+        System.out.println("Allergies: ");
+        setAllergies(patient.nextLine());
         System.out.println("Do you want to save? Please put True or False");
         setOption(patient.nextBoolean());
-    }
-    /**
-     * @return the weight
-     */
-    public float getWeight() {
-        return weight;
+
     }
 
-    /**
-     * @param weight the weight to set
-     */
-    public void setWeight(float weight) {
+    //SETTER and GETTER
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 
-    /**
-     * @return the height
-     */
-    public float getHeight() {
-        return height;
-    }
-
-    /**
-     * @param height the height to set
-     */
-    public void setHeight(float height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
-    /**
-     * @return the bloodType
-     */
-    public String getBloodType() {
-        return bloodType;
-    }
-
-    /**
-     * @param bloodType the bloodType to set
-     */
     public void setBloodType(String bloodType) {
         this.bloodType = bloodType;
     }
 
-    /**
-     * @return the allergies
-     */
-    public String getAllergies() {
-        return allergies;
-    }
-
-    /**
-     * @param allergies the allergies to set
-     */
     public void setAllergies(String allergies) {
         this.allergies = allergies;
     }
 
-    /**
-     * @return the emergencyContact
-     */
-    public int getEmergencyContact() {
-        return emergencyContact;
+    public void setIdentificationCard(String identificationCard) {
+        this.identificationCard = identificationCard;
     }
 
-    /**
-     * @param emergencyContact the emergencyContact to set
-     */
-    public void setEmergencyContact(int emergencyContact) {
-        this.emergencyContact = emergencyContact;
+    public int getWeight() {
+        return weight;
     }
 
-    /**
-     * @return the identificationCard
-     */
+    public int getHeight() {
+        return height;
+    }
+
+    public String getBloodType() {
+        return bloodType;
+    }
+
+    public String getAllergies() {
+        return allergies;
+    }
+
     public String getIdentificationCard() {
         return identificationCard;
     }
 
-    /**
-     * @param identificationCard the identificationCard to set
-     */
-    public void setIdentificationCard(String identificationCard) {
-        this.identificationCard = identificationCard;
-    }  
-
-    /**
-     * @return the option
-     */
-    public boolean isOption() {
-        return option;
-    }
-
-    /**
-     * @param option the option to set
-     */
-    public void setOption(boolean option) {
-        this.option = option;
-    }
 }
