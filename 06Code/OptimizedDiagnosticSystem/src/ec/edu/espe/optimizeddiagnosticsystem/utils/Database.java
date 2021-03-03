@@ -10,41 +10,25 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.Mongo;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Diagnostic;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Doctor;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Nurse;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Patient;
-import org.bson.Document;
 
 /**
  *
- * @author Jhonatan
+ * @author FailOverflow
  */
 public class Database {
 
-    DB BaseData;
+    DB database;
     DBCollection collection;
     BasicDBObject mainDocument = new BasicDBObject();
 
     public Database() {
-
-        try {
-            MongoClientURI uri = new MongoClientURI(
-                    "mongodb+srv://tentacle:atlas1234@cluster0.pq2gf.mongodb.net/myFirstDB?retryWrites=true&w=majority");
-
-            MongoClient mongoClient = new MongoClient(uri);
-            MongoDatabase database = mongoClient.getDatabase("myfirstDB");
-            MongoCollection<Document> collections = database.getCollection("myfirstDB");
-            BaseData = mongoClient.getDB("myfirstDB");
-            collection = BaseData.getCollection("myfirstDB");
-            
-        } catch (Exception ex) {
-            System.out.println("The connection was unsuccesfull");
-        }
+        Mongo mongo = new Mongo("localhost", 27017);
+        database = mongo.getDB("FailOverflow");
+        //System.out.println("conectada");
     }
 
     public void id(String id) {
@@ -69,7 +53,7 @@ public class Database {
 
     public void dbUsersPassword(String name, String password) {
 
-        collection = BaseData.getCollection("Users Password");
+        collection = database.getCollection("Users Password");
         BasicDBObject document = new BasicDBObject();
 
         document.put("Name", name);
@@ -122,7 +106,7 @@ public class Database {
     }
 
     public void saveDatabase(String option, BasicDBObject basicObject, String dBCollection) {
-        collection = BaseData.getCollection(dBCollection);
+        collection = database.getCollection(dBCollection);
 
         if ("Register".equals(option)) {
             collection.insert(basicObject);
@@ -132,7 +116,7 @@ public class Database {
     }
 
     public void readClinicHistory(String search, String basicObject, String dBCollection) {
-        collection = BaseData.getCollection(dBCollection);
+        collection = database.getCollection(dBCollection);
 
         BasicDBObject consultation = new BasicDBObject();
         consultation.put(basicObject, search);
@@ -145,7 +129,7 @@ public class Database {
     }
 
     public void readDoctor(String search, String basicObject, String dBCollection) {
-        collection = BaseData.getCollection(dBCollection);
+        collection = database.getCollection(dBCollection);
 
         BasicDBObject consultation = new BasicDBObject();
         consultation.put(basicObject, search);
@@ -158,7 +142,7 @@ public class Database {
     }
 
     public void readNurse(String search, String basicObject, String dBCollection) {
-        collection = BaseData.getCollection(dBCollection);
+        collection = database.getCollection(dBCollection);
 
         BasicDBObject consultation = new BasicDBObject();
         consultation.put(basicObject, search);
@@ -206,7 +190,7 @@ public class Database {
     }
 
     public void deleteObject(String search, String basicObject, String dBCollection, boolean decision) {
-        collection = BaseData.getCollection(dBCollection);
+        collection = database.getCollection(dBCollection);
         if (decision) {
             collection.remove(new BasicDBObject().append(basicObject, search));
         }

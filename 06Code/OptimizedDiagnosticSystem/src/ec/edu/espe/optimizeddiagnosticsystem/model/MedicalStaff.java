@@ -7,7 +7,7 @@ package ec.edu.espe.optimizeddiagnosticsystem.model;
 
 /**
  *
- * @author luist
+ * @author FailOverflow
  */
 public abstract class MedicalStaff extends HospitalPeople {
 
@@ -15,8 +15,8 @@ public abstract class MedicalStaff extends HospitalPeople {
     private String password;
 
     //CONSTRUCTORS
-    public MedicalStaff(String titleCode, String password, String surname, String name, int age, String homeAddress, String gender, String dateOfBirth, int emergencyNumber, boolean option) {
-        super(surname, name, age, homeAddress, gender, dateOfBirth, emergencyNumber, option);
+    public MedicalStaff(String titleCode, String password, String name, String homeAddress, String gender, String dateOfBirth, int emergencyNumber, boolean option) {
+        super(name, homeAddress, gender, dateOfBirth, emergencyNumber, option);
         this.titleCode = titleCode;
         this.password = password;
     }

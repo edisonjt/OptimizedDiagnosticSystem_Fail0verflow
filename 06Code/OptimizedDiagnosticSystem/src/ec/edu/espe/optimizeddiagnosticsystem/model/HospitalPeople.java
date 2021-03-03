@@ -9,13 +9,11 @@ package ec.edu.espe.optimizeddiagnosticsystem.model;
 
 /**
  *
- * @author luist
+ * @author FailOverflow
  */
 public abstract class HospitalPeople {
 
-    private String surname;
     private String name;
-    private int age;
     private String homeAddress;
     private String gender;
     private String dateOfBirth;
@@ -23,10 +21,8 @@ public abstract class HospitalPeople {
     private boolean option;
 
     //CONSTRUCTORS
-    public HospitalPeople(String surname, String name, int age, String homeAddress, String gender, String dateOfBirth, int emergencyNumber, boolean option) {
-        this.surname = surname;
+    public HospitalPeople( String name, String homeAddress, String gender, String dateOfBirth, int emergencyNumber, boolean option) {
         this.name = name;
-        this.age = age;
         this.homeAddress = homeAddress;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
@@ -48,16 +44,9 @@ public abstract class HospitalPeople {
     public abstract void register();
 
     //SETT AND GETT
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public void setHomeAddress(String homeAddress) {
@@ -72,16 +61,8 @@ public abstract class HospitalPeople {
         this.option = option;
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public int getAge() {
-        return age;
     }
 
     public String getHomeAddress() {

@@ -48,24 +48,7 @@ public class LoginTest {
         boolean expResult = false;
         boolean result = instance.system(pass);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of loginHistoryUpdater method, of class Login.
-     */
-    @Test
-    public void testLoginHistoryUpdater() {
-        System.out.println("loginHistoryUpdater");
-        String user = "";
-        String pass = "";
-        Login instance = new Login();
-        boolean expResult = false;
-        boolean result = instance.loginHistoryUpdater(user, pass);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+      
     }
     
 }

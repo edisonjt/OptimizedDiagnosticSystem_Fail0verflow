@@ -9,17 +9,26 @@ import java.util.Scanner;
 
 /**
  *
- * @author luist
+ * @author FailOverflow
  */
 public class Diagnostic {
     
     private String cie10;
     private String name;
     
+    public Diagnostic() {
+    }
+
+    @Override
+    public String toString() {
+        return "Diagnostic{" + "cie10=" + getCie10() + ", name=" + getName() + '}';
+    }
+    
+    
     public void resgister() {
         Scanner scan = new Scanner(System.in);
         System.out.println("=======================================");
-        System.out.println("                            *****Cie-10 data*****                             ");
+        System.out.println("************ Cie-10 data *************");
         
         System.out.println("Name of diagnosis");
         setName(scan.nextLine());

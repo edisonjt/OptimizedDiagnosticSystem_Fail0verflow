@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author luist
+ * @author FailOverflow
  */
 public class Doctor extends MedicalStaff {
 
@@ -18,8 +18,8 @@ public class Doctor extends MedicalStaff {
     private String subSpeciality;
 
     //CONSTRUCTORS
-    public Doctor(String speciality, String subSpeciality, String titleCode, String password, String surname, String name, int age, String homeAddress, String gender, String dateOfBirth, int emergencyNumber, boolean option) {
-        super(titleCode, password, surname, name, age, homeAddress, gender, dateOfBirth, emergencyNumber, option);
+    public Doctor(String speciality, String subSpeciality, String titleCode, String password, String name, String homeAddress, String gender, String dateOfBirth, int emergencyNumber, boolean option) {
+        super(titleCode, password, name, homeAddress, gender, dateOfBirth, emergencyNumber, option);
         this.speciality = speciality;
         this.subSpeciality = subSpeciality;
     }
@@ -46,15 +46,11 @@ public class Doctor extends MedicalStaff {
         System.out.println("");
         System.out.println("Name: ");
         setName(scan.nextLine());
-        System.out.println("Surname: ");
-        setSurname(scan.nextLine());
         System.out.println("Gender ");
         setGender(scan.nextLine());
         System.out.println("Date of birth");
         setDateOfBirth(scan.nextLine());
         try {
-            System.out.println("Age: ");
-            setAge(Integer.parseInt(scan.nextLine()));
             System.out.println("Emergency Number: ");
             setEmergencyNumber(Integer.parseInt(scan.nextLine()));
         } catch (NumberFormatException ex) {
@@ -71,6 +67,11 @@ public class Doctor extends MedicalStaff {
         setTitleCode(scan.nextLine());
         System.out.println("Do you want to save? Please put True or False");
         setOption(scan.nextBoolean());
+        
+        String dataToSave = getName() + "," + getTitleCode() + "," + getSpeciality()
+                + "," + getSubSpeciality() + "," + getDateOfBirth() + "," + getGender() + "\n";
+
+        Data.save("doctors.csv", dataToSave, isOption());
 
     }
 
@@ -78,12 +79,13 @@ public class Doctor extends MedicalStaff {
     public void createPass(boolean option, String name) {
         if (option == true) {
             Scanner scan = new Scanner(System.in);
+            
             System.out.println("Enter the new password");
             String pass = scan.nextLine();
-            String userToSave = pass + "," + name + "\n" ;
-            Data.save("LoginDoctor.csv", userToSave , true);
-            String doctorToSave = pass;
-            Data.save("PassDocSystem.csv", doctorToSave , true);
+            
+            String userToSave = name + ", " + pass + "\n" ;
+            Data.save("Users.csv", userToSave , true);
+            
         }
 
     }

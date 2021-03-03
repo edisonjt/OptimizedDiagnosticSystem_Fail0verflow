@@ -5,7 +5,6 @@
  */
 package ec.edu.espe.optimizeddiagoticsystem.view;
 
-import ec.edu.espe.filemanager.utils.Data;
 import ec.edu.espe.optimizeddiagnosticsystem.utils.Login;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Doctor;
 import ec.edu.espe.optimizeddiagnosticsystem.model.MedicalStaff;
@@ -17,7 +16,7 @@ import java.util.*;
 
 /**
  *
- * @author luist
+ * @author FailOverflow
  */
 public class SimulatorDiagnosticSystem {
 
@@ -39,7 +38,7 @@ public class SimulatorDiagnosticSystem {
 
                 if (login.system(password)) {
 
-                    do {
+                    while (opSystem != 3) {
                         menuSystem();
                         opSystem = scannum.nextInt();
                         switch (opSystem) {
@@ -49,7 +48,7 @@ public class SimulatorDiagnosticSystem {
 
                                 if (opRegister == 1) {
 
-                                    do {
+                                    while (opRegister != 3) {
                                         Database database = new Database();
                                         BasicDBObject register = new BasicDBObject();
                                         menuRegister();
@@ -59,9 +58,10 @@ public class SimulatorDiagnosticSystem {
                                             MedicalStaff pass = new Doctor();
                                             Doctor doctor = new Doctor();
                                             doctor.register();
+                                            
                                             register = database.dBDoctor(doctor, "Register");
                                             database.saveDatabase("Register", register, "Doctor");
-                                            Data.save("registerDoctor.json", doctor, doctor.isOption());
+                                            
                                             pass.createPass(doctor.isOption(), doctor.getName());
 
                                         }
@@ -70,13 +70,14 @@ public class SimulatorDiagnosticSystem {
                                             MedicalStaff pass = new Nurse();
                                             Nurse nurse = new Nurse();
                                             nurse.register();
+                                            
                                             register = database.dBNurse(nurse, "Register");
                                             database.saveDatabase("Register", register, "Nurse");
-                                            Data.save("registerNurse.json", nurse, nurse.isOption());
-                                            pass.createPass(nurse.isOption());
+                                            
+                                            pass.createPass(nurse.isOption(), nurse.getName());
 
                                         }
-                                    } while (opRegister != 3);
+                                    }
                                 } else if (opRegister == 2) {
                                     Database database = new Database();
 
@@ -181,10 +182,12 @@ public class SimulatorDiagnosticSystem {
                                 break;
 
                             default:
+                                tryagain = 3;
+                                System.out.println("Thanks come back soon");
                                 break;
                         }
 
-                    } while (opRegister != 3);
+                    }
                 } else {
                     System.out.println("The password isn't correct, please try again! ");
                     tryagain++;
@@ -192,7 +195,7 @@ public class SimulatorDiagnosticSystem {
                         System.out.println("number of failed attempts !GOODBYE!");
                     }
                 }
-            } while (tryagain < 3);
+            } while (tryagain != 3) ;
         } catch (InputMismatchException | NumberFormatException ex) {
             System.out.println("The option no exist! The System will close");
         }

@@ -55,7 +55,7 @@ public class DoctorTest {
     public void testCreatePass_boolean_String() {
         System.out.println("createPass");
         boolean option = false;
-        String name = "luis";
+        String name = "";
         Doctor instance = new Doctor();
         instance.createPass(option, name);
       

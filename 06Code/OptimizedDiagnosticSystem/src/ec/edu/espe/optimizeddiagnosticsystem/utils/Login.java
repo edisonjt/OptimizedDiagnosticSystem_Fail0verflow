@@ -9,7 +9,7 @@ import ec.edu.espe.filemanager.utils.Data;
 
 /**
  *
- * @author luist
+ * @author FailOverflow
  */
 public class Login {
 

@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author luist
+ * @author FailOverflow
  */
 public class Nurse extends MedicalStaff {
 
@@ -18,8 +18,8 @@ public class Nurse extends MedicalStaff {
     private String workShift;
 
     //CONSTRUCTORS
-    public Nurse(String workShift, String titleCode, String password, String surname, String name, int age, String homeAddress, String gender, String dateOfBirth, int emergencyNumber, boolean option) {
-        super(titleCode, password, surname, name, age, homeAddress, gender, dateOfBirth, emergencyNumber, option);
+    public Nurse(String workShift, String titleCode, String password, String name, String homeAddress, String gender, String dateOfBirth, int emergencyNumber, boolean option) {
+        super(titleCode, password, name, homeAddress, gender, dateOfBirth, emergencyNumber, option);
         this.workShift = workShift;
     }
 
@@ -41,15 +41,11 @@ public class Nurse extends MedicalStaff {
         System.out.println("");
         System.out.println("Name: ");
         setName(scan.nextLine());
-        System.out.println("Surname: ");
-        setSurname(scan.nextLine());
         System.out.println("Gender ");
         setGender(scan.nextLine());
         System.out.println("Date of birth");
         setDateOfBirth(scan.nextLine());
         try {
-            System.out.println("Age: ");
-            setAge(Integer.parseInt(scan.nextLine()));
             System.out.println("Emergency Number: ");
             setEmergencyNumber(Integer.parseInt(scan.nextLine()));
         } catch (NumberFormatException ex) {
@@ -65,24 +61,28 @@ public class Nurse extends MedicalStaff {
         setTitleCode(scan.nextLine());
         System.out.println("Do you want to save? Please put True or False");
         setOption(scan.nextBoolean());
-
-    }
-
-    @Override
-    public void createPass(boolean option) {
-        if (option == true) {
-            Scanner scan = new Scanner(System.in);
-            System.out.println("Enter the new password");
-            String pass = scan.nextLine();
-            String nurseToSave = pass;
-            Data.save("PassNursSystem.csv", nurseToSave + "\n", true);
-        }
+        
+        String dataToSave = getName() + "," + getDateOfBirth() + "," + getGender() + "\n";
+        Data.save("nurse.csv", dataToSave, isOption());
 
     }
 
     @Override
     public void createPass(boolean option, String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (option == true) {
+            Scanner scan = new Scanner(System.in);
+            System.out.println("Enter the new password");
+            String pass = scan.nextLine();
+            
+            String nurseToSave = name + ", " + pass + "\n";
+            Data.save("Users.csv", nurseToSave + "\n", true);
+        }
+
+    }
+
+    @Override
+    public void createPass(boolean option) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     //SETT AND GETT

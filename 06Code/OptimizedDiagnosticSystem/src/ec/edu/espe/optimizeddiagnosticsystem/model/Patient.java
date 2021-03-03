@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author luist
+ * @author FailOverflow
  */
 public class Patient extends HospitalPeople {
 
@@ -20,8 +20,8 @@ public class Patient extends HospitalPeople {
     private String identificationCard;
 
     //CONSTRUCTORS
-    public Patient(int weight, int height, String bloodType, String allergies, String identificationCard, String surname, String name, int age, String homeAddress, String gender, String dateOfBirth, int emergencyNumber, boolean option) {
-        super(surname, name, age, homeAddress, gender, dateOfBirth, emergencyNumber, option);
+    public Patient(int weight, int height, String bloodType, String allergies, String identificationCard, String name, String homeAddress, String gender, String dateOfBirth, int emergencyNumber, boolean option) {
+        super(name, homeAddress, gender, dateOfBirth, emergencyNumber, option);
         this.weight = weight;
         this.height = height;
         this.bloodType = bloodType;
@@ -43,15 +43,11 @@ public class Patient extends HospitalPeople {
         Scanner scan = new Scanner(System.in);
         System.out.println("Name: ");
         setName(scan.nextLine());
-        System.out.println("Surname: ");
-        setSurname(scan.nextLine());
         System.out.println("Gender ");
         setGender(scan.nextLine());
         System.out.println("Date of birth");
         setDateOfBirth(scan.nextLine());
         try {
-            System.out.println("Age: ");
-            setAge(Integer.parseInt(scan.nextLine()));
             System.out.println("Emergency Number: ");
             setEmergencyNumber(Integer.parseInt(scan.nextLine()));
         } catch (NumberFormatException ex) {
