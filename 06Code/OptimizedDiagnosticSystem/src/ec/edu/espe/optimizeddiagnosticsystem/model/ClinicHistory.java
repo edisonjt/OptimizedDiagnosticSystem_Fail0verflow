@@ -36,6 +36,12 @@ public class ClinicHistory {
 
         Patient patientClass = new Patient();
         BasicDBObject document = new BasicDBObject();
+        Scanner scann = new Scanner(System.in);
+        
+        System.out.println("Ingrese el id: ");
+        String id = scann.next();
+        
+        dataBase.id(id);
         
         patientClass.register();
         

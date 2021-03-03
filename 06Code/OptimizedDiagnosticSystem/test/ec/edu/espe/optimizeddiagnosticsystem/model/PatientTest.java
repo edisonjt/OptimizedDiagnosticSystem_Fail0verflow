@@ -25,8 +25,7 @@ public class PatientTest {
         System.out.println("register");
         Patient instance = new Patient();
         instance.register();
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+
     }
 
     /**
@@ -38,8 +37,7 @@ public class PatientTest {
         int weight = 0;
         Patient instance = new Patient();
         instance.setWeight(weight);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+
     }
     
     /**
@@ -51,8 +49,7 @@ public class PatientTest {
         int weight = 70;
         Patient instance = new Patient();
         instance.setWeight(weight);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+
     }
 
     /**
@@ -64,8 +61,7 @@ public class PatientTest {
         int height = 0;
         Patient instance = new Patient();
         instance.setHeight(height);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+
     }
     
     /**
@@ -77,8 +73,7 @@ public class PatientTest {
         int height = 170;
         Patient instance = new Patient();
         instance.setHeight(height);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+
     }
 
     /**
@@ -90,8 +85,7 @@ public class PatientTest {
         String bloodType = "";
         Patient instance = new Patient();
         instance.setBloodType(bloodType);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+
     }
 
     /**
@@ -103,8 +97,7 @@ public class PatientTest {
         String allergies = "";
         Patient instance = new Patient();
         instance.setAllergies(allergies);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+
     }
 
     /**
@@ -116,8 +109,7 @@ public class PatientTest {
         String identificationCard = "";
         Patient instance = new Patient();
         instance.setIdentificationCard(identificationCard);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+
     }
 
     /**
@@ -130,8 +122,7 @@ public class PatientTest {
         int expResult = 0;
         int result = instance.getWeight();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+
     }
     
     /**
@@ -144,8 +135,7 @@ public class PatientTest {
         int expResult = 0;
         int result = instance.getWeight();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+
     }
 
     /**
@@ -158,8 +148,7 @@ public class PatientTest {
         int expResult = 0;
         int result = instance.getHeight();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+
     }
     
     /**
@@ -172,8 +161,7 @@ public class PatientTest {
         int expResult = 170;
         int result = instance.getHeight();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+
     }
 
     /**
@@ -186,8 +174,7 @@ public class PatientTest {
         String expResult = "";
         String result = instance.getBloodType();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+
     }
 
     /**
@@ -200,8 +187,7 @@ public class PatientTest {
         String expResult = "";
         String result = instance.getAllergies();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+
     }
 
     /**
@@ -214,8 +200,7 @@ public class PatientTest {
         String expResult = "";
         String result = instance.getIdentificationCard();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+
     }
     
 }

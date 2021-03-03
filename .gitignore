@@ -8,3 +8,6 @@
 *.zip
 *.tar.gz
 *.rar
+/06Code/OptimizedDiagnosticSystem/build/
+/06Code/OptimizedDiagnosticSystem/dist/
+/06Code/OptimizedDiagnosticSystem/nbproject/private/
