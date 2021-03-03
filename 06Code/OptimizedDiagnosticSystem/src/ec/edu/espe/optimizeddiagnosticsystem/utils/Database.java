@@ -9,7 +9,6 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
-import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
@@ -33,13 +32,13 @@ public class Database {
     public Database() {
         try {
             MongoClientURI uri = new MongoClientURI(
-                    "mongodb+srv://tentacle:atlas1234@cluster0.pq2gf.mongodb.net/myFirstDB?retryWrites=true&w=majority");
+                    "mongodb+srv://tentacle:atlas1234@cluster0.pq2gf.mongodb.net/FailOverFlow?retryWrites=true&w=majority");
 
             MongoClient mongoClient = new MongoClient(uri);
-            MongoDatabase database = mongoClient.getDatabase("myfirstDB");
-            MongoCollection<Document> collections = database.getCollection("myfirstDB");
-            dataBase = mongoClient.getDB("myfirstDB");
-            collection = dataBase.getCollection("myfirstDB");
+            MongoDatabase database = mongoClient.getDatabase("FailOverflow");
+            MongoCollection<Document> collections = database.getCollection("FailOverflow");
+            dataBase = mongoClient.getDB("FailOverflow");
+            collection = dataBase.getCollection("FailOverflow");
             
         } catch (Exception ex) {
             System.out.println("The connection was unsuccesfull");

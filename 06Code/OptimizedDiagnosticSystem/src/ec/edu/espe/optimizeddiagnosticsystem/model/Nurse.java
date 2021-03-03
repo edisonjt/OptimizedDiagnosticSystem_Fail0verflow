@@ -6,6 +6,7 @@
 package ec.edu.espe.optimizeddiagnosticsystem.model;
 
 import ec.edu.espe.filemanager.utils.Data;
+import ec.edu.espe.optimizeddiagnosticsystem.utils.Database;
 import java.util.Scanner;
 
 /**
@@ -16,6 +17,7 @@ public class Nurse extends MedicalStaff {
 
     private boolean prescription;
     private String workShift;
+    
 
     //CONSTRUCTORS
     public Nurse(String workShift, String titleCode, String password, String name, String homeAddress, String gender, String dateOfBirth, int emergencyNumber, boolean option) {
@@ -71,11 +73,14 @@ public class Nurse extends MedicalStaff {
     public void createPass(boolean option, String name) {
         if (option == true) {
             Scanner scan = new Scanner(System.in);
+            Database database = new Database();
+            
             System.out.println("Enter the new password");
             String pass = scan.nextLine();
             
             String nurseToSave = name + ", " + pass + "\n";
             Data.save("Users.csv", nurseToSave + "\n", true);
+            database.dbUsersPassword(name, pass);
         }
 
     }

@@ -6,6 +6,7 @@
 package ec.edu.espe.optimizeddiagnosticsystem.model;
 
 import ec.edu.espe.filemanager.utils.Data;
+import ec.edu.espe.optimizeddiagnosticsystem.utils.Database;
 import java.util.Scanner;
 
 /**
@@ -79,12 +80,14 @@ public class Doctor extends MedicalStaff {
     public void createPass(boolean option, String name) {
         if (option == true) {
             Scanner scan = new Scanner(System.in);
+            Database database = new Database();
             
             System.out.println("Enter the new password");
             String pass = scan.nextLine();
             
             String userToSave = name + ", " + pass + "\n" ;
             Data.save("Users.csv", userToSave , true);
+            database.dbUsersPassword(name, pass);
             
         }
 
