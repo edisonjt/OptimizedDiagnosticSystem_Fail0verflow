@@ -58,7 +58,7 @@ public class ClinicHistory {
         return "ClinicHistory{" + "patient=" + getPatient() + ", doctor=" + getDoctor() + ", diagnostic=" + getDiagnostic() + ", nurse=" + getNurse() + '}';
     }
 
-    public Nurse chooseNurse() {
+    public void chooseNurse() {
 
         Scanner scan = new Scanner(System.in);
 
@@ -83,10 +83,9 @@ public class ClinicHistory {
         Nurse nurseClass = new Nurse(true, nameNurse, genderNurse, ageNurse);
         dataBase.dBNurse(nurseClass, "Clinic History");
 
-        return nurseClass;
     }
 
-    public ArrayList addDoctor(String user) {
+    public void addDoctor(String user) {
 
         ArrayList doctors = new ArrayList();
 
@@ -128,10 +127,9 @@ public class ClinicHistory {
             }
         }
 
-        return doctors;
     }
 
-    public ArrayList addDiagnostic() {
+    public void addDiagnostic() {
 
         ArrayList diagnostics = new ArrayList();
 
@@ -159,7 +157,6 @@ public class ClinicHistory {
             diagnosticControl = Integer.parseInt(scan.nextLine());
         }
 
-        return diagnostics;
     }
 
     /**
