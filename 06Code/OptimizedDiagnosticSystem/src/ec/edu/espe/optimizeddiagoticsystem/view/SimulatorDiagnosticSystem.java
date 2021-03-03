@@ -5,7 +5,7 @@
  */
 package ec.edu.espe.optimizeddiagoticsystem.view;
 
-import ec.edu.espe.filemanager.utils.Data2;
+import ec.edu.espe.filemanager.utils.Data;
 import ec.edu.espe.optimizeddiagnosticsystem.utils.Login;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Doctor;
 import ec.edu.espe.optimizeddiagnosticsystem.model.MedicalStaff;
@@ -61,7 +61,7 @@ public class SimulatorDiagnosticSystem {
                                             doctor.register();
                                             register = database.dBDoctor(doctor, "Register");
                                             database.saveDatabase("Register", register, "Doctor");
-                                            Data2.save("registerDoctor.json", doctor, doctor.isOption());
+                                            Data.save("registerDoctor.json", doctor, doctor.isOption());
                                             pass.createPass(doctor.isOption(), doctor.getName());
 
                                         }
@@ -72,7 +72,7 @@ public class SimulatorDiagnosticSystem {
                                             nurse.register();
                                             register = database.dBNurse(nurse, "Register");
                                             database.saveDatabase("Register", register, "Nurse");
-                                            Data2.save("registerNurse.json", nurse, nurse.isOption());
+                                            Data.save("registerNurse.json", nurse, nurse.isOption());
                                             pass.createPass(nurse.isOption());
 
                                         }
@@ -192,7 +192,7 @@ public class SimulatorDiagnosticSystem {
                         System.out.println("number of failed attempts !GOODBYE!");
                     }
                 }
-            } while (opSystem != 3);
+            } while (tryagain < 3);
         } catch (InputMismatchException | NumberFormatException ex) {
             System.out.println("The option no exist! The System will close");
         }
