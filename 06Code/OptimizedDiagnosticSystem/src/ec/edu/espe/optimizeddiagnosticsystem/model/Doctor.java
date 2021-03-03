@@ -93,11 +93,7 @@ public class Doctor extends MedicalStaff {
 
     }
 
-    @Override
-    public void createPass(boolean option) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+ 
     //SETT AND GETT
     public void setSpeciality(String speciality) {
         this.speciality = speciality;
@@ -114,5 +110,7 @@ public class Doctor extends MedicalStaff {
     public String getSubSpeciality() {
         return subSpeciality;
     }
+
+   
 
 }

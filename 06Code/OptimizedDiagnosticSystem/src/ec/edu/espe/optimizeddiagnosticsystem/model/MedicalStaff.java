@@ -34,7 +34,7 @@ public abstract class MedicalStaff extends HospitalPeople {
     //METHODS
     public abstract void createPass(boolean option, String name);
  
-    public abstract void createPass(boolean option);
+    
 
     //SETT AND GETT
     public void setTitleCode(String titleCode) {

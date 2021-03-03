@@ -36,17 +36,8 @@ public class ClinicHistory {
 
         Patient patientClass = new Patient();
         BasicDBObject document = new BasicDBObject();
-        Scanner scann = new Scanner(System.in);
-        
-        System.out.println("Ingrese el id: ");
-        String id = scann.next();
-        
-        dataBase.id(id);
         
         patientClass.register();
-        chooseNurse();
-        addDoctor(user);
-        addDiagnostic();
         
         dataBase.dBPatient(patientClass, "Clinic History");
 
@@ -58,7 +49,7 @@ public class ClinicHistory {
         return "ClinicHistory{" + "patient=" + getPatient() + ", doctor=" + getDoctor() + ", diagnostic=" + getDiagnostic() + ", nurse=" + getNurse() + '}';
     }
 
-    public void chooseNurse() {
+    public Nurse chooseNurse() {
 
         Scanner scan = new Scanner(System.in);
 
@@ -83,9 +74,10 @@ public class ClinicHistory {
         Nurse nurseClass = new Nurse(true, nameNurse, genderNurse, ageNurse);
         dataBase.dBNurse(nurseClass, "Clinic History");
 
+        return nurseClass;
     }
 
-    public void addDoctor(String user) {
+    public ArrayList addDoctor(String user) {
 
         ArrayList doctors = new ArrayList();
 
@@ -127,9 +119,10 @@ public class ClinicHistory {
             }
         }
 
+        return doctors;
     }
 
-    public void addDiagnostic() {
+    public ArrayList addDiagnostic() {
 
         ArrayList diagnostics = new ArrayList();
 
@@ -157,6 +150,7 @@ public class ClinicHistory {
             diagnosticControl = Integer.parseInt(scan.nextLine());
         }
 
+        return diagnostics;
     }
 
     /**

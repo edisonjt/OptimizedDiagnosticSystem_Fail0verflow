@@ -85,10 +85,7 @@ public class Nurse extends MedicalStaff {
 
     }
 
-    @Override
-    public void createPass(boolean option) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  
 
     //SETT AND GETT
     public void setWorkShift(String workShift) {
@@ -106,5 +103,7 @@ public class Nurse extends MedicalStaff {
     public void setPrescription(boolean prescription) {
         this.prescription = prescription;
     }
+   
+  
 
 }
