@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.espe.optimizeddiagnoticsystem.GUI;
+package ec.edu.espe.optimizeddiagnosticsystem.GUI;
 
 import javax.swing.JOptionPane;
 

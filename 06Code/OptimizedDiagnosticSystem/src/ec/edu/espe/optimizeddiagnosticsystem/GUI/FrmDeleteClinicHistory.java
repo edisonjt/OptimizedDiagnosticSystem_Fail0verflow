@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.espe.optimizeddiagnoticsystem.GUI;
+package ec.edu.espe.optimizeddiagnosticsystem.GUI;
 
 import javax.swing.JOptionPane;
 
@@ -11,12 +11,12 @@ import javax.swing.JOptionPane;
  *
  * @author Fail0verflow
  */
-public class FrmRemoveStaff extends javax.swing.JFrame {
+public class FrmDeleteClinicHistory extends javax.swing.JFrame {
 
     /**
-     * Creates new form FrmRemoveStaff
+     * Creates new form FrmDeleteClinicHistory
      */
-    public FrmRemoveStaff() {
+    public FrmDeleteClinicHistory() {
         initComponents();
     }
 
@@ -30,19 +30,18 @@ public class FrmRemoveStaff extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txtFullName = new javax.swing.JTextField();
-        btnRemove = new javax.swing.JButton();
+        txtId = new javax.swing.JTextField();
+        btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Delete Clinic History");
 
-        jLabel1.setText("Full name");
+        jLabel1.setText("Enter ID");
 
-        txtFullName.setToolTipText("Type the full name of the staff member to be removed");
-
-        btnRemove.setText("Remove");
-        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoveActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
 
@@ -51,16 +50,14 @@ public class FrmRemoveStaff extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnDelete)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(btnRemove)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -68,21 +65,21 @@ public class FrmRemoveStaff extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addComponent(btnRemove)
-                .addContainerGap(51, Short.MAX_VALUE))
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(btnDelete)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-        JOptionPane.showMessageDialog(null, "Are you sure to remove?", "Removing",JOptionPane.YES_NO_OPTION);
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        JOptionPane.showMessageDialog(null, "Are you sure to delete this clinic history?", "Deleting",JOptionPane.YES_NO_OPTION);
         this.setVisible(false);
-        FrmMenu frmMenu = new FrmMenu();
-        frmMenu.setVisible(true);
-    }//GEN-LAST:event_btnRemoveActionPerformed
+        FrmMenuClinicHistory frmMenuClinicHistory = new FrmMenuClinicHistory();
+        frmMenuClinicHistory.setVisible(true);
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -101,27 +98,27 @@ public class FrmRemoveStaff extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmRemoveStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDeleteClinicHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmRemoveStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDeleteClinicHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmRemoveStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDeleteClinicHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmRemoveStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDeleteClinicHistory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmRemoveStaff().setVisible(true);
+                new FrmDeleteClinicHistory().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRemove;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField txtFullName;
+    private javax.swing.JTextField txtId;
     // End of variables declaration//GEN-END:variables
 }

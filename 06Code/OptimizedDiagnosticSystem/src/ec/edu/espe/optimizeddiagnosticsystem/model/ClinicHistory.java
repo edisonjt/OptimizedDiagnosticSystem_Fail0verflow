@@ -44,6 +44,9 @@ public class ClinicHistory {
         dataBase.id(id);
         
         patientClass.register();
+        chooseNurse();
+        addDoctor(user);
+        addDiagnostic();
         
         dataBase.dBPatient(patientClass, "Clinic History");
 
