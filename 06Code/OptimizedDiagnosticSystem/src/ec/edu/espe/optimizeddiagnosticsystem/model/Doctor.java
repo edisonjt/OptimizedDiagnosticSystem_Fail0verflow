@@ -85,8 +85,8 @@ public class Doctor extends MedicalStaff {
             System.out.println("Enter the new password");
             String pass = scan.nextLine();
             
-            String userToSave = name + ", " + pass + "\n" ;
-            Data.save("Users.csv", userToSave , true);
+            String userToSave = name + ", " + pass+"\n" ;
+            Data.save("Users.csv", userToSave+"\n" , true);
             database.dbUsersPassword(name, pass);
             
         }
