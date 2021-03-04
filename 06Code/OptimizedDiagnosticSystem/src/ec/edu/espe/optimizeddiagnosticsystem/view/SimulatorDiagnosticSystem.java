@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.espe.optimizeddiagoticsystem.view;
+package ec.edu.espe.optimizeddiagnosticsystem.view;
 
 import ec.edu.espe.optimizeddiagnosticsystem.utils.Login;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Doctor;
@@ -142,14 +142,14 @@ public class SimulatorDiagnosticSystem {
 
                                             System.out.println("Enter the ID of the clinic history: ");
                                             String idClinicHistory = scann.next();
-                                            database.readClinicHistory(idClinicHistory, "id", "ClinicHistory");
+                                            database.readClinicHistory(idClinicHistory, "id", "Clinic History");
                                         } else if (opRegister == 3) {
 
                                             boolean decision = false;
                                             do {
                                                 System.out.println("Enter the ID of the clinic history: ");
                                                 String idClinicHistory = scann.next();
-                                                database.readClinicHistory(idClinicHistory, "id", "ClinicHistory");
+                                                database.readClinicHistory(idClinicHistory, "id", "Clinic History");
 
                                                 System.out.println("Do you want to update that Clinic History? (true or false)");
                                                 decision = scann.nextBoolean();
@@ -166,12 +166,12 @@ public class SimulatorDiagnosticSystem {
                                             do {
                                                 System.out.println("Enter the ID of the clinic history: ");
                                                 String idClinicHistory = scann.next();
-                                                database.readClinicHistory(idClinicHistory, "id", "ClinicHistory");
+                                                database.readClinicHistory(idClinicHistory, "id", "Clinic History");
 
                                                 System.out.println("Do you want to delete that Clinic History? (true or false)");
                                                 decision = scann.nextBoolean();
 
-                                                database.deleteObject(idClinicHistory, "id", "ClinicHistory", decision);
+                                                database.deleteObject(idClinicHistory, "id", "Clinic History", decision);
                                             } while (!decision);
                                         }
                                     } else {

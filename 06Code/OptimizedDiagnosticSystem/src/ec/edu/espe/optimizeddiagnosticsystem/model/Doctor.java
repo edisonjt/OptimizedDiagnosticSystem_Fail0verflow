@@ -85,15 +85,19 @@ public class Doctor extends MedicalStaff {
             System.out.println("Enter the new password");
             String pass = scan.nextLine();
             
-            String userToSave = name + ", " + pass+"\n" ;
-            Data.save("Users.csv", userToSave+"\n" , true);
+            String userToSave = name + ", " + pass + "\n" ;
+            Data.save("Users.csv", userToSave , true);
             database.dbUsersPassword(name, pass);
             
         }
 
     }
 
- 
+    @Override
+    public void createPass(boolean option) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     //SETT AND GETT
     public void setSpeciality(String speciality) {
         this.speciality = speciality;
@@ -110,7 +114,5 @@ public class Doctor extends MedicalStaff {
     public String getSubSpeciality() {
         return subSpeciality;
     }
-
-   
 
 }

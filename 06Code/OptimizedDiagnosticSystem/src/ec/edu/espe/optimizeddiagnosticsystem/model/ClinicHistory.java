@@ -36,8 +36,16 @@ public class ClinicHistory {
 
         Patient patientClass = new Patient();
         BasicDBObject document = new BasicDBObject();
+        Scanner scann = new Scanner(System.in);
         
+        System.out.println("Ingrese el id: ");
+        String id = scann.next();
+        
+        dataBase.id(id);
         patientClass.register();
+        chooseNurse();
+        addDoctor(user);
+        addDiagnostic();
         
         dataBase.dBPatient(patientClass, "Clinic History");
 
@@ -49,7 +57,7 @@ public class ClinicHistory {
         return "ClinicHistory{" + "patient=" + getPatient() + ", doctor=" + getDoctor() + ", diagnostic=" + getDiagnostic() + ", nurse=" + getNurse() + '}';
     }
 
-    public Nurse chooseNurse() {
+    public void chooseNurse() {
 
         Scanner scan = new Scanner(System.in);
 
@@ -74,10 +82,9 @@ public class ClinicHistory {
         Nurse nurseClass = new Nurse(true, nameNurse, genderNurse, ageNurse);
         dataBase.dBNurse(nurseClass, "Clinic History");
 
-        return nurseClass;
     }
 
-    public ArrayList addDoctor(String user) {
+    public void addDoctor(String user) {
 
         ArrayList doctors = new ArrayList();
 
@@ -98,14 +105,14 @@ public class ClinicHistory {
             String nameDoctor = splitDoctor[0];
             String titleDoctor = splitDoctor[1];
             String specialityDoctor = splitDoctor[2];
-            String subEspDoctor = splitDoctor[3];
+            String subSpDoctor = splitDoctor[3];
             String dateOfBirthDoctor = splitDoctor[4];
             String genderDoctor = splitDoctor[5];
             
             System.out.println("\n===================================== ");
             System.out.println("Added doctor: \n" + "Name: " + nameDoctor + "\nTitle Code: " + titleDoctor);
             
-            Doctor doctorClass = new Doctor(specialityDoctor, subEspDoctor, titleDoctor, nameDoctor, genderDoctor, dateOfBirthDoctor);
+            Doctor doctorClass = new Doctor(specialityDoctor, subSpDoctor, titleDoctor, nameDoctor, genderDoctor, dateOfBirthDoctor);
             dataBase.dBDoctor(doctorClass, "Clinic History");
             
             doctors.add(doctorClass);
@@ -119,10 +126,9 @@ public class ClinicHistory {
             }
         }
 
-        return doctors;
     }
 
-    public ArrayList addDiagnostic() {
+    public void addDiagnostic() {
 
         ArrayList diagnostics = new ArrayList();
 
@@ -150,7 +156,6 @@ public class ClinicHistory {
             diagnosticControl = Integer.parseInt(scan.nextLine());
         }
 
-        return diagnostics;
     }
 
     /**

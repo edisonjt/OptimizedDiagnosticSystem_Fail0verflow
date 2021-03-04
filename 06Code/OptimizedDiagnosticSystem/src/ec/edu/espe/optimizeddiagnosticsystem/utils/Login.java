@@ -15,7 +15,9 @@ public class Login {
 
     public boolean system(String pass) {
         boolean validate = false;
-        if (Data.find("users.csv", pass).equalsIgnoreCase(pass)) {
+        if (Data.find("PassDocSystem.csv", pass).equalsIgnoreCase(pass)) {
+            validate = true;
+        } else if (Data.find("PassNursSystem.csv", pass).equalsIgnoreCase(pass)) {
             validate = true;
         } else if (pass.equalsIgnoreCase("rootpass")) {
             validate = true;

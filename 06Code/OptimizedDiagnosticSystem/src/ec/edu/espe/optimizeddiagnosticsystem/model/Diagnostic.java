@@ -19,6 +19,11 @@ public class Diagnostic {
     public Diagnostic() {
     }
 
+    public Diagnostic(String cie10, String name) {
+        this.cie10 = cie10;
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "Diagnostic{" + "cie10=" + getCie10() + ", name=" + getName() + '}';

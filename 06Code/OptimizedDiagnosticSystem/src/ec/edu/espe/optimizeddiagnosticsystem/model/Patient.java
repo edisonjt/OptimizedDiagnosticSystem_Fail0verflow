@@ -60,13 +60,12 @@ public class Patient extends HospitalPeople {
         setIdentificationCard(patient.nextLine());
         System.out.println("Blood Type: ");
         setBloodType(patient.nextLine());
-        System.out.println("Allergies: ");
-        setAllergies(patient.nextLine());
         System.out.println("Weight(in kilos): ");
         setWeight(patient.nextInt());
         System.out.println("Height(in centimetres): ");
         setHeight(patient.nextInt());
-
+        System.out.println("Allergies: ");
+        setAllergies(patient.next());
         System.out.println("Do you want to save? Please put True or False");
         setOption(patient.nextBoolean());
 

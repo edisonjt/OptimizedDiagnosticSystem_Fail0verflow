@@ -56,7 +56,7 @@ public class Database {
         BasicDBObject document = new BasicDBObject();
 
         document.put("Name", doctor.getName());
-        document.put("Age", doctor.getDateOfBirth());
+        document.put("Date Of Birth", doctor.getDateOfBirth());
         document.put("Gender", doctor.getGender());
         document.put("Speciality", doctor.getSpeciality());
         document.put("SubSpeciality", doctor.getSubSpeciality());
@@ -82,7 +82,7 @@ public class Database {
         BasicDBObject document = new BasicDBObject();
 
         document.put("Name", nurse.getName());
-        document.put("Age", nurse.getDateOfBirth());
+        document.put("Date Of Birth", nurse.getDateOfBirth());
         document.put("Gender", nurse.getGender());
 
         if ("Clinic History".equals(option)) {
@@ -95,7 +95,7 @@ public class Database {
         BasicDBObject document = new BasicDBObject();
 
         document.put("Name", patient.getName());
-        document.put("Age", patient.getDateOfBirth());
+        document.put("Date Of Birth", patient.getDateOfBirth());
         document.put("Gender", patient.getGender());
         document.put("Identification Card", patient.getIdentificationCard());
         document.put("Blood Type", patient.getBloodType());
@@ -116,7 +116,7 @@ public class Database {
         document.put("Diagnostic", diagnostic.getName());
         document.put("Cie10", diagnostic.getCie10());
 
-        if ("ClinicHistory".equals(option)) {
+        if ("Clinic History".equals(option)) {
             mainDocument.put("Diagnostic", document);
         }
         return document;
@@ -141,7 +141,12 @@ public class Database {
         DBCursor cursor = collection.find(consultation);
 
         while (cursor.hasNext()) {
-            System.out.println(cursor.next());
+            System.out.println("id: " + cursor.next().get("id"));
+            System.out.println("Patient: " + cursor.curr().get("Patient"));
+            System.out.println("Doctor: " + cursor.curr().get("Doctor"));
+            System.out.println("Diagnostic: " + cursor.curr().get("Diagnostic"));
+            System.out.println("Nuse: " + cursor.curr().get("Nurse"));
+            
         }
     }
 
@@ -154,7 +159,8 @@ public class Database {
         DBCursor cursor = collection.find(consultation);
 
         while (cursor.hasNext()) {
-            System.out.println(cursor.next());
+            System.out.println("Name: " + cursor.next().get("Name"));
+            System.out.println("Title Code: " + cursor.curr().get("Title Code"));
         }
     }
 
@@ -167,7 +173,8 @@ public class Database {
         DBCursor cursor = collection.find(consultation);
 
         while (cursor.hasNext()) {
-            System.out.println(cursor.next());
+            System.out.println("Name: " + cursor.next().get("Name"));
+            System.out.println("Date Of Birth: " + cursor.curr().get("Date Of Birth"));
         }
     }
 

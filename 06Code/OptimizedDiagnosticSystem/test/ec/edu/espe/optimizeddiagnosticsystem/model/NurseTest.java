@@ -41,6 +41,17 @@ public class NurseTest {
 
     }
 
+    /**
+     * Test of createPass method, of class Nurse.
+     */
+    @Test
+    public void testCreatePass_boolean() {
+        System.out.println("createPass");
+        boolean option = false;
+        Nurse instance = new Nurse();
+        instance.createPass(option);
+
+    }
 
     /**
      * Test of setWorkShift method, of class Nurse.

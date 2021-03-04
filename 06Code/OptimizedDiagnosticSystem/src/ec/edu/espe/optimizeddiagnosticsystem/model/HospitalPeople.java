@@ -40,7 +40,7 @@ public abstract class HospitalPeople {
     public HospitalPeople() {
     }
 
-    //METHODS ABSTRACT
+    //METHODS
     public abstract void register();
 
     //SETT AND GETT
