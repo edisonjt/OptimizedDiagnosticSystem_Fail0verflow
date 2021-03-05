@@ -5,6 +5,9 @@
  */
 package ec.edu.espe.optimizeddiagnosticsystem.GUI;
 
+import ec.edu.espe.optimizeddiagnosticsystem.utils.Login;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Fail0verflow
@@ -102,9 +105,16 @@ public class FrmSystemLogIn extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.setVisible(false);
         FrmMenu frmMenu = new FrmMenu();
-        frmMenu.setVisible(true);
+        Login login = new Login();
+        this.setVisible(false);
+
+        if (login.system(pswSystemPassword.getText())) {
+            frmMenu.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Incorrect password", "Error", JOptionPane.ERROR_MESSAGE);
+            new FrmSystemLogIn().setVisible(true);
+        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
