@@ -10,14 +10,11 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Diagnostic;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Doctor;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Nurse;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Patient;
-import org.bson.Document;
+
 
 /**
  *
@@ -31,12 +28,12 @@ public class Database {
 
     public Database() {
         try {
-            MongoClientURI uri = new MongoClientURI(
-                    "mongodb+srv://tentacle:atlas1234@cluster0.pq2gf.mongodb.net/FailOverFlow?retryWrites=true&w=majority");
+            //MongoClientURI uri = new MongoClientURI(
+              //      "mongodb+srv://tentacle:atlas1234@cluster0.pq2gf.mongodb.net/FailOverFlow?retryWrites=true&w=majority");
 
-            MongoClient mongoClient = new MongoClient(uri);
-            MongoDatabase database = mongoClient.getDatabase("FailOverflow");
-            MongoCollection<Document> collections = database.getCollection("FailOverflow");
+            MongoClient mongoClient = new MongoClient("localhost", 27017);
+            //MongoDatabase database = mongoClient.getDatabase("FailOverflow");
+            //MongoCollection<Document> collections = database.getCollection("FailOverflow");
             dataBase = mongoClient.getDB("FailOverflow");
             collection = dataBase.getCollection("FailOverflow");
             
@@ -61,6 +58,8 @@ public class Database {
         document.put("Speciality", doctor.getSpeciality());
         document.put("SubSpeciality", doctor.getSubSpeciality());
         document.put("Title Code", doctor.getTitleCode());
+        document.put("Home Address", doctor.getHomeAddress());
+        document.put("Emergency Number", doctor.getEmergencyNumber());
 
         if ("Clinic History".equals(option)) {
             mainDocument.put("Doctor", document);
@@ -84,6 +83,10 @@ public class Database {
         document.put("Name", nurse.getName());
         document.put("Date Of Birth", nurse.getDateOfBirth());
         document.put("Gender", nurse.getGender());
+        document.put("Title Code", nurse.getTitleCode());
+        document.put("Home Address", nurse.getHomeAddress());
+        document.put("Emergency Number", nurse.getEmergencyNumber());
+        document.put("Work Shift", nurse.getWorkShift());
 
         if ("Clinic History".equals(option)) {
             mainDocument.put("Nurse", document);

@@ -20,7 +20,7 @@ public class Patient extends HospitalPeople {
     private String identificationCard;
 
     //CONSTRUCTORS
-    public Patient(int weight, int height, String bloodType, String allergies, String identificationCard, String name, String homeAddress, String gender, String dateOfBirth, int emergencyNumber, boolean option) {
+    public Patient(int weight, int height, String bloodType, String allergies, String identificationCard, String name, String homeAddress, String gender, String dateOfBirth, String emergencyNumber, boolean option) {
         super(name, homeAddress, gender, dateOfBirth, emergencyNumber, option);
         this.weight = weight;
         this.height = height;
@@ -47,13 +47,8 @@ public class Patient extends HospitalPeople {
         setGender(scan.nextLine());
         System.out.println("Date of birth");
         setDateOfBirth(scan.nextLine());
-        try {
-            System.out.println("Emergency Number: ");
-            setEmergencyNumber(Integer.parseInt(scan.nextLine()));
-        } catch (NumberFormatException ex) {
-            System.out.println("very large number");
-        }
-
+        System.out.println("Emergency Number: ");
+        setEmergencyNumber(scan.nextLine());
         System.out.println("Home Address: ");
         setHomeAddress(scan.nextLine());
         System.out.println("Identification Card: ");

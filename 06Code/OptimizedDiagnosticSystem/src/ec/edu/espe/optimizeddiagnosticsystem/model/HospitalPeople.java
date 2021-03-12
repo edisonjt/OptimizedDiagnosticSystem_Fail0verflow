@@ -17,11 +17,11 @@ public abstract class HospitalPeople {
     private String homeAddress;
     private String gender;
     private String dateOfBirth;
-    private int emergencyNumber;
+    private String emergencyNumber;
     private boolean option;
 
     //CONSTRUCTORS
-    public HospitalPeople( String name, String homeAddress, String gender, String dateOfBirth, int emergencyNumber, boolean option) {
+    public HospitalPeople( String name, String homeAddress, String gender, String dateOfBirth, String emergencyNumber, boolean option) {
         this.name = name;
         this.homeAddress = homeAddress;
         this.gender = gender;
@@ -53,7 +53,7 @@ public abstract class HospitalPeople {
         this.homeAddress = homeAddress;
     }
 
-    public void setEmergencyNumber(int emergencyNumber) {
+    public void setEmergencyNumber(String emergencyNumber) {
         this.emergencyNumber = emergencyNumber;
     }
 
@@ -69,7 +69,7 @@ public abstract class HospitalPeople {
         return homeAddress;
     }
 
-    public int getEmergencyNumber() {
+    public String getEmergencyNumber() {
         return emergencyNumber;
     }
 

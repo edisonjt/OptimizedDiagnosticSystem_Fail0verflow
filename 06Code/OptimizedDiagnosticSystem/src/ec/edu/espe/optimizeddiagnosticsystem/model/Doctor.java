@@ -19,7 +19,7 @@ public class Doctor extends MedicalStaff {
     private String subSpeciality;
 
     //CONSTRUCTORS
-    public Doctor(String speciality, String subSpeciality, String titleCode, String password, String name, String homeAddress, String gender, String dateOfBirth, int emergencyNumber, boolean option) {
+    public Doctor(String speciality, String subSpeciality, String titleCode, String password, String name, String homeAddress, String gender, String dateOfBirth, String emergencyNumber, boolean option) {
         super(titleCode, password, name, homeAddress, gender, dateOfBirth, emergencyNumber, option);
         this.speciality = speciality;
         this.subSpeciality = subSpeciality;
@@ -51,13 +51,8 @@ public class Doctor extends MedicalStaff {
         setGender(scan.nextLine());
         System.out.println("Date of birth");
         setDateOfBirth(scan.nextLine());
-        try {
-            System.out.println("Emergency Number: ");
-            setEmergencyNumber(Integer.parseInt(scan.nextLine()));
-        } catch (NumberFormatException ex) {
-            System.out.println("very large number");
-        }
-
+        System.out.println("Emergency Number: ");
+        setEmergencyNumber(scan.next());
         System.out.println("Home Address: ");
         setHomeAddress(scan.nextLine());
         System.out.println("Sub Speciality : ");
@@ -68,7 +63,7 @@ public class Doctor extends MedicalStaff {
         setTitleCode(scan.nextLine());
         System.out.println("Do you want to save? Please put True or False");
         setOption(scan.nextBoolean());
-        
+
         String dataToSave = getName() + "," + getTitleCode() + "," + getSpeciality()
                 + "," + getSubSpeciality() + "," + getDateOfBirth() + "," + getGender() + "\n";
 
@@ -81,14 +76,14 @@ public class Doctor extends MedicalStaff {
         if (option == true) {
             Scanner scan = new Scanner(System.in);
             Database database = new Database();
-            
+
             System.out.println("Enter the new password");
             String pass = scan.nextLine();
-            
-            String userToSave = name + ", " + pass + "\n" ;
-            Data.save("Users.csv", userToSave , true);
+
+            String userToSave = name + ", " + pass + "\n";
+            Data.save("Users.csv", userToSave, true);
             database.dbUsersPassword(name, pass);
-            
+
         }
 
     }

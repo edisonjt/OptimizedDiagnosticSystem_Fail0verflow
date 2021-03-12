@@ -79,7 +79,7 @@ public class ClinicHistory {
         System.out.println("\n===================================== ");
         System.out.println("Added nurse: \n" + "Name: " + nameNurse + "\nAge: " + ageNurse + "\nGender:" + genderNurse);
 
-        Nurse nurseClass = new Nurse(true, nameNurse, genderNurse, ageNurse);
+        Nurse nurseClass = new Nurse(nameNurse, genderNurse, ageNurse);
         dataBase.dBNurse(nurseClass, "Clinic History");
 
     }
