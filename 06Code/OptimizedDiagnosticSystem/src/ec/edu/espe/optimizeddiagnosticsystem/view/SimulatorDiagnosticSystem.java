@@ -127,7 +127,7 @@ public class SimulatorDiagnosticSystem {
                                     System.out.println("Please enter the Password");
                                     passwordDoctor = scantext.nextLine();
 
-                                    if (login.loginHistoryUpdater(nameDoctor, passwordDoctor)) {
+                                    if (login.historyUpdater(nameDoctor, passwordDoctor)) {
 
                                         Database database = new Database();
                                         Scanner scann = new Scanner(System.in);
@@ -177,7 +177,7 @@ public class SimulatorDiagnosticSystem {
                                     } else {
                                         System.out.println("The password or user isn't correct, please try again! ");
                                     }
-                                } while (!login.loginHistoryUpdater(nameDoctor, passwordDoctor));
+                                } while (!login.historyUpdater(nameDoctor, passwordDoctor));
 
                                 break;
 

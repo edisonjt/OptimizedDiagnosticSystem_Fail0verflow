@@ -92,7 +92,7 @@ public class FrmUserLogIn extends javax.swing.JFrame {
         FrmMenuClinicHistory frmMenuClinicHistory = new FrmMenuClinicHistory();
         Login login = new Login();
 
-        if (login.loginHistoryUpdater(txtUsername.getText(), pswPassword.getText())) {
+        if (login.historyUpdater(txtUsername.getText(), pswPassword.getText())) {
             frmMenuClinicHistory.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Wrong password or user", "Error", JOptionPane.ERROR_MESSAGE);

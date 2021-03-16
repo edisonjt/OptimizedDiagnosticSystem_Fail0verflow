@@ -21,11 +21,11 @@ public class Login {
             validate = true;
         } else if (pass.equalsIgnoreCase("rootpass")) {
             validate = true;
-        }         
+        }
         return validate;
     }
-    
-    public boolean loginHistoryUpdater(String user, String pass) {
+
+    public boolean historyUpdater1(String user, String pass) {
         boolean validate = false;
 
         String chain = Data.find("users.csv", user);
@@ -43,5 +43,20 @@ public class Login {
         return validate;
     }
 
-   
+    public boolean historyUpdater(String user, String pass) {
+        boolean validate = false;
+        Database database = new Database();
+
+        String[] validation = database.readPassword(user, "Users Password");
+
+        if (validation[0] != null) {
+            if (validation[0].equalsIgnoreCase(user)) {
+                if (validation[0].equalsIgnoreCase(user) && validation[1].equalsIgnoreCase(pass)) {
+                    validate = true;
+                }
+            }
+        }
+        return validate;
+    }
+
 }

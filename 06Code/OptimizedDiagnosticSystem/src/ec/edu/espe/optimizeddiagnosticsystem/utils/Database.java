@@ -10,10 +10,14 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Diagnostic;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Doctor;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Nurse;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Patient;
+import javax.swing.text.Document;
 
 
 /**
@@ -28,12 +32,13 @@ public class Database {
 
     public Database() {
         try {
-            //MongoClientURI uri = new MongoClientURI(
-              //      "mongodb+srv://tentacle:atlas1234@cluster0.pq2gf.mongodb.net/FailOverFlow?retryWrites=true&w=majority");
+            MongoClientURI uri = new MongoClientURI(
+                    "mongodb+srv://tentacle:atlas1234@cluster0.pq2gf.mongodb.net/FailOverFlow?retryWrites=true&w=majority");
 
-            MongoClient mongoClient = new MongoClient("localhost", 27017);
+            MongoClient mongoClient = new MongoClient(uri);
+            //MongoClient mongoClient = new MongoClient("localhost", 27017);
             //MongoDatabase database = mongoClient.getDatabase("FailOverflow");
-            //MongoCollection<Document> collections = database.getCollection("FailOverflow");
+            //MongoCollection<org.bson.Document> collections = database.getCollection("FailOverflow");
             dataBase = mongoClient.getDB("FailOverflow");
             collection = dataBase.getCollection("FailOverflow");
             
@@ -180,6 +185,26 @@ public class Database {
             System.out.println("Date Of Birth: " + cursor.curr().get("Date Of Birth"));
         }
     }
+    
+    public String readTotal(String dBCollection) {
+        collection = dataBase.getCollection(dBCollection);
+
+        //BasicDBObject consultation = new BasicDBObject();
+        //consultation.put(basicObject, search);
+
+        DBCursor cursor = collection.find(/*consultation*/);
+
+        
+        while (cursor.hasNext()) {
+            String name;
+            name = "Name: " + cursor.next().get("Name").toString();
+            System.out.println(name);
+            return name;
+            //System.out.println("Date Of Birth: " + cursor.next().get("Date Of Birth"));    
+        }
+        return null;
+        
+    }
 
     public void updateClinicHistory(String object, String id) {
 
@@ -221,5 +246,22 @@ public class Database {
         if (decision) {
             collection.remove(new BasicDBObject().append(basicObject, search));
         }
+    }
+    
+    public String[] readPassword(String search, String dBCollection) {
+        collection = dataBase.getCollection(dBCollection);
+        
+        String[] user = new String[2];
+
+        BasicDBObject consultation = new BasicDBObject();
+        consultation.put("Name", search);
+
+        DBCursor cursor = collection.find(consultation);
+
+        while (cursor.hasNext()) {
+            user[0] = (String) cursor.next().get("Name");
+            user[1] = (String) cursor.curr().get("Password");
+        }
+        return user;
     }
 }

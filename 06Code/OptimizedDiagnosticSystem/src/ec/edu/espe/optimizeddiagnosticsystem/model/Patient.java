@@ -13,14 +13,14 @@ import java.util.Scanner;
  */
 public class Patient extends HospitalPeople {
 
-    private int weight;
-    private int height;
+    private String weight;
+    private String height;
     private String bloodType;
     private String allergies;
     private String identificationCard;
 
     //CONSTRUCTORS
-    public Patient(int weight, int height, String bloodType, String allergies, String identificationCard, String name, String homeAddress, String gender, String dateOfBirth, String emergencyNumber, boolean option) {
+    public Patient(String weight, String height, String bloodType, String allergies, String identificationCard, String name, String homeAddress, String gender, String dateOfBirth, String emergencyNumber, boolean option) {
         super(name, homeAddress, gender, dateOfBirth, emergencyNumber, option);
         this.weight = weight;
         this.height = height;
@@ -56,9 +56,9 @@ public class Patient extends HospitalPeople {
         System.out.println("Blood Type: ");
         setBloodType(patient.nextLine());
         System.out.println("Weight(in kilos): ");
-        setWeight(patient.nextInt());
+        setWeight(patient.next());
         System.out.println("Height(in centimetres): ");
-        setHeight(patient.nextInt());
+        setHeight(patient.next());
         System.out.println("Allergies: ");
         setAllergies(patient.next());
         System.out.println("Do you want to save? Please put True or False");
@@ -67,11 +67,11 @@ public class Patient extends HospitalPeople {
     }
 
     //SETTER and GETTER
-    public void setWeight(int weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(String height) {
         this.height = height;
     }
 
@@ -87,11 +87,11 @@ public class Patient extends HospitalPeople {
         this.identificationCard = identificationCard;
     }
 
-    public int getWeight() {
+    public String getWeight() {
         return weight;
     }
 
-    public int getHeight() {
+    public String getHeight() {
         return height;
     }
 
