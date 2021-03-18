@@ -11,7 +11,7 @@ import java.io.*;
 
 /**
  *
- * @author luist
+ * @author Fail0verflow
  */
 public class FileManager implements Persistance{
 
@@ -77,7 +77,7 @@ public class FileManager implements Persistance{
     }
     
     @Override
-    public void reader(String fileName, Object src) {
+    public void read(String fileName, Object src) {
 
         File file = new File(fileName);
         FileReader reader;

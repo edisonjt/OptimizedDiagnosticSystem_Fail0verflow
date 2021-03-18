@@ -95,8 +95,8 @@
                                               </Group>
                                           </Group>
                                           <Component id="cmbGender" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="dateOfBirth" min="-2" max="-2" attributes="0"/>
                                           <Component id="jScrollPane1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="dateOfBirth" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -515,8 +515,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtDiagnosticSave">
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="dateOfBirth">
-    </Component>
     <Component class="javax.swing.Box$Filler" name="filler1">
       <Properties>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -565,5 +563,7 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="com.toedter.calendar.JDateChooser" name="dateOfBirth">
+    </Component>
   </SubComponents>
 </Form>

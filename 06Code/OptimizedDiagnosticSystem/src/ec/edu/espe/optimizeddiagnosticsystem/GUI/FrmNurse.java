@@ -160,7 +160,7 @@ public class FrmNurse extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(dateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
                     .addComponent(txtWorkShift, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -198,7 +198,7 @@ public class FrmNurse extends javax.swing.JFrame {
                         format.format(dateOfBirth.getDate()), txtEmergencyNumber.getText(), true);
 
                 basicObject = nurseController.register((Nurse) nurse, "Register");
-                dataBase.saveDatabase("Register", basicObject, "Nurse");
+                dataBase.save("Register", basicObject, "Nurse");
 
                 String dataToSave = txtFullName.getText() + "," + format.format(dateOfBirth.getDate()) + "," + cmbGender.getSelectedItem().toString() + "\n";
                 Data.save("nurse.csv", dataToSave, true);

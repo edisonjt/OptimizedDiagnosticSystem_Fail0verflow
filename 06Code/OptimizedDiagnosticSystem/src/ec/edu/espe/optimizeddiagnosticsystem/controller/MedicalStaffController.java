@@ -7,7 +7,7 @@ package ec.edu.espe.optimizeddiagnosticsystem.controller;
 
 /**
  *
- * @author luist
+ * @author Fail0verflow
  */
 public abstract class MedicalStaffController {
 

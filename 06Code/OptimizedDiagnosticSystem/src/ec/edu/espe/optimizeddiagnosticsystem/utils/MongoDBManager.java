@@ -13,12 +13,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import ec.edu.espe.optimizeddiagnosticsystem.model.Diagnostic;
-import ec.edu.espe.optimizeddiagnosticsystem.model.Doctor;
-import ec.edu.espe.optimizeddiagnosticsystem.model.Nurse;
-import ec.edu.espe.optimizeddiagnosticsystem.model.Patient;
 import javax.swing.text.Document;
-
 
 /**
  *
@@ -29,18 +24,19 @@ public class MongoDBManager {
     DB dataBase;
     DBCollection collection;
     BasicDBObject mainDocument = new BasicDBObject();
-    
 
-    public MongoDBManager() {  }
-    
-     public void openConnection(){
+    public MongoDBManager() {
+    }
+
+    public void openConnection() {
         try {
-            MongoClientURI uri = new MongoClientURI(
-                    "mongodb+srv://tentacle:atlas1234@cluster0.pq2gf.mongodb.net/FailOverFlow?retryWrites=true&w=majority");
+            //MongoClientURI uri = new MongoClientURI(
+              //      "mongodb+srv://tentacle:atlas1234@cluster0.pq2gf.mongodb.net/FailOverFlow?retryWrites=true&w=majority");
 
-            MongoClient mongoClient = new MongoClient(uri);
-             MongoDatabase database = mongoClient.getDatabase("FailOverflow");
-            MongoCollection<org.bson.Document> collections = database.getCollection("FailOverflow");
+            //MongoClient mongoClient = new MongoClient(uri);
+            MongoClient mongoClient = new MongoClient("localhost", 27017);
+            //MongoDatabase database = mongoClient.getDatabase("FailOverflow");
+            //MongoCollection<org.bson.Document> collections = database.getCollection("FailOverflow");
             dataBase = mongoClient.getDB("FailOverflow");
             collection = dataBase.getCollection("FailOverflow");
 
@@ -65,10 +61,7 @@ public class MongoDBManager {
         document.put("Password", password);
         collection.insert(document);
     }*/
-
-  
-
-    /*public BasicDBObject dBDiagnostic(Diagnostic diagnostic, String option) {
+ /*public BasicDBObject dBDiagnostic(Diagnostic diagnostic, String option) {
         BasicDBObject document = new BasicDBObject();
 
         document.put("Diagnostic", diagnostic.getName());
@@ -79,8 +72,7 @@ public class MongoDBManager {
         }
         return document;
     }*/
-
-    public void saveDatabase(String option, BasicDBObject basicObject, String dBCollection) {
+    public void save(String option, BasicDBObject basicObject, String dBCollection) {
         collection = dataBase.getCollection(dBCollection);
 
         if ("Register".equals(option)) {
@@ -108,7 +100,7 @@ public class MongoDBManager {
         }
     }*/
 
-    /*public void readDoctor(String search, String basicObject, String dBCollection) {
+ /*public void readDoctor(String search, String basicObject, String dBCollection) {
         collection = dataBase.getCollection(dBCollection);
 
         BasicDBObject consultation = new BasicDBObject();
@@ -122,7 +114,7 @@ public class MongoDBManager {
         }
     }*/
 
-    /*public void readNurse(String search, String basicObject, String dBCollection) {
+ /*public void readNurse(String search, String basicObject, String dBCollection) {
         collection = dataBase.getCollection(dBCollection);
 
         BasicDBObject consultation = new BasicDBObject();
@@ -135,8 +127,7 @@ public class MongoDBManager {
             System.out.println("Date Of Birth: " + cursor.curr().get("Date Of Birth"));
         }
     }*/
-    
-    /*public String readTotal(String dBCollection) {
+ /*public String readTotal(String dBCollection) {
         collection = dataBase.getCollection(dBCollection);
 
         DBCursor cursor = collection.find();
@@ -150,7 +141,7 @@ public class MongoDBManager {
         return name;
     }*/
 
-    /*public void updateClinicHistory(String object, String id) {
+ /*public void updateClinicHistory(String object, String id) {
 
         if (object.equalsIgnoreCase("Patient")) {
             Patient patient = new Patient();
@@ -184,17 +175,16 @@ public class MongoDBManager {
 
         collection.update(searchId, update);
     }*/
-
     public void deleteObject(String search, String basicObject, String dBCollection, boolean decision) {
         collection = dataBase.getCollection(dBCollection);
         if (decision) {
             collection.remove(new BasicDBObject().append(basicObject, search));
         }
     }
-    
+
     public String[] readPassword(String search, String dBCollection) {
         collection = dataBase.getCollection(dBCollection);
-        
+
         String[] user = new String[2];
 
         BasicDBObject consultation = new BasicDBObject();
@@ -208,6 +198,7 @@ public class MongoDBManager {
         }
         return user;
     }
+
     public DB getDataBase() {
         return dataBase;
     }
@@ -223,7 +214,7 @@ public class MongoDBManager {
     public void setCollection(DBCollection collection) {
         this.collection = collection;
     }
-    
+
     public BasicDBObject getMainDocument() {
         return mainDocument;
     }
@@ -233,4 +224,3 @@ public class MongoDBManager {
     }
 
 }
-

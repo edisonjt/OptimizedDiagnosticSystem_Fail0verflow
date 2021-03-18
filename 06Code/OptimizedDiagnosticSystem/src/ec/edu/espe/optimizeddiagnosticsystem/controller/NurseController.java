@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Jhonatan
+ * @author Fail0verflow
  */
 public class NurseController extends MedicalStaffController {
  
@@ -26,6 +26,7 @@ public class NurseController extends MedicalStaffController {
     
     public BasicDBObject register(Nurse nurse, String option) {
         BasicDBObject document = new BasicDBObject();
+        BasicDBObject mainDocument = new BasicDBObject();
 
         document.put("Name", nurse.getName());
         document.put("Date Of Birth", nurse.getDateOfBirth());
@@ -36,8 +37,8 @@ public class NurseController extends MedicalStaffController {
         document.put("Work Shift", nurse.getWorkShift());
 
         if ("Clinic History".equals(option)) {
-            database.getMainDocument().put("Nurse", document);
-            
+            mainDocument.put("Nurse", document);
+            return mainDocument;
         }
         return document;
     }
