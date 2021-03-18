@@ -28,6 +28,7 @@ public class Database {
     DB dataBase;
     DBCollection collection;
     BasicDBObject mainDocument = new BasicDBObject();
+    
 
     public Database() {
         try {
