@@ -7,6 +7,7 @@ package ec.edu.espe.optimizeddiagnosticsystem.GUI;
 
 import com.mongodb.BasicDBObject;
 import ec.edu.espe.filemanager.utils.Data;
+import ec.edu.espe.optimizeddiagnosticsystem.controller.DoctorController;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Doctor;
 import ec.edu.espe.optimizeddiagnosticsystem.utils.Database;
 import java.text.SimpleDateFormat;
@@ -196,6 +197,7 @@ public class FrmDoctor extends javax.swing.JFrame {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
 
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        DoctorController doctorController = new DoctorController();
         BasicDBObject basicObject;
 
         int selection = JOptionPane.showConfirmDialog(null, " Are you sure to save? ", " Doctors Saving ", JOptionPane.YES_NO_CANCEL_OPTION);
@@ -208,7 +210,7 @@ public class FrmDoctor extends javax.swing.JFrame {
                         format.format(dateOfBirth.getDate()),
                         txtEmergencyNumber.getText(), true);
 
-                basicObject = database.dBDoctor(doctor, "Register");
+                basicObject = doctorController.save(doctor, "Register");
                 database.saveDatabase("Register", basicObject, "Doctor");
 
                 String dataToSave = txtFullName.getText() + "," + txtTitleCode.getText() + "," + txtSubSpeciality.getText()

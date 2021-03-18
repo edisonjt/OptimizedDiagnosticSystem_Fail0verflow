@@ -41,13 +41,13 @@ public class ClinicHistory {
         System.out.println("Ingrese el id: ");
         String id = scann.next();
         
-        dataBase.id(id);
+        //dataBase.id(id);
         patientClass.register();
         chooseNurse();
         addDoctor(user);
         addDiagnostic();
         
-        dataBase.dBPatient(patientClass, "Clinic History");
+        //dataBase.dBPatient(patientClass, "Clinic History");
 
         dataBase.saveDatabase("Clinic History", document, "Clinic History");
     }
@@ -80,7 +80,7 @@ public class ClinicHistory {
         System.out.println("Added nurse: \n" + "Name: " + nameNurse + "\nAge: " + ageNurse + "\nGender:" + genderNurse);
 
         Nurse nurseClass = new Nurse(nameNurse, genderNurse, ageNurse);
-        dataBase.dBNurse(nurseClass, "Clinic History");
+        //dataBase.dBNurse(nurseClass, "Clinic History");
 
     }
 
@@ -113,7 +113,7 @@ public class ClinicHistory {
             System.out.println("Added doctor: \n" + "Name: " + nameDoctor + "\nTitle Code: " + titleDoctor);
             
             Doctor doctorClass = new Doctor(specialityDoctor, subSpDoctor, titleDoctor, nameDoctor, genderDoctor, dateOfBirthDoctor);
-            dataBase.dBDoctor(doctorClass, "Clinic History");
+           // dataBase.dBDoctor(doctorClass, "Clinic History");
             
             doctors.add(doctorClass);
             
@@ -149,7 +149,7 @@ public class ClinicHistory {
             
             Diagnostic diagnosticClass = new Diagnostic();
             diagnosticClass.resgister();
-            dataBase.dBDiagnostic(diagnosticClass, "Clinic History");
+            //dataBase.dBDiagnostic(diagnosticClass, "Clinic History");
             diagnostics.add(diagnosticClass);
             
             System.out.println("You need to add more diagnostics? please press 1 to add more or 0 to continue");

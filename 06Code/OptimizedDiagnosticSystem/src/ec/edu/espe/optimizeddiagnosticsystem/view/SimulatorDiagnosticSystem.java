@@ -10,6 +10,9 @@ import ec.edu.espe.optimizeddiagnosticsystem.model.Doctor;
 import ec.edu.espe.optimizeddiagnosticsystem.model.MedicalStaff;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Nurse;
 import com.mongodb.BasicDBObject;
+import ec.edu.espe.optimizeddiagnosticsystem.controller.ClinicHistoryController;
+import ec.edu.espe.optimizeddiagnosticsystem.controller.DoctorController;
+import ec.edu.espe.optimizeddiagnosticsystem.controller.NurseController;
 import ec.edu.espe.optimizeddiagnosticsystem.utils.Database;
 import ec.edu.espe.optimizeddiagnosticsystem.model.ClinicHistory;
 import java.util.*;
@@ -59,7 +62,7 @@ public class SimulatorDiagnosticSystem {
                                             Doctor doctor = new Doctor();
                                             doctor.register();
                                             
-                                            register = database.dBDoctor(doctor, "Register");
+                                            //register = database.dBDoctor(doctor, "Register");
                                             database.saveDatabase("Register", register, "Doctor");
                                             
                                             pass.createPass(doctor.isOption(), doctor.getName());
@@ -71,7 +74,7 @@ public class SimulatorDiagnosticSystem {
                                             Nurse nurse = new Nurse();
                                             nurse.register();
                                             
-                                            register = database.dBNurse(nurse, "Register");
+                                            //register = database.dBNurse(nurse, "Register");
                                             database.saveDatabase("Register", register, "Nurse");
                                             
                                             pass.createPass(nurse.isOption(), nurse.getName());
@@ -87,31 +90,30 @@ public class SimulatorDiagnosticSystem {
                                         opRegister = scannum.nextInt();
 
                                         if (opRegister == 1) {
-                                            System.out.println("In what field do you want to search? ");
-                                            String field = scantext.next();
-                                            System.out.println("Enter the field value ");
-                                            String fieldValue = scantext.next();
+                                            DoctorController doctor = new DoctorController();
+                                            System.out.println("Enter the name ");
+                                            String field = scantext.nextLine();
+                                            
 
-                                            database.readDoctor(fieldValue, field, "Doctor");
+                                            doctor.read(field);
 
                                             System.out.println("Are you sure you want to delete? (true or false)");
                                             boolean decision = scantext.nextBoolean();
 
-                                            database.deleteObject(fieldValue, field, "Doctor", decision);
+                                            database.deleteObject(field, "Name", "Doctor", decision);
                                         }
 
                                         if (opRegister == 2) {
-                                            System.out.println("In what field do you want to search? ");
-                                            String field = scantext.next();
-                                            System.out.println("Enter the field value ");
-                                            String fieldValue = scantext.next();
+                                            NurseController nurse = new NurseController();
+                                            System.out.println("Enter the name ");
+                                            String field = scantext.nextLine();
 
-                                            database.readDoctor(fieldValue, field, "Nurse");
+                                            nurse.read(field);
 
                                             System.out.println("Are you sure you want to delete? (true o false)");
                                             boolean decision = scantext.nextBoolean();
 
-                                            database.deleteObject(fieldValue, field, "Nurse", decision);
+                                            database.deleteObject(field, "Name", "Nurse", decision);
                                         }
                                     }
 
@@ -142,14 +144,15 @@ public class SimulatorDiagnosticSystem {
 
                                             System.out.println("Enter the ID of the clinic history: ");
                                             String idClinicHistory = scann.next();
-                                            database.readClinicHistory(idClinicHistory, "id", "Clinic History");
+                                            //database.readClinicHistory(idClinicHistory, "id", "Clinic History");
                                         } else if (opRegister == 3) {
 
                                             boolean decision = false;
                                             do {
+                                                ClinicHistoryController clinic = new ClinicHistoryController();
                                                 System.out.println("Enter the ID of the clinic history: ");
                                                 String idClinicHistory = scann.next();
-                                                database.readClinicHistory(idClinicHistory, "id", "Clinic History");
+                                                clinic.read(idClinicHistory);
 
                                                 System.out.println("Do you want to update that Clinic History? (true or false)");
                                                 decision = scann.nextBoolean();
@@ -157,7 +160,7 @@ public class SimulatorDiagnosticSystem {
                                                 System.out.println("Enter the field you want to update? ");
                                                 String field = scann.next();
 
-                                                database.updateClinicHistory(field, idClinicHistory);
+                                                clinic.updateClinicHistory(field, idClinicHistory);
                                             } while (!decision);
 
                                         } else if (opRegister == 4) {
@@ -166,7 +169,7 @@ public class SimulatorDiagnosticSystem {
                                             do {
                                                 System.out.println("Enter the ID of the clinic history: ");
                                                 String idClinicHistory = scann.next();
-                                                database.readClinicHistory(idClinicHistory, "id", "Clinic History");
+                                                //database.readClinicHistory(idClinicHistory, "id", "Clinic History");
 
                                                 System.out.println("Do you want to delete that Clinic History? (true or false)");
                                                 decision = scann.nextBoolean();
