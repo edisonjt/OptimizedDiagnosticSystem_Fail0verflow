@@ -5,7 +5,7 @@
  */
 package ec.edu.espe.optimizeddiagnosticsystem.GUI;
 
-import ec.edu.espe.optimizeddiagnosticsystem.utils.Login;
+import ec.edu.espe.optimizeddiagnosticsystem.controller.LoginController;
 import javax.swing.JOptionPane;
 
 /**
@@ -90,7 +90,7 @@ public class FrmUserLogIn extends javax.swing.JFrame {
     private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogInActionPerformed
         this.setVisible(false);
         FrmMenuClinicHistory frmMenuClinicHistory = new FrmMenuClinicHistory();
-        Login login = new Login();
+        LoginController login = new LoginController();
 
         if (login.historyUpdater(txtUsername.getText(), pswPassword.getText())) {
             frmMenuClinicHistory.setVisible(true);

@@ -7,7 +7,7 @@ package ec.edu.espe.optimizeddiagnosticsystem.controller;
 
 import com.mongodb.BasicDBObject;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Patient;
-import ec.edu.espe.optimizeddiagnosticsystem.utils.Database;
+import ec.edu.espe.optimizeddiagnosticsystem.utils.MongoDBManager;
 
 /**
  *
@@ -15,12 +15,12 @@ import ec.edu.espe.optimizeddiagnosticsystem.utils.Database;
  */
 public class PatientController {
     
-    Database database = new Database();
+    MongoDBManager database = new MongoDBManager();
 
     public PatientController() {
     }
     
-    public BasicDBObject save(Patient patient, String option) {
+    public BasicDBObject register(Patient patient, String option) {
         BasicDBObject document = new BasicDBObject();
 
         document.put("Name", patient.getName());

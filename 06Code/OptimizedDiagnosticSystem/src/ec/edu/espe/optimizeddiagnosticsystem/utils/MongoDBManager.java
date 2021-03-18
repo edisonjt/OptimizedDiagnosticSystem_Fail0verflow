@@ -24,54 +24,37 @@ import javax.swing.text.Document;
  *
  * @author FailOverflow
  */
-public class Database {
+public class MongoDBManager {
 
     DB dataBase;
     DBCollection collection;
     BasicDBObject mainDocument = new BasicDBObject();
     
 
-    public Database() {
+    public MongoDBManager() {  }
+    
+     public void openConnection(){
         try {
-            //MongoClientURI uri = new MongoClientURI(
-              //      "mongodb+srv://tentacle:atlas1234@cluster0.pq2gf.mongodb.net/FailOverFlow?retryWrites=true&w=majority");
+            MongoClientURI uri = new MongoClientURI(
+                    "mongodb+srv://tentacle:atlas1234@cluster0.pq2gf.mongodb.net/FailOverFlow?retryWrites=true&w=majority");
 
-            //MongoClient mongoClient = new MongoClient(uri);
-            MongoClient mongoClient = new MongoClient("localhost", 27017);
-            //MongoDatabase database = mongoClient.getDatabase("FailOverflow");
-            //MongoCollection<org.bson.Document> collections = database.getCollection("FailOverflow");
+            MongoClient mongoClient = new MongoClient(uri);
+             MongoDatabase database = mongoClient.getDatabase("FailOverflow");
+            MongoCollection<org.bson.Document> collections = database.getCollection("FailOverflow");
             dataBase = mongoClient.getDB("FailOverflow");
-            collection = dataBase.getCollection("Clinic History");
-            
+            collection = dataBase.getCollection("FailOverflow");
+
         } catch (Exception ex) {
             System.out.println("The connection was unsuccesfull");
         }
-        
-        
-        
+
     }
 
     /*public void id(String id) {
         mainDocument.put("id", id);
     }
 
-    public BasicDBObject dBDoctor(Doctor doctor, String option) {
-        BasicDBObject document = new BasicDBObject();
-
-        document.put("Name", doctor.getName());
-        document.put("Date Of Birth", doctor.getDateOfBirth());
-        document.put("Gender", doctor.getGender());
-        document.put("Speciality", doctor.getSpeciality());
-        document.put("SubSpeciality", doctor.getSubSpeciality());
-        document.put("Title Code", doctor.getTitleCode());
-        document.put("Home Address", doctor.getHomeAddress());
-        document.put("Emergency Number", doctor.getEmergencyNumber());
-
-        if ("Clinic History".equals(option)) {
-            mainDocument.put("Doctor", document);
-        }
-        return document;
-    }*/
+   
 
     /*public void dbUsersPassword(String name, String password) {
 
@@ -83,41 +66,7 @@ public class Database {
         collection.insert(document);
     }*/
 
-    /*public BasicDBObject dBNurse(Nurse nurse, String option) {
-        BasicDBObject document = new BasicDBObject();
-
-        document.put("Name", nurse.getName());
-        document.put("Date Of Birth", nurse.getDateOfBirth());
-        document.put("Gender", nurse.getGender());
-        document.put("Title Code", nurse.getTitleCode());
-        document.put("Home Address", nurse.getHomeAddress());
-        document.put("Emergency Number", nurse.getEmergencyNumber());
-        document.put("Work Shift", nurse.getWorkShift());
-
-        if ("Clinic History".equals(option)) {
-            mainDocument.put("Nurse", document);
-        }
-        return document;
-    }*/
-
-    /*public BasicDBObject dBPatient(Patient patient, String option) {
-        BasicDBObject document = new BasicDBObject();
-
-        document.put("Name", patient.getName());
-        document.put("Date Of Birth", patient.getDateOfBirth());
-        document.put("Gender", patient.getGender());
-        document.put("Identification Card", patient.getIdentificationCard());
-        document.put("Blood Type", patient.getBloodType());
-        document.put("Height", patient.getHeight());
-        document.put("Weight", patient.getWeight());
-        document.put("Allergies", patient.getAllergies());
-        document.put("Emergency Contact", patient.getEmergencyNumber());
-
-        if ("Clinic History".equals(option)) {
-            mainDocument.put("Patient", document);
-        }
-        return document;
-    }*/
+  
 
     /*public BasicDBObject dBDiagnostic(Diagnostic diagnostic, String option) {
         BasicDBObject document = new BasicDBObject();

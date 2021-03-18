@@ -12,7 +12,7 @@ import ec.edu.espe.optimizeddiagnosticsystem.model.Diagnostic;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Doctor;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Nurse;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Patient;
-import ec.edu.espe.optimizeddiagnosticsystem.utils.Database;
+import ec.edu.espe.optimizeddiagnosticsystem.utils.MongoDBManager;
 
 /**
  *
@@ -20,7 +20,7 @@ import ec.edu.espe.optimizeddiagnosticsystem.utils.Database;
  */
 public class ClinicHistoryController {
 
-    Database database = new Database();
+    MongoDBManager database = new MongoDBManager();
     
     public ClinicHistoryController() {
     }
@@ -49,15 +49,15 @@ public class ClinicHistoryController {
         if (object.equalsIgnoreCase("Patient")) {
             Patient patient = new Patient();
             PatientController patientController = new PatientController();
-            patient.register();
-            patientController.save(patient, "Clinic History");
+            //patient.register();
+            patientController.register(patient, "Clinic History");
         }
 
         if (object.equalsIgnoreCase("Doctor")) {
             Doctor doctor = new Doctor();
             DoctorController doctorController = new DoctorController();
-            doctor.register();
-            doctorController.save(doctor, "Clinic History");
+            //doctor.register();
+            doctorController.register(doctor, "Clinic History");
         }
 
         if (object.equalsIgnoreCase("Diagnostic")) {
@@ -70,8 +70,8 @@ public class ClinicHistoryController {
         if (object.equalsIgnoreCase("Nurse")) {
             Nurse nurse = new Nurse();
             NurseController nurseController = new NurseController();
-            nurse.register();
-            nurseController.save(nurse, "Clinic History");
+            //nurse.register();
+            nurseController.register(nurse, "Clinic History");
         }
 
         BasicDBObject update = new BasicDBObject();

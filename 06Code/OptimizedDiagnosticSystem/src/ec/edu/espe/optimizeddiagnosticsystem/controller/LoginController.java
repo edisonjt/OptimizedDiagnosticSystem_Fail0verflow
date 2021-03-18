@@ -3,22 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.espe.optimizeddiagnosticsystem.utils;
+package ec.edu.espe.optimizeddiagnosticsystem.controller;
 
 import ec.edu.espe.filemanager.utils.Data;
+import ec.edu.espe.optimizeddiagnosticsystem.utils.MongoDBManager;
 
 /**
  *
  * @author FailOverflow
  */
-public class Login {
+public class LoginController {
 
     public boolean system(String pass) {
         boolean validate = false;
         if (Data.find("PassDocSystem.csv", pass).equalsIgnoreCase(pass)) {
-            validate = true;
-        } else if (Data.find("PassNursSystem.csv", pass).equalsIgnoreCase(pass)) {
-            validate = true;
+            validate = true;     
         } else if (pass.equalsIgnoreCase("rootpass")) {
             validate = true;
         }
@@ -45,7 +44,7 @@ public class Login {
 
     public boolean historyUpdater(String user, String pass) {
         boolean validate = false;
-        Database database = new Database();
+        MongoDBManager database = new MongoDBManager();
 
         String[] validation = database.readPassword(user, "Users Password");
 

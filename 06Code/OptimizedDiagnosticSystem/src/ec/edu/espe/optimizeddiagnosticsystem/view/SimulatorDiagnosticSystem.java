@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package ec.edu.espe.optimizeddiagnosticsystem.view;
-
+/*
 import ec.edu.espe.optimizeddiagnosticsystem.utils.Login;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Doctor;
 import ec.edu.espe.optimizeddiagnosticsystem.model.MedicalStaff;
@@ -21,6 +21,8 @@ import java.util.*;
  *
  * @author FailOverflow
  */
+
+/*
 public class SimulatorDiagnosticSystem {
 
     public static void main(String[] args) {
@@ -249,3 +251,4 @@ public class SimulatorDiagnosticSystem {
 
     }
 }
+*/

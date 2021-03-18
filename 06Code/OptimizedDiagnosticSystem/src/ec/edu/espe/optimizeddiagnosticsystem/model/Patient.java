@@ -5,8 +5,6 @@
  */
 package ec.edu.espe.optimizeddiagnosticsystem.model;
 
-import java.util.Scanner;
-
 /**
  *
  * @author FailOverflow
@@ -29,42 +27,7 @@ public class Patient extends HospitalPeople {
         this.identificationCard = identificationCard;
     }
 
-    public Patient() {
-
-    }
-
-    // METHODS
-    @Override
-    public void register() {
-        Scanner patient = new Scanner(System.in);
-        System.out.println("=======================================");
-        System.out.println("                       *****Patient's data*****                               ");
-        System.out.println("");
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Name: ");
-        setName(scan.nextLine());
-        System.out.println("Gender ");
-        setGender(scan.nextLine());
-        System.out.println("Date of birth");
-        setDateOfBirth(scan.nextLine());
-        System.out.println("Emergency Number: ");
-        setEmergencyNumber(scan.nextLine());
-        System.out.println("Home Address: ");
-        setHomeAddress(scan.nextLine());
-        System.out.println("Identification Card: ");
-        setIdentificationCard(patient.nextLine());
-        System.out.println("Blood Type: ");
-        setBloodType(patient.nextLine());
-        System.out.println("Weight(in kilos): ");
-        setWeight(patient.next());
-        System.out.println("Height(in centimetres): ");
-        setHeight(patient.next());
-        System.out.println("Allergies: ");
-        setAllergies(patient.next());
-        System.out.println("Do you want to save? Please put True or False");
-        setOption(patient.nextBoolean());
-
-    }
+    public Patient() {  }
 
     //SETTER and GETTER
     public void setWeight(String weight) {

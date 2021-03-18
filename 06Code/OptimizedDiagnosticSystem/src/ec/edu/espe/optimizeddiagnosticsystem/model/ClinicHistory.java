@@ -7,7 +7,7 @@ package ec.edu.espe.optimizeddiagnosticsystem.model;
 
 import com.mongodb.BasicDBObject;
 import ec.edu.espe.filemanager.utils.Data;
-import ec.edu.espe.optimizeddiagnosticsystem.utils.Database;
+import ec.edu.espe.optimizeddiagnosticsystem.utils.MongoDBManager;
 import java.util.*;
 
 /**
@@ -20,7 +20,7 @@ public class ClinicHistory {
     private ArrayList<Doctor> doctor = new ArrayList();
     private ArrayList<Diagnostic> diagnostic = new ArrayList();
     private Nurse nurse;
-    Database dataBase = new Database();
+    MongoDBManager dataBase = new MongoDBManager();
 
     public ClinicHistory(Patient patient, ArrayList<Doctor> doctor, ArrayList<Diagnostic> diagnostic, Nurse nurse) {
         this.patient = patient;
@@ -42,7 +42,7 @@ public class ClinicHistory {
         String id = scann.next();
         
         //dataBase.id(id);
-        patientClass.register();
+       // patientClass.register();
         chooseNurse();
         addDoctor(user);
         addDiagnostic();

@@ -8,21 +8,23 @@ package ec.edu.espe.optimizeddiagnosticsystem.controller;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
+import ec.edu.espe.filemanager.utils.Data;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Nurse;
-import ec.edu.espe.optimizeddiagnosticsystem.utils.Database;
+import ec.edu.espe.optimizeddiagnosticsystem.utils.MongoDBManager;
+import java.util.Scanner;
 
 /**
  *
  * @author Jhonatan
  */
-public class NurseController {
+public class NurseController extends MedicalStaffController {
  
-    Database database = new Database();
+    MongoDBManager database = new MongoDBManager();
 
     public NurseController() {
     }
     
-    public BasicDBObject save(Nurse nurse, String option) {
+    public BasicDBObject register(Nurse nurse, String option) {
         BasicDBObject document = new BasicDBObject();
 
         document.put("Name", nurse.getName());
@@ -40,6 +42,38 @@ public class NurseController {
         return document;
     }
     
+     @Override
+    public void createPass(boolean option, String name) {
+             if (option == true) {
+            Scanner scan = new Scanner(System.in);
+            NurseController nurse = new NurseController();
+
+            System.out.println("Enter the new password");
+            String pass = scan.nextLine();
+
+            String nurseToSave = name + ", " + pass + "\n";
+            Data.save("Users.csv", nurseToSave + "\n", true);
+            nurse.savePassword(name, pass);
+        }
+    }
+    
+        @Override
+    public void savePassword(String name, String password) {
+
+        DBCollection collection;
+        collection = database.getDataBase().getCollection("Users Password");
+        BasicDBObject document = new BasicDBObject();
+
+        document.put("Name", name);
+        document.put("Password", password);
+        collection.insert(document);
+    }
+    
+    /**
+     *
+     * @param search
+     */
+    @Override
     public void read(String search) {
         DBCollection collection;
         collection = database.getDataBase().getCollection("Nurse");
@@ -55,14 +89,7 @@ public class NurseController {
         }
     }
     
-    public void savePassword(String name, String password) {
 
-        DBCollection collection;
-        collection = database.getDataBase().getCollection("Users Password");
-        BasicDBObject document = new BasicDBObject();
 
-        document.put("Name", name);
-        document.put("Password", password);
-        collection.insert(document);
-    }
+   
 }

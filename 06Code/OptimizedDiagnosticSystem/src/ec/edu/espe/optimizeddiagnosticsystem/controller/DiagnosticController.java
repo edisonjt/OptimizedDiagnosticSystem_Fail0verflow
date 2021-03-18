@@ -7,7 +7,7 @@ package ec.edu.espe.optimizeddiagnosticsystem.controller;
 
 import com.mongodb.BasicDBObject;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Diagnostic;
-import ec.edu.espe.optimizeddiagnosticsystem.utils.Database;
+import ec.edu.espe.optimizeddiagnosticsystem.utils.MongoDBManager;
 
 /**
  *
@@ -15,7 +15,7 @@ import ec.edu.espe.optimizeddiagnosticsystem.utils.Database;
  */
 public class DiagnosticController {
  
-    Database database = new Database();
+    MongoDBManager database = new MongoDBManager();
 
     public DiagnosticController() {
     }

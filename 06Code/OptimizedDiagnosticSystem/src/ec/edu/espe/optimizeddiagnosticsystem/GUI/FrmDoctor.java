@@ -9,7 +9,8 @@ import com.mongodb.BasicDBObject;
 import ec.edu.espe.filemanager.utils.Data;
 import ec.edu.espe.optimizeddiagnosticsystem.controller.DoctorController;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Doctor;
-import ec.edu.espe.optimizeddiagnosticsystem.utils.Database;
+import ec.edu.espe.optimizeddiagnosticsystem.model.MedicalStaff;
+import ec.edu.espe.optimizeddiagnosticsystem.utils.MongoDBManager;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
@@ -19,13 +20,14 @@ import javax.swing.JOptionPane;
  */
 public class FrmDoctor extends javax.swing.JFrame {
 
-    Doctor doctor;
-    Database database = new Database();
+    MedicalStaff doctor;
+    MongoDBManager dataBase = new MongoDBManager();
 
     /**
      * Creates new form FrmDoctor
      */
     public FrmDoctor() {
+        dataBase.openConnection();
         initComponents();
     }
 
@@ -210,8 +212,8 @@ public class FrmDoctor extends javax.swing.JFrame {
                         format.format(dateOfBirth.getDate()),
                         txtEmergencyNumber.getText(), true);
 
-                basicObject = doctorController.save(doctor, "Register");
-                database.saveDatabase("Register", basicObject, "Doctor");
+                basicObject = doctorController.register((Doctor) doctor, "Register");
+                dataBase.saveDatabase("Register", basicObject, "Doctor");
 
                 String dataToSave = txtFullName.getText() + "," + txtTitleCode.getText() + "," + txtSubSpeciality.getText()
                         + "," + txtSubSpeciality.getText() + "," + format.format(dateOfBirth.getDate())

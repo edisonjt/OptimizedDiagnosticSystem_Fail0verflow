@@ -8,9 +8,9 @@ package ec.edu.espe.optimizeddiagnosticsystem.GUI;
 import com.mongodb.BasicDBObject;
 import ec.edu.espe.filemanager.utils.Data;
 import ec.edu.espe.optimizeddiagnosticsystem.controller.NurseController;
-import ec.edu.espe.optimizeddiagnosticsystem.model.Doctor;
+import ec.edu.espe.optimizeddiagnosticsystem.model.HospitalPeople;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Nurse;
-import ec.edu.espe.optimizeddiagnosticsystem.utils.Database;
+import ec.edu.espe.optimizeddiagnosticsystem.utils.MongoDBManager;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
@@ -20,13 +20,14 @@ import javax.swing.JOptionPane;
  */
 public class FrmNurse extends javax.swing.JFrame {
 
-    Nurse nurse;
-    Database database = new Database();
+    HospitalPeople nurse;
+    MongoDBManager dataBase = new MongoDBManager();
 
     /**
      * Creates new form FrmDoctor
      */
     public FrmNurse() {
+        dataBase.openConnection();
         initComponents();
     }
 
@@ -196,8 +197,8 @@ public class FrmNurse extends javax.swing.JFrame {
                         tAreaHomeAdress.getText(), cmbGender.getSelectedItem().toString(),
                         format.format(dateOfBirth.getDate()), txtEmergencyNumber.getText(), true);
 
-                basicObject = nurseController.save(nurse, "Register");
-                database.saveDatabase("Register", basicObject, "Nurse");
+                basicObject = nurseController.register((Nurse) nurse, "Register");
+                dataBase.saveDatabase("Register", basicObject, "Nurse");
 
                 String dataToSave = txtFullName.getText() + "," + format.format(dateOfBirth.getDate()) + "," + cmbGender.getSelectedItem().toString() + "\n";
                 Data.save("nurse.csv", dataToSave, true);

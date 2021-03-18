@@ -8,21 +8,24 @@ package ec.edu.espe.optimizeddiagnosticsystem.controller;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
+import ec.edu.espe.filemanager.utils.Data;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Doctor;
-import ec.edu.espe.optimizeddiagnosticsystem.utils.Database;
+import ec.edu.espe.optimizeddiagnosticsystem.utils.MongoDBManager;
+import java.util.Scanner;
 
 /**
  *
  * @author Jhonatan
  */
-public class DoctorController {
+public class DoctorController extends MedicalStaffController{
     
-    Database database = new Database();
+    MongoDBManager database = new MongoDBManager();
 
     public DoctorController() {
     }
-    
-    public BasicDBObject save(Doctor doctor, String option) {
+       
+ 
+    public BasicDBObject register(Doctor doctor, String option) {
         BasicDBObject document = new BasicDBObject();
 
         document.put("Name", doctor.getName());
@@ -40,6 +43,25 @@ public class DoctorController {
         return document;
     }
     
+      @Override
+    public void createPass(boolean option, String name) {    
+          if (option == true) {
+            Scanner scan = new Scanner(System.in);
+            DoctorController doctor = new DoctorController();
+
+            System.out.println("Enter the new password");
+            String pass = scan.nextLine();
+
+            String userToSave = name + ", " + pass + "\n";
+            Data.save("Users.csv", userToSave, true);
+            doctor.savePassword(name, pass);
+
+        }
+    
+    }
+
+    
+    @Override
     public void savePassword(String name, String password) {
 
         DBCollection collection;
@@ -51,6 +73,7 @@ public class DoctorController {
         collection.insert(document);
     }
     
+    @Override
     public void read(String search) {
         DBCollection collection;
         collection = database.getDataBase().getCollection("Doctor");
@@ -65,6 +88,14 @@ public class DoctorController {
             System.out.println("Title Code: " + cursor.curr().get("Title Code"));
         }
     }
+
+  
+  
+    
+ 
+
+    
+ 
     
     
 }

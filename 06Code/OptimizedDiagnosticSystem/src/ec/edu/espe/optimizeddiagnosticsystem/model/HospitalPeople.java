@@ -39,10 +39,7 @@ public abstract class HospitalPeople {
 
     public HospitalPeople() {
     }
-
-    //METHODS
-    public abstract void register();
-
+ 
     //SETT AND GETT
 
     public void setName(String name) {

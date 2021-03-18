@@ -5,7 +5,7 @@
  */
 package ec.edu.espe.optimizeddiagnosticsystem.GUI;
 
-import ec.edu.espe.optimizeddiagnosticsystem.utils.Login;
+import ec.edu.espe.optimizeddiagnosticsystem.controller.LoginController;
 import javax.swing.JOptionPane;
 
 /**
@@ -106,7 +106,7 @@ public class FrmSystemLogIn extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         FrmMenu frmMenu = new FrmMenu();
-        Login login = new Login();
+        LoginController login = new LoginController();
         this.setVisible(false);
 
         if (login.system(pswSystemPassword.getText())) {

@@ -10,7 +10,7 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import ec.edu.espe.filemanager.utils.Data;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Patient;
-import ec.edu.espe.optimizeddiagnosticsystem.utils.Database;
+import ec.edu.espe.optimizeddiagnosticsystem.utils.MongoDBManager;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
@@ -30,14 +30,14 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
         this.dbObject = dbObject;
     }
 
-    public Database getConnection() {
+    public MongoDBManager getConnection() {
         return connection;
     }
 
-    public void setConnection(Database connection) {
+    public void setConnection(MongoDBManager connection) {
         this.connection = connection;
     }
-    private Database connection;
+    private MongoDBManager connection;
     /**
      * Creates new form FrmNewClinicHistory
      */
@@ -424,7 +424,7 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
 
     private void btnPrintNursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintNursesActionPerformed
         // TODO add your handling code here:
-        Database database = new Database();
+        MongoDBManager database = new MongoDBManager();
         DBCollection collection;
         collection = database.getDataBase().getCollection("Nurse");
         DBCursor cursor = collection.find();

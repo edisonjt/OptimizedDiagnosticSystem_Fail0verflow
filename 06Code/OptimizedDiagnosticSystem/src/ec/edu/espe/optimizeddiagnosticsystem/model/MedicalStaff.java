@@ -30,12 +30,7 @@ public abstract class MedicalStaff extends HospitalPeople {
     public MedicalStaff() {
 
     }
-
-    //METHODS
-    public abstract void createPass(boolean option, String name);
- 
-    public abstract void createPass(boolean option);
-
+     
     //SETT AND GETT
     public void setTitleCode(String titleCode) {
         this.titleCode = titleCode;
