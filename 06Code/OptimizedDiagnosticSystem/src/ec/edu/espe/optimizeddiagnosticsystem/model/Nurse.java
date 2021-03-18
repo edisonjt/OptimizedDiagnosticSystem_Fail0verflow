@@ -6,6 +6,7 @@
 package ec.edu.espe.optimizeddiagnosticsystem.model;
 
 import ec.edu.espe.filemanager.utils.Data;
+import ec.edu.espe.optimizeddiagnosticsystem.controller.NurseController;
 import ec.edu.espe.optimizeddiagnosticsystem.utils.Database;
 import java.util.Scanner;
 
@@ -15,19 +16,16 @@ import java.util.Scanner;
  */
 public class Nurse extends MedicalStaff {
 
-    private boolean prescription;
     private String workShift;
-    
 
     //CONSTRUCTORS
-    public Nurse(String workShift, String titleCode, String password, String name, String homeAddress, String gender, String dateOfBirth, int emergencyNumber, boolean option) {
+    public Nurse(String workShift, String titleCode, String password, String name, String homeAddress, String gender, String dateOfBirth, String emergencyNumber, boolean option) {
         super(titleCode, password, name, homeAddress, gender, dateOfBirth, emergencyNumber, option);
         this.workShift = workShift;
     }
 
-    public Nurse(boolean prescription, String name, String gender, String dateOfBirth) {
+    public Nurse(String name, String gender, String dateOfBirth) {
         super(name, gender, dateOfBirth);
-        this.prescription = prescription;
     }
 
     public Nurse() {
@@ -47,23 +45,17 @@ public class Nurse extends MedicalStaff {
         setGender(scan.nextLine());
         System.out.println("Date of birth");
         setDateOfBirth(scan.nextLine());
-        try {
-            System.out.println("Emergency Number: ");
-            setEmergencyNumber(Integer.parseInt(scan.nextLine()));
-        } catch (NumberFormatException ex) {
-            System.out.println("very large number");
-        }
-
+        System.out.println("Emergency Number: ");
+        setEmergencyNumber(scan.nextLine());
         System.out.println("Home Address: ");
         setHomeAddress(scan.nextLine());
-
         System.out.println("Work Shift");
         setWorkShift(scan.nextLine());
         System.out.println("Title code: ");
         setTitleCode(scan.nextLine());
         System.out.println("Do you want to save? Please put True or False");
         setOption(scan.nextBoolean());
-        
+
         String dataToSave = getName() + "," + getDateOfBirth() + "," + getGender() + "\n";
         Data.save("nurse.csv", dataToSave, isOption());
 
@@ -73,19 +65,22 @@ public class Nurse extends MedicalStaff {
     public void createPass(boolean option, String name) {
         if (option == true) {
             Scanner scan = new Scanner(System.in);
-            Database database = new Database();
-            
+            NurseController nurse = new NurseController();
+
             System.out.println("Enter the new password");
             String pass = scan.nextLine();
-            
+
             String nurseToSave = name + ", " + pass + "\n";
             Data.save("Users.csv", nurseToSave + "\n", true);
-            database.dbUsersPassword(name, pass);
+            nurse.savePassword(name, pass);
         }
 
     }
 
-  
+    @Override
+    public void createPass(boolean option) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     //SETT AND GETT
     public void setWorkShift(String workShift) {
@@ -95,15 +90,5 @@ public class Nurse extends MedicalStaff {
     public String getWorkShift() {
         return workShift;
     }
-
-    public boolean isPrescription() {
-        return prescription;
-    }
-
-    public void setPrescription(boolean prescription) {
-        this.prescription = prescription;
-    }
-   
-  
 
 }

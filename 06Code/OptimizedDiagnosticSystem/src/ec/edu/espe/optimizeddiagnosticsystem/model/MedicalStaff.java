@@ -15,7 +15,7 @@ public abstract class MedicalStaff extends HospitalPeople {
     private String password;
 
     //CONSTRUCTORS
-    public MedicalStaff(String titleCode, String password, String name, String homeAddress, String gender, String dateOfBirth, int emergencyNumber, boolean option) {
+    public MedicalStaff(String titleCode, String password, String name, String homeAddress, String gender, String dateOfBirth, String emergencyNumber, boolean option) {
         super(name, homeAddress, gender, dateOfBirth, emergencyNumber, option);
         this.titleCode = titleCode;
         this.password = password;
@@ -34,7 +34,7 @@ public abstract class MedicalStaff extends HospitalPeople {
     //METHODS
     public abstract void createPass(boolean option, String name);
  
-    
+    public abstract void createPass(boolean option);
 
     //SETT AND GETT
     public void setTitleCode(String titleCode) {

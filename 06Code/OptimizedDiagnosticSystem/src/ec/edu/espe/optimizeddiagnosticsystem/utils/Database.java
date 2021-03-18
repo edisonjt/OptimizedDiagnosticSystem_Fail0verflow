@@ -17,7 +17,8 @@ import ec.edu.espe.optimizeddiagnosticsystem.model.Diagnostic;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Doctor;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Nurse;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Patient;
-import org.bson.Document;
+import javax.swing.text.Document;
+
 
 /**
  *
@@ -32,14 +33,15 @@ public class Database {
 
     public Database() {
         try {
-            MongoClientURI uri = new MongoClientURI(
-                    "mongodb+srv://tentacle:atlas1234@cluster0.pq2gf.mongodb.net/FailOverFlow?retryWrites=true&w=majority");
+            //MongoClientURI uri = new MongoClientURI(
+              //      "mongodb+srv://tentacle:atlas1234@cluster0.pq2gf.mongodb.net/FailOverFlow?retryWrites=true&w=majority");
 
-            MongoClient mongoClient = new MongoClient(uri);
-            MongoDatabase database = mongoClient.getDatabase("FailOverflow");
-            MongoCollection<Document> collections = database.getCollection("FailOverflow");
+            //MongoClient mongoClient = new MongoClient(uri);
+            MongoClient mongoClient = new MongoClient("localhost", 27017);
+            //MongoDatabase database = mongoClient.getDatabase("FailOverflow");
+            //MongoCollection<org.bson.Document> collections = database.getCollection("FailOverflow");
             dataBase = mongoClient.getDB("FailOverflow");
-            collection = dataBase.getCollection("FailOverflow");
+            collection = dataBase.getCollection("Clinic History");
             
         } catch (Exception ex) {
             System.out.println("The connection was unsuccesfull");
@@ -49,7 +51,7 @@ public class Database {
         
     }
 
-    public void id(String id) {
+    /*public void id(String id) {
         mainDocument.put("id", id);
     }
 
@@ -57,19 +59,21 @@ public class Database {
         BasicDBObject document = new BasicDBObject();
 
         document.put("Name", doctor.getName());
-        document.put("Age", doctor.getDateOfBirth());
+        document.put("Date Of Birth", doctor.getDateOfBirth());
         document.put("Gender", doctor.getGender());
         document.put("Speciality", doctor.getSpeciality());
         document.put("SubSpeciality", doctor.getSubSpeciality());
         document.put("Title Code", doctor.getTitleCode());
+        document.put("Home Address", doctor.getHomeAddress());
+        document.put("Emergency Number", doctor.getEmergencyNumber());
 
         if ("Clinic History".equals(option)) {
             mainDocument.put("Doctor", document);
         }
         return document;
-    }
+    }*/
 
-    public void dbUsersPassword(String name, String password) {
+    /*public void dbUsersPassword(String name, String password) {
 
         collection = dataBase.getCollection("Users Password");
         BasicDBObject document = new BasicDBObject();
@@ -77,26 +81,30 @@ public class Database {
         document.put("Name", name);
         document.put("Password", password);
         collection.insert(document);
-    }
+    }*/
 
-    public BasicDBObject dBNurse(Nurse nurse, String option) {
+    /*public BasicDBObject dBNurse(Nurse nurse, String option) {
         BasicDBObject document = new BasicDBObject();
 
         document.put("Name", nurse.getName());
-        document.put("Age", nurse.getDateOfBirth());
+        document.put("Date Of Birth", nurse.getDateOfBirth());
         document.put("Gender", nurse.getGender());
+        document.put("Title Code", nurse.getTitleCode());
+        document.put("Home Address", nurse.getHomeAddress());
+        document.put("Emergency Number", nurse.getEmergencyNumber());
+        document.put("Work Shift", nurse.getWorkShift());
 
         if ("Clinic History".equals(option)) {
             mainDocument.put("Nurse", document);
         }
         return document;
-    }
+    }*/
 
-    public BasicDBObject dBPatient(Patient patient, String option) {
+    /*public BasicDBObject dBPatient(Patient patient, String option) {
         BasicDBObject document = new BasicDBObject();
 
         document.put("Name", patient.getName());
-        document.put("Age", patient.getDateOfBirth());
+        document.put("Date Of Birth", patient.getDateOfBirth());
         document.put("Gender", patient.getGender());
         document.put("Identification Card", patient.getIdentificationCard());
         document.put("Blood Type", patient.getBloodType());
@@ -109,19 +117,19 @@ public class Database {
             mainDocument.put("Patient", document);
         }
         return document;
-    }
+    }*/
 
-    public BasicDBObject dBDiagnostic(Diagnostic diagnostic, String option) {
+    /*public BasicDBObject dBDiagnostic(Diagnostic diagnostic, String option) {
         BasicDBObject document = new BasicDBObject();
 
         document.put("Diagnostic", diagnostic.getName());
         document.put("Cie10", diagnostic.getCie10());
 
-        if ("ClinicHistory".equals(option)) {
+        if ("Clinic History".equals(option)) {
             mainDocument.put("Diagnostic", document);
         }
         return document;
-    }
+    }*/
 
     public void saveDatabase(String option, BasicDBObject basicObject, String dBCollection) {
         collection = dataBase.getCollection(dBCollection);
@@ -133,7 +141,7 @@ public class Database {
         }
     }
 
-    public void readClinicHistory(String search, String basicObject, String dBCollection) {
+    /*public void readClinicHistory(String search, String basicObject, String dBCollection) {
         collection = dataBase.getCollection(dBCollection);
 
         BasicDBObject consultation = new BasicDBObject();
@@ -142,11 +150,16 @@ public class Database {
         DBCursor cursor = collection.find(consultation);
 
         while (cursor.hasNext()) {
-            System.out.println(cursor.next());
+            System.out.println("id: " + cursor.next().get("id"));
+            System.out.println("Patient: " + cursor.curr().get("Patient"));
+            System.out.println("Doctor: " + cursor.curr().get("Doctor"));
+            System.out.println("Diagnostic: " + cursor.curr().get("Diagnostic"));
+            System.out.println("Nuse: " + cursor.curr().get("Nurse"));
+            
         }
-    }
+    }*/
 
-    public void readDoctor(String search, String basicObject, String dBCollection) {
+    /*public void readDoctor(String search, String basicObject, String dBCollection) {
         collection = dataBase.getCollection(dBCollection);
 
         BasicDBObject consultation = new BasicDBObject();
@@ -155,11 +168,12 @@ public class Database {
         DBCursor cursor = collection.find(consultation);
 
         while (cursor.hasNext()) {
-            System.out.println(cursor.next());
+            System.out.println("Name: " + cursor.next().get("Name"));
+            System.out.println("Title Code: " + cursor.curr().get("Title Code"));
         }
-    }
+    }*/
 
-    public void readNurse(String search, String basicObject, String dBCollection) {
+    /*public void readNurse(String search, String basicObject, String dBCollection) {
         collection = dataBase.getCollection(dBCollection);
 
         BasicDBObject consultation = new BasicDBObject();
@@ -168,11 +182,26 @@ public class Database {
         DBCursor cursor = collection.find(consultation);
 
         while (cursor.hasNext()) {
-            System.out.println(cursor.next());
+            System.out.println("Name: " + cursor.next().get("Name"));
+            System.out.println("Date Of Birth: " + cursor.curr().get("Date Of Birth"));
         }
-    }
+    }*/
+    
+    /*public String readTotal(String dBCollection) {
+        collection = dataBase.getCollection(dBCollection);
 
-    public void updateClinicHistory(String object, String id) {
+        DBCursor cursor = collection.find();
+        String name = "";
+        int x;
+        for(x=0;x<=cursor.size();x++) {
+            System.out.println(cursor.next().get("Name"));
+            name = "Name: " + cursor.curr().get("Name");
+            return name;
+        }
+        return name;
+    }*/
+
+    /*public void updateClinicHistory(String object, String id) {
 
         if (object.equalsIgnoreCase("Patient")) {
             Patient patient = new Patient();
@@ -205,7 +234,7 @@ public class Database {
         searchId.append("id", id);
 
         collection.update(searchId, update);
-    }
+    }*/
 
     public void deleteObject(String search, String basicObject, String dBCollection, boolean decision) {
         collection = dataBase.getCollection(dBCollection);
@@ -213,4 +242,46 @@ public class Database {
             collection.remove(new BasicDBObject().append(basicObject, search));
         }
     }
+    
+    public String[] readPassword(String search, String dBCollection) {
+        collection = dataBase.getCollection(dBCollection);
+        
+        String[] user = new String[2];
+
+        BasicDBObject consultation = new BasicDBObject();
+        consultation.put("Name", search);
+
+        DBCursor cursor = collection.find(consultation);
+
+        while (cursor.hasNext()) {
+            user[0] = (String) cursor.next().get("Name");
+            user[1] = (String) cursor.curr().get("Password");
+        }
+        return user;
+    }
+    public DB getDataBase() {
+        return dataBase;
+    }
+
+    public void setDataBase(DB dataBase) {
+        this.dataBase = dataBase;
+    }
+
+    public DBCollection getCollection() {
+        return collection;
+    }
+
+    public void setCollection(DBCollection collection) {
+        this.collection = collection;
+    }
+    
+    public BasicDBObject getMainDocument() {
+        return mainDocument;
+    }
+
+    public void setMainDocument(BasicDBObject mainDocument) {
+        this.mainDocument = mainDocument;
+    }
+
 }
+

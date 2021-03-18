@@ -6,6 +6,7 @@
 package ec.edu.espe.optimizeddiagnosticsystem.model;
 
 import ec.edu.espe.filemanager.utils.Data;
+import ec.edu.espe.optimizeddiagnosticsystem.controller.DoctorController;
 import ec.edu.espe.optimizeddiagnosticsystem.utils.Database;
 import java.util.Scanner;
 
@@ -19,7 +20,7 @@ public class Doctor extends MedicalStaff {
     private String subSpeciality;
 
     //CONSTRUCTORS
-    public Doctor(String speciality, String subSpeciality, String titleCode, String password, String name, String homeAddress, String gender, String dateOfBirth, int emergencyNumber, boolean option) {
+    public Doctor(String speciality, String subSpeciality, String titleCode, String password, String name, String homeAddress, String gender, String dateOfBirth, String emergencyNumber, boolean option) {
         super(titleCode, password, name, homeAddress, gender, dateOfBirth, emergencyNumber, option);
         this.speciality = speciality;
         this.subSpeciality = subSpeciality;
@@ -51,13 +52,8 @@ public class Doctor extends MedicalStaff {
         setGender(scan.nextLine());
         System.out.println("Date of birth");
         setDateOfBirth(scan.nextLine());
-        try {
-            System.out.println("Emergency Number: ");
-            setEmergencyNumber(Integer.parseInt(scan.nextLine()));
-        } catch (NumberFormatException ex) {
-            System.out.println("very large number");
-        }
-
+        System.out.println("Emergency Number: ");
+        setEmergencyNumber(scan.next());
         System.out.println("Home Address: ");
         setHomeAddress(scan.nextLine());
         System.out.println("Sub Speciality : ");
@@ -68,7 +64,7 @@ public class Doctor extends MedicalStaff {
         setTitleCode(scan.nextLine());
         System.out.println("Do you want to save? Please put True or False");
         setOption(scan.nextBoolean());
-        
+
         String dataToSave = getName() + "," + getTitleCode() + "," + getSpeciality()
                 + "," + getSubSpeciality() + "," + getDateOfBirth() + "," + getGender() + "\n";
 
@@ -80,20 +76,24 @@ public class Doctor extends MedicalStaff {
     public void createPass(boolean option, String name) {
         if (option == true) {
             Scanner scan = new Scanner(System.in);
-            Database database = new Database();
-            
+            DoctorController doctor = new DoctorController();
+
             System.out.println("Enter the new password");
             String pass = scan.nextLine();
-            
-            String userToSave = name + ", " + pass+"\n" ;
-            Data.save("Users.csv", userToSave+"\n" , true);
-            database.dbUsersPassword(name, pass);
-            
+
+            String userToSave = name + ", " + pass + "\n";
+            Data.save("Users.csv", userToSave, true);
+            doctor.savePassword(name, pass);
+
         }
 
     }
 
- 
+    @Override
+    public void createPass(boolean option) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     //SETT AND GETT
     public void setSpeciality(String speciality) {
         this.speciality = speciality;
@@ -110,7 +110,5 @@ public class Doctor extends MedicalStaff {
     public String getSubSpeciality() {
         return subSpeciality;
     }
-
-   
 
 }

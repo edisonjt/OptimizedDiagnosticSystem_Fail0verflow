@@ -14,32 +14,10 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author luist
+ * @author FailOverflow
  */
 public class LoginTest {
-    
-    public LoginTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
-    /**
-     * Test of system method, of class Login.
-     */
     @Test
     public void test1System() {
         System.out.println("system");
@@ -48,7 +26,7 @@ public class LoginTest {
         boolean expResult = true;
         boolean result = instance.system(pass);
         assertEquals(expResult, result);
-    
+
     }
       /**
      * Test of system method, of class Login.
@@ -61,7 +39,7 @@ public class LoginTest {
         boolean expResult = false;
         boolean result = instance.system(pass);
         assertEquals(expResult, result);
-    
+
     }
 
     /**
@@ -76,9 +54,9 @@ public class LoginTest {
         boolean expResult = true;
         boolean result = instance.loginHistoryUpdater(user, pass);
         assertEquals(expResult, result);
-   
+
     }
-    
+
      /**
      * Test of loginHistoryUpdater method, of class Login.
      */
@@ -91,9 +69,9 @@ public class LoginTest {
         boolean expResult = true;
         boolean result = instance.loginHistoryUpdater(user, pass);
         assertEquals(expResult, result);
-   
+
     }
-    
+
         /**
      * Test of loginHistoryUpdater method, of class Login.
      */
@@ -106,9 +84,9 @@ public class LoginTest {
         boolean expResult = true;
         boolean result = instance.loginHistoryUpdater(user, pass);
         assertEquals(expResult, result);
-   
+
     }
-        
+
         /**
      * Test of loginHistoryUpdater method, of class Login.
      */
@@ -121,9 +99,9 @@ public class LoginTest {
         boolean expResult = true;
         boolean result = instance.loginHistoryUpdater(user, pass);
         assertEquals(expResult, result);
-   
+
     }
-        
+
         /**
      * Test of loginHistoryUpdater method, of class Login.
      */
@@ -136,9 +114,9 @@ public class LoginTest {
         boolean expResult = true;
         boolean result = instance.loginHistoryUpdater(user, pass);
         assertEquals(expResult, result);
-   
+
     }
-        
+
         /**
      * Test of loginHistoryUpdater method, of class Login.
      */
@@ -151,9 +129,9 @@ public class LoginTest {
         boolean expResult = true;
         boolean result = instance.loginHistoryUpdater(user, pass);
         assertEquals(expResult, result);
-   
+
     }
-        
+
         /**
      * Test of loginHistoryUpdater method, of class Login.
      */
@@ -166,9 +144,10 @@ public class LoginTest {
         boolean expResult = false;
         boolean result = instance.loginHistoryUpdater(user, pass);
         assertEquals(expResult, result);
-   
+
+
     }
-        
+
         /**
      * Test of loginHistoryUpdater method, of class Login.
      */
@@ -181,9 +160,9 @@ public class LoginTest {
         boolean expResult = true;
         boolean result = instance.loginHistoryUpdater(user, pass);
         assertEquals(expResult, result);
-   
+
     }
-        
+
         /**
      * Test of loginHistoryUpdater method, of class Login.
      */
@@ -196,9 +175,9 @@ public class LoginTest {
         boolean expResult = true;
         boolean result = instance.loginHistoryUpdater(user, pass);
         assertEquals(expResult, result);
-   
+
     }
-        
+
         /**
      * Test of loginHistoryUpdater method, of class Login.
      */
@@ -211,9 +190,9 @@ public class LoginTest {
         boolean expResult = true;
         boolean result = instance.loginHistoryUpdater(user, pass);
         assertEquals(expResult, result);
-   
+
     }
-        
+
         /**
      * Test of loginHistoryUpdater method, of class Login.
      */
@@ -226,9 +205,9 @@ public class LoginTest {
         boolean expResult = true;
         boolean result = instance.loginHistoryUpdater(user, pass);
         assertEquals(expResult, result);
-   
+
     }
-        
+
         /**
      * Test of loginHistoryUpdater method, of class Login.
      */
@@ -241,9 +220,9 @@ public class LoginTest {
         boolean expResult = false;
         boolean result = instance.loginHistoryUpdater(user, pass);
         assertEquals(expResult, result);
-   
+
     }
-        
+
         /**
      * Test of loginHistoryUpdater method, of class Login.
      */
@@ -256,9 +235,9 @@ public class LoginTest {
         boolean expResult = false;
         boolean result = instance.loginHistoryUpdater(user, pass);
         assertEquals(expResult, result);
-   
+
     }
-        
+
         /**
      * Test of loginHistoryUpdater method, of class Login.
      */
@@ -271,9 +250,9 @@ public class LoginTest {
         boolean expResult = false;
         boolean result = instance.loginHistoryUpdater(user, pass);
         assertEquals(expResult, result);
-   
+
     }
-    
+
           /**
      * Test of loginHistoryUpdater method, of class Login.
      */
@@ -286,7 +265,7 @@ public class LoginTest {
         boolean expResult = false;
         boolean result = instance.loginHistoryUpdater(user, pass);
         assertEquals(expResult, result);
-   
+
     }
           /**
      * Test of loginHistoryUpdater method, of class Login.
@@ -300,7 +279,7 @@ public class LoginTest {
         boolean expResult = false;
         boolean result = instance.loginHistoryUpdater(user, pass);
         assertEquals(expResult, result);
-   
+
     }
           /**
      * Test of loginHistoryUpdater method, of class Login.
@@ -314,7 +293,7 @@ public class LoginTest {
         boolean expResult = false;
         boolean result = instance.loginHistoryUpdater(user, pass);
         assertEquals(expResult, result);
-   
+
     }
           /**
      * Test of loginHistoryUpdater method, of class Login.
@@ -328,7 +307,7 @@ public class LoginTest {
         boolean expResult = false;
         boolean result = instance.loginHistoryUpdater(user, pass);
         assertEquals(expResult, result);
-   
+
     }
           /**
      * Test of loginHistoryUpdater method, of class Login.
@@ -342,7 +321,7 @@ public class LoginTest {
         boolean expResult = false;
         boolean result = instance.loginHistoryUpdater(user, pass);
         assertEquals(expResult, result);
-   
+
     }
           /**
      * Test of loginHistoryUpdater method, of class Login.
@@ -356,13 +335,7 @@ public class LoginTest {
         boolean expResult = false;
         boolean result = instance.loginHistoryUpdater(user, pass);
         assertEquals(expResult, result);
-   
+
     }
-    
-    
-    
-    
-    
-    
     
 }

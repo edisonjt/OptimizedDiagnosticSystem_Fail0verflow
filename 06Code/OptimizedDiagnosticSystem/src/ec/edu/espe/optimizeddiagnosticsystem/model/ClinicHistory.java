@@ -36,10 +36,18 @@ public class ClinicHistory {
 
         Patient patientClass = new Patient();
         BasicDBObject document = new BasicDBObject();
+        Scanner scann = new Scanner(System.in);
         
+        System.out.println("Ingrese el id: ");
+        String id = scann.next();
+        
+        //dataBase.id(id);
         patientClass.register();
+        chooseNurse();
+        addDoctor(user);
+        addDiagnostic();
         
-        dataBase.dBPatient(patientClass, "Clinic History");
+        //dataBase.dBPatient(patientClass, "Clinic History");
 
         dataBase.saveDatabase("Clinic History", document, "Clinic History");
     }
@@ -49,7 +57,7 @@ public class ClinicHistory {
         return "ClinicHistory{" + "patient=" + getPatient() + ", doctor=" + getDoctor() + ", diagnostic=" + getDiagnostic() + ", nurse=" + getNurse() + '}';
     }
 
-    public Nurse chooseNurse() {
+    public void chooseNurse() {
 
         Scanner scan = new Scanner(System.in);
 
@@ -71,13 +79,12 @@ public class ClinicHistory {
         System.out.println("\n===================================== ");
         System.out.println("Added nurse: \n" + "Name: " + nameNurse + "\nAge: " + ageNurse + "\nGender:" + genderNurse);
 
-        Nurse nurseClass = new Nurse(true, nameNurse, genderNurse, ageNurse);
-        dataBase.dBNurse(nurseClass, "Clinic History");
+        Nurse nurseClass = new Nurse(nameNurse, genderNurse, ageNurse);
+        //dataBase.dBNurse(nurseClass, "Clinic History");
 
-        return nurseClass;
     }
 
-    public ArrayList addDoctor(String user) {
+    public void addDoctor(String user) {
 
         ArrayList doctors = new ArrayList();
 
@@ -98,15 +105,15 @@ public class ClinicHistory {
             String nameDoctor = splitDoctor[0];
             String titleDoctor = splitDoctor[1];
             String specialityDoctor = splitDoctor[2];
-            String subEspDoctor = splitDoctor[3];
+            String subSpDoctor = splitDoctor[3];
             String dateOfBirthDoctor = splitDoctor[4];
             String genderDoctor = splitDoctor[5];
             
             System.out.println("\n===================================== ");
             System.out.println("Added doctor: \n" + "Name: " + nameDoctor + "\nTitle Code: " + titleDoctor);
             
-            Doctor doctorClass = new Doctor(specialityDoctor, subEspDoctor, titleDoctor, nameDoctor, genderDoctor, dateOfBirthDoctor);
-            dataBase.dBDoctor(doctorClass, "Clinic History");
+            Doctor doctorClass = new Doctor(specialityDoctor, subSpDoctor, titleDoctor, nameDoctor, genderDoctor, dateOfBirthDoctor);
+           // dataBase.dBDoctor(doctorClass, "Clinic History");
             
             doctors.add(doctorClass);
             
@@ -119,10 +126,9 @@ public class ClinicHistory {
             }
         }
 
-        return doctors;
     }
 
-    public ArrayList addDiagnostic() {
+    public void addDiagnostic() {
 
         ArrayList diagnostics = new ArrayList();
 
@@ -143,14 +149,13 @@ public class ClinicHistory {
             
             Diagnostic diagnosticClass = new Diagnostic();
             diagnosticClass.resgister();
-            dataBase.dBDiagnostic(diagnosticClass, "Clinic History");
+            //dataBase.dBDiagnostic(diagnosticClass, "Clinic History");
             diagnostics.add(diagnosticClass);
             
             System.out.println("You need to add more diagnostics? please press 1 to add more or 0 to continue");
             diagnosticControl = Integer.parseInt(scan.nextLine());
         }
 
-        return diagnostics;
     }
 
     /**
