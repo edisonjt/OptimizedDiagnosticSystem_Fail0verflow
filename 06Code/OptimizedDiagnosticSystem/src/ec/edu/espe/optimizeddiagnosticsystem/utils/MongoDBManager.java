@@ -6,38 +6,34 @@
 package ec.edu.espe.optimizeddiagnosticsystem.utils;
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import javax.swing.text.Document;
+
 
 /**
  *
  * @author FailOverflow
  */
-public class MongoDBManager {
+public class MongoDBManager extends NoSqlDBManager {
 
-    DB dataBase;
-    DBCollection collection;
-    BasicDBObject mainDocument = new BasicDBObject();
+
 
     public MongoDBManager() {
 
     }
 
+    @Override
     public void openConnection() {
-        try {
-            //MongoClientURI uri = new MongoClientURI(
-            //      "mongodb+srv://tentacle:atlas1234@cluster0.pq2gf.mongodb.net/FailOverFlow?retryWrites=true&w=majority");
+       try {
+            MongoClientURI uri = new MongoClientURI(
+                    "mongodb+srv://tentacle:atlas1234@cluster0.pq2gf.mongodb.net/FailOverFlow?retryWrites=true&w=majority");
 
-            //MongoClient mongoClient = new MongoClient(uri);
-            MongoClient mongoClient = new MongoClient("localhost", 27017);
-            //MongoDatabase database = mongoClient.getDatabase("FailOverflow");
-            //MongoCollection<org.bson.Document> collections = database.getCollection("FailOverflow");
+            MongoClient mongoClient = new MongoClient(uri);
+             MongoDatabase database = mongoClient.getDatabase("FailOverflow");
+            MongoCollection<org.bson.Document> collections = database.getCollection("FailOverflow");
             dataBase = mongoClient.getDB("FailOverflow");
             collection = dataBase.getCollection("FailOverflow");
 
@@ -50,6 +46,7 @@ public class MongoDBManager {
     /*public void id(String id) {
         mainDocument.put("id", id);
     }*/
+    @Override
     public void save(String option, BasicDBObject basicObject, String dBCollection) {
         openConnection();
         collection = dataBase.getCollection(dBCollection);
@@ -61,6 +58,7 @@ public class MongoDBManager {
         }
     }
 
+    @Override
     public String read(String dBCollection) {
         openConnection();
         collection = dataBase.getCollection(dBCollection);
@@ -76,6 +74,7 @@ public class MongoDBManager {
         return name;
     }
 
+    @Override
     public void deleteObject(String search, String basicObject, String dBCollection, boolean decision) {
         openConnection();
         collection = dataBase.getCollection(dBCollection);
@@ -84,6 +83,7 @@ public class MongoDBManager {
         }
     }
 
+    @Override
     public String[] readPassword(String search, String dBCollection) {
         openConnection();
         collection = dataBase.getCollection(dBCollection);
@@ -100,30 +100,6 @@ public class MongoDBManager {
             user[1] = (String) cursor.curr().get("Password");
         }
         return user;
-    }
-
-    public DB getDataBase() {
-        return dataBase;
-    }
-
-    public void setDataBase(DB dataBase) {
-        this.dataBase = dataBase;
-    }
-
-    public DBCollection getCollection() {
-        return collection;
-    }
-
-    public void setCollection(DBCollection collection) {
-        this.collection = collection;
-    }
-
-    public BasicDBObject getMainDocument() {
-        return mainDocument;
-    }
-
-    public void setMainDocument(BasicDBObject mainDocument) {
-        this.mainDocument = mainDocument;
-    }
+    } 
 
 }

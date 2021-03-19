@@ -5,12 +5,10 @@
  */
 package ec.edu.espe.optimizeddiagnosticsystem.controller;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
+import com.mongodb.*;
 import ec.edu.espe.filemanager.utils.Data;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Doctor;
-import ec.edu.espe.optimizeddiagnosticsystem.utils.MongoDBManager;
+import ec.edu.espe.optimizeddiagnosticsystem.utils.*;
 import java.util.Scanner;
 
 /**
@@ -19,7 +17,7 @@ import java.util.Scanner;
  */
 public class DoctorController extends MedicalStaffController{
     
-    MongoDBManager database = new MongoDBManager();
+    NoSqlDBManager dataBase = new MongoDBManager();
 
     public DoctorController() {
     }
@@ -67,7 +65,7 @@ public class DoctorController extends MedicalStaffController{
     public void savePassword(String name, String password) {
 
         DBCollection collection;
-        collection = database.getDataBase().getCollection("Users Password");
+        collection = dataBase.getDataBase().getCollection("Users Password");
         BasicDBObject document = new BasicDBObject();
 
         document.put("Name", name);
@@ -78,8 +76,8 @@ public class DoctorController extends MedicalStaffController{
     @Override
     public String[] read(String search) {
         DBCollection collection;
-        database.openConnection();
-        collection = database.getDataBase().getCollection("Doctor");
+        dataBase.openConnection();
+        collection = dataBase.getDataBase().getCollection("Doctor");
         
         
         String[] doctor = new String[2];
