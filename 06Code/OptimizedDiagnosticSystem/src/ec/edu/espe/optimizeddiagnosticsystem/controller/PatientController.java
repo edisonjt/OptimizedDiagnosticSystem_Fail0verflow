@@ -7,21 +7,19 @@ package ec.edu.espe.optimizeddiagnosticsystem.controller;
 
 import com.mongodb.BasicDBObject;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Patient;
-import ec.edu.espe.optimizeddiagnosticsystem.utils.MongoDBManager;
 
 /**
  *
- * @author Jhonatan
+ * @author Fail0verflow
  */
 public class PatientController {
-    
-    MongoDBManager database = new MongoDBManager();
 
     public PatientController() {
     }
     
     public BasicDBObject register(Patient patient, String option) {
         BasicDBObject document = new BasicDBObject();
+        BasicDBObject mainDocument = new BasicDBObject();
 
         document.put("Name", patient.getName());
         document.put("Date Of Birth", patient.getDateOfBirth());
@@ -34,7 +32,8 @@ public class PatientController {
         document.put("Emergency Contact", patient.getEmergencyNumber());
 
         if ("Clinic History".equals(option)) {
-            database.getMainDocument().put("Patient", document);
+            mainDocument.put("Patient", document);
+            return mainDocument;
         }
         return document;
     }

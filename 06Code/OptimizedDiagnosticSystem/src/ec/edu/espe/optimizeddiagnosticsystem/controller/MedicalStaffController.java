@@ -7,7 +7,7 @@ package ec.edu.espe.optimizeddiagnosticsystem.controller;
 
 /**
  *
- * @author luist
+ * @author Fail0verflow
  */
 public abstract class MedicalStaffController {
 
@@ -15,6 +15,6 @@ public abstract class MedicalStaffController {
 
     public abstract void savePassword(String name, String password);
 
-    public abstract void read(String search);
+    public abstract String[] read(String search);
 
 }

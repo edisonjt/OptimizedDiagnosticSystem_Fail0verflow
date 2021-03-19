@@ -7,13 +7,13 @@ package ec.edu.espe.optimizeddiagnosticsystem.utils;
 
 /**
  *
- * @author luist
+ * @author Fail0verflow
  */
 public interface Persistance {
 
     public void save(String fileName, Object src, boolean Option);
 
-    public void reader(String fileName, Object src);
+    public void read(String fileName, Object src);
 
     public String find(String fileName, String word);
 

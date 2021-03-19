@@ -24,24 +24,6 @@ public class LoginController {
         return validate;
     }
 
-    public boolean historyUpdater1(String user, String pass) {
-        boolean validate = false;
-
-        String chain = Data.find("users.csv", user);
-
-        String[] split = chain.split(",");
-        String p1 = split[0];
-
-        if (p1.equalsIgnoreCase(user)) {
-            String p2 = split[1];
-            if (p1.equalsIgnoreCase(user) && p2.equalsIgnoreCase(pass)) {
-                validate = true;
-            }
-        }
-
-        return validate;
-    }
-
     public boolean historyUpdater(String user, String pass) {
         boolean validate = false;
         MongoDBManager database = new MongoDBManager();

@@ -5,7 +5,12 @@
  */
 package ec.edu.espe.optimizeddiagnosticsystem.GUI;
 
+import ec.edu.espe.optimizeddiagnosticsystem.controller.DoctorController;
+import ec.edu.espe.optimizeddiagnosticsystem.controller.NurseController;
+import ec.edu.espe.optimizeddiagnosticsystem.utils.MongoDBManager;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -31,7 +36,11 @@ public class FrmRemoveStaff extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         txtFullName = new javax.swing.JTextField();
-        btnRemove = new javax.swing.JButton();
+        buttonRemove = new javax.swing.JButton();
+        buttonSearch = new javax.swing.JButton();
+        buttonBack = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableMedicalStaff = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,12 +48,39 @@ public class FrmRemoveStaff extends javax.swing.JFrame {
 
         txtFullName.setToolTipText("Type the full name of the staff member to be removed");
 
-        btnRemove.setText("Remove");
-        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+        buttonRemove.setText("Remove");
+        buttonRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoveActionPerformed(evt);
+                buttonRemoveActionPerformed(evt);
             }
         });
+
+        buttonSearch.setText("Search");
+        buttonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSearchActionPerformed(evt);
+            }
+        });
+
+        buttonBack.setText("Back");
+        buttonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBackActionPerformed(evt);
+            }
+        });
+
+        tableMedicalStaff.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tableMedicalStaff);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -53,36 +89,130 @@ public class FrmRemoveStaff extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonSearch)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(btnRemove)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                        .addGap(56, 56, 56)
+                        .addComponent(buttonBack)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonRemove)
+                        .addGap(89, 89, 89)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addComponent(btnRemove)
-                .addContainerGap(51, Short.MAX_VALUE))
+                    .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonSearch))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonBack)
+                    .addComponent(buttonRemove))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-        JOptionPane.showMessageDialog(null, "Are you sure to remove?", "Removing",JOptionPane.YES_NO_OPTION);
+
+    private void buttonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveActionPerformed
+
+        DoctorController doctor = new DoctorController();
+        NurseController nurse = new NurseController();
+        MongoDBManager mongo = new MongoDBManager();
+
+        String[] search = new String[2];
+        search = doctor.read(txtFullName.getText());
+
+        int selection = JOptionPane.showConfirmDialog(null, "Are you sure to remove?", "Removing", JOptionPane.YES_NO_CANCEL_OPTION);
+        switch (selection) {
+            case 0:
+                if (search[0] != null) {
+                    mongo.deleteObject(txtFullName.getText(), "Name", "Doctor", true);
+                } else {
+                    search = nurse.read(txtFullName.getText());
+                    if (search[0] != null) {
+                        mongo.deleteObject(txtFullName.getText(), "Name", "Nurse", true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "There is no such medical staff", "Error", JOptionPane.YES_NO_OPTION);
+                    }
+                }
+                JOptionPane.showMessageDialog(null, "Medical staff remove", "Removing", JOptionPane.YES_NO_OPTION);
+                this.setVisible(false);
+                FrmMenu frmMenu = new FrmMenu();
+                frmMenu.setVisible(true);
+                break;
+            case 1:
+                JOptionPane.showMessageDialog(null, " information was NOT remove ", txtFullName.getText() + " NOT remove ", JOptionPane.ERROR_MESSAGE);
+                //emptyFields();
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, " Action was canceled ", txtFullName.getText() + " Cancelled ", JOptionPane.WARNING_MESSAGE);
+                break;
+        }
+
+    }//GEN-LAST:event_buttonRemoveActionPerformed
+
+    private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
+        // TODO add your handling code here:
+        DoctorController doctor = new DoctorController();
+        NurseController nurse = new NurseController();
+
+        DefaultTableModel tbMedicalStaff = new DefaultTableModel();
+
+        String[] search = new String[2];
+        search = doctor.read(txtFullName.getText());
+
+        if (search[0] != null) {
+            tbMedicalStaff.addColumn("Name");
+            tbMedicalStaff.addColumn("Title Code");
+            getTableMedicalStaff().setModel(tbMedicalStaff);
+
+            tbMedicalStaff.addRow(search);
+        } else {
+            search = nurse.read(txtFullName.getText());
+
+            if (search[0] != null) {
+                tbMedicalStaff.addColumn("Name");
+                tbMedicalStaff.addColumn("Date Of Birth");
+                getTableMedicalStaff().setModel(tbMedicalStaff);
+
+                tbMedicalStaff.addRow(search);
+            } else {
+                JOptionPane.showMessageDialog(null, "There is no such medical staff", "Error", JOptionPane.YES_NO_OPTION);
+            }
+        }
+
+    }//GEN-LAST:event_buttonSearchActionPerformed
+
+    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
+        
         this.setVisible(false);
-        FrmMenu frmMenu = new FrmMenu();
-        frmMenu.setVisible(true);
-    }//GEN-LAST:event_btnRemoveActionPerformed
+        FrmMenuClinicHistory frmMenuClinicHistory = new FrmMenuClinicHistory();
+        frmMenuClinicHistory.setVisible(true);
+        
+    }//GEN-LAST:event_buttonBackActionPerformed
+
+    public JTable getTableMedicalStaff() {
+        return tableMedicalStaff;
+    }
+
+    public void setTableMedicalStaff(JTable tableMedicalStaff) {
+        this.tableMedicalStaff = tableMedicalStaff;
+    }
 
     /**
      * @param args the command line arguments
@@ -120,8 +250,12 @@ public class FrmRemoveStaff extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRemove;
+    private javax.swing.JButton buttonBack;
+    private javax.swing.JButton buttonRemove;
+    private javax.swing.JButton buttonSearch;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tableMedicalStaff;
     private javax.swing.JTextField txtFullName;
     // End of variables declaration//GEN-END:variables
 }

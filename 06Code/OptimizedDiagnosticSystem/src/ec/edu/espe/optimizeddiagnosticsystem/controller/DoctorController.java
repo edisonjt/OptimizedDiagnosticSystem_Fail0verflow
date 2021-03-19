@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Jhonatan
+ * @author Fail0verflow
  */
 public class DoctorController extends MedicalStaffController{
     
@@ -27,6 +27,7 @@ public class DoctorController extends MedicalStaffController{
  
     public BasicDBObject register(Doctor doctor, String option) {
         BasicDBObject document = new BasicDBObject();
+        BasicDBObject mainDocument = new BasicDBObject();
 
         document.put("Name", doctor.getName());
         document.put("Date Of Birth", doctor.getDateOfBirth());
@@ -38,7 +39,8 @@ public class DoctorController extends MedicalStaffController{
         document.put("Emergency Number", doctor.getEmergencyNumber());
 
         if ("Clinic History".equals(option)) {
-            database.getMainDocument().put("Doctor", document);
+            mainDocument.put("Doctor", document);
+            return mainDocument;
         }
         return document;
     }
@@ -74,9 +76,13 @@ public class DoctorController extends MedicalStaffController{
     }
     
     @Override
-    public void read(String search) {
+    public String[] read(String search) {
         DBCollection collection;
+        database.openConnection();
         collection = database.getDataBase().getCollection("Doctor");
+        
+        
+        String[] doctor = new String[2];
 
         BasicDBObject consultation = new BasicDBObject();
         consultation.put("Name", search);
@@ -84,18 +90,10 @@ public class DoctorController extends MedicalStaffController{
         DBCursor cursor = collection.find(consultation);
 
         while (cursor.hasNext()) {
-            System.out.println("Name: " + cursor.next().get("Name"));
-            System.out.println("Title Code: " + cursor.curr().get("Title Code"));
+            doctor[0] = (String) cursor.next().get("Name");
+            doctor[1] = (String) cursor.curr().get("Title Code");
         }
+        return doctor;
     }
-
-  
-  
-    
- 
-
-    
- 
-    
-    
+   
 }

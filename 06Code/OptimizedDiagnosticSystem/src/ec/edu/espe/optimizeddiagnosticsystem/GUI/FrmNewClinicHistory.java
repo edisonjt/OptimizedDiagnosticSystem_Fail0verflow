@@ -97,13 +97,14 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
         btnAddDiagnostic = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         txtDiagnosticSave = new javax.swing.JTextField();
-        dateOfBirth = new com.toedter.calendar.JDateChooser();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
         jLabel22 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tAreaNurseList = new javax.swing.JTextArea();
         jScrollPane5 = new javax.swing.JScrollPane();
         tAreaDoctorList = new javax.swing.JTextArea();
+        dateOfBirth = new com.toedter.calendar.JDateChooser();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Clinic History Creation");
@@ -201,6 +202,8 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
         tAreaDoctorList.setRows(5);
         jScrollPane5.setViewportView(tAreaDoctorList);
 
+        jButton1.setText("Back");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -265,8 +268,8 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
                                                         .addGap(24, 24, 24)
                                                         .addComponent(txtEmergencyContact, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                             .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(dateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(dateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(30, 30, 30)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,7 +305,9 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
                 .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(64, 64, 64)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSave)
                 .addGap(25, 25, 25))
             .addGroup(layout.createSequentialGroup()
@@ -397,7 +402,9 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
                             .addComponent(btnAddDiagnostic)
                             .addComponent(txtDiagnosticSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                        .addComponent(btnSave)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSave)
+                            .addComponent(jButton1))
                         .addGap(21, 21, 21))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(dateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -429,7 +436,7 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
         collection = database.getDataBase().getCollection("Nurse");
         DBCursor cursor = collection.find();
 
-        int x;
+        
         while(cursor.hasNext()) {
             tAreaNurseList.setText("Name: " + cursor.next().get("Name") + "\n");
         }
@@ -485,6 +492,7 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbGender;
     private com.toedter.calendar.JDateChooser dateOfBirth;
     private javax.swing.Box.Filler filler1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

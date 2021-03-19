@@ -7,27 +7,26 @@ package ec.edu.espe.optimizeddiagnosticsystem.controller;
 
 import com.mongodb.BasicDBObject;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Diagnostic;
-import ec.edu.espe.optimizeddiagnosticsystem.utils.MongoDBManager;
 
 /**
  *
- * @author Jhonatan
+ * @author Fail0verflow
  */
 public class DiagnosticController {
- 
-    MongoDBManager database = new MongoDBManager();
 
     public DiagnosticController() {
     }
     
-    public BasicDBObject save(Diagnostic diagnostic, String option) {
+    public BasicDBObject register(Diagnostic diagnostic, String option) {
         BasicDBObject document = new BasicDBObject();
+        BasicDBObject mainDocument = new BasicDBObject();
 
         document.put("Diagnostic", diagnostic.getName());
         document.put("Cie10", diagnostic.getCie10());
 
         if ("Clinic History".equals(option)) {
-            database.getMainDocument().put("Diagnostic", document);
+            mainDocument.put("Diagnostic", document);
+            return mainDocument;
         }
         return document;
     }

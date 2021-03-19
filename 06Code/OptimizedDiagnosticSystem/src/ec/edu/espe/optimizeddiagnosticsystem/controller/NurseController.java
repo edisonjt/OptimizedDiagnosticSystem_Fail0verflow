@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Jhonatan
+ * @author Fail0verflow
  */
 public class NurseController extends MedicalStaffController {
  
@@ -26,6 +26,7 @@ public class NurseController extends MedicalStaffController {
     
     public BasicDBObject register(Nurse nurse, String option) {
         BasicDBObject document = new BasicDBObject();
+        BasicDBObject mainDocument = new BasicDBObject();
 
         document.put("Name", nurse.getName());
         document.put("Date Of Birth", nurse.getDateOfBirth());
@@ -36,8 +37,8 @@ public class NurseController extends MedicalStaffController {
         document.put("Work Shift", nurse.getWorkShift());
 
         if ("Clinic History".equals(option)) {
-            database.getMainDocument().put("Nurse", document);
-            
+            mainDocument.put("Nurse", document);
+            return mainDocument;
         }
         return document;
     }
@@ -72,11 +73,15 @@ public class NurseController extends MedicalStaffController {
     /**
      *
      * @param search
+     * @return 
      */
     @Override
-    public void read(String search) {
+    public String[] read(String search) {
         DBCollection collection;
+        database.openConnection();
         collection = database.getDataBase().getCollection("Nurse");
+        
+        String[] nurse = new String[2];
 
         BasicDBObject consultation = new BasicDBObject();
         consultation.put("Name", search);
@@ -84,9 +89,10 @@ public class NurseController extends MedicalStaffController {
         DBCursor cursor = collection.find(consultation);
 
         while (cursor.hasNext()) {
-            System.out.println("Name: " + cursor.next().get("Name"));
-            System.out.println("Date Of Birth: " + cursor.curr().get("Date Of Birth"));
+            nurse[0] = (String) cursor.next().get("Name");
+            nurse[1] = (String) cursor.curr().get("Date Of Birth");
         }
+        return nurse;
     }
     
 
