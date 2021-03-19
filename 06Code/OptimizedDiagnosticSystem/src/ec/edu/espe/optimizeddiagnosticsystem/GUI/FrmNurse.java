@@ -57,6 +57,7 @@ public class FrmNurse extends javax.swing.JFrame {
         btnSave = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         dateOfBirth = new com.toedter.calendar.JDateChooser();
+        buttonBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Nurse Registration");
@@ -99,6 +100,14 @@ public class FrmNurse extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel11.setText("New Nurse");
 
+        buttonBack.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        buttonBack.setText("Back");
+        buttonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -125,8 +134,10 @@ public class FrmNurse extends javax.swing.JFrame {
                                     .addComponent(txtTitleCode, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel8))
+                                    .addComponent(jLabel8)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(buttonBack)
+                                        .addComponent(jLabel9)))
                                 .addGap(23, 23, 23)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtEmergencyNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -177,7 +188,9 @@ public class FrmNurse extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(btnSave)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSave)
+                    .addComponent(buttonBack))
                 .addGap(29, 29, 29))
         );
 
@@ -219,6 +232,14 @@ public class FrmNurse extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
+    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
+            
+        this.setVisible(false);
+        FrmMenuClinicHistory frmMenuClinicHistory = new FrmMenuClinicHistory();
+        frmMenuClinicHistory.setVisible(true);
+       
+    }//GEN-LAST:event_buttonBackActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -257,6 +278,7 @@ public class FrmNurse extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
+    private javax.swing.JButton buttonBack;
     private javax.swing.JComboBox<String> cmbGender;
     private com.toedter.calendar.JDateChooser dateOfBirth;
     private javax.swing.JLabel jLabel1;

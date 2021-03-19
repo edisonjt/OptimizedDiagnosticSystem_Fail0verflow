@@ -15,6 +15,6 @@ public abstract class MedicalStaffController {
 
     public abstract void savePassword(String name, String password);
 
-    public abstract void read(String search);
+    public abstract String[] read(String search);
 
 }

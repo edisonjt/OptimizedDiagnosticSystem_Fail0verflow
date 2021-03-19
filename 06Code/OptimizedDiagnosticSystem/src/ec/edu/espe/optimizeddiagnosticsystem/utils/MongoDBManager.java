@@ -26,12 +26,13 @@ public class MongoDBManager {
     BasicDBObject mainDocument = new BasicDBObject();
 
     public MongoDBManager() {
+
     }
 
     public void openConnection() {
         try {
             //MongoClientURI uri = new MongoClientURI(
-              //      "mongodb+srv://tentacle:atlas1234@cluster0.pq2gf.mongodb.net/FailOverFlow?retryWrites=true&w=majority");
+            //      "mongodb+srv://tentacle:atlas1234@cluster0.pq2gf.mongodb.net/FailOverFlow?retryWrites=true&w=majority");
 
             //MongoClient mongoClient = new MongoClient(uri);
             MongoClient mongoClient = new MongoClient("localhost", 27017);
@@ -48,31 +49,9 @@ public class MongoDBManager {
 
     /*public void id(String id) {
         mainDocument.put("id", id);
-    }
-
-   
-
-    /*public void dbUsersPassword(String name, String password) {
-
-        collection = dataBase.getCollection("Users Password");
-        BasicDBObject document = new BasicDBObject();
-
-        document.put("Name", name);
-        document.put("Password", password);
-        collection.insert(document);
-    }*/
- /*public BasicDBObject dBDiagnostic(Diagnostic diagnostic, String option) {
-        BasicDBObject document = new BasicDBObject();
-
-        document.put("Diagnostic", diagnostic.getName());
-        document.put("Cie10", diagnostic.getCie10());
-
-        if ("Clinic History".equals(option)) {
-            mainDocument.put("Diagnostic", document);
-        }
-        return document;
     }*/
     public void save(String option, BasicDBObject basicObject, String dBCollection) {
+        openConnection();
         collection = dataBase.getCollection(dBCollection);
 
         if ("Register".equals(option)) {
@@ -82,100 +61,23 @@ public class MongoDBManager {
         }
     }
 
-    /*public void readClinicHistory(String search, String basicObject, String dBCollection) {
-        collection = dataBase.getCollection(dBCollection);
-
-        BasicDBObject consultation = new BasicDBObject();
-        consultation.put(basicObject, search);
-
-        DBCursor cursor = collection.find(consultation);
-
-        while (cursor.hasNext()) {
-            System.out.println("id: " + cursor.next().get("id"));
-            System.out.println("Patient: " + cursor.curr().get("Patient"));
-            System.out.println("Doctor: " + cursor.curr().get("Doctor"));
-            System.out.println("Diagnostic: " + cursor.curr().get("Diagnostic"));
-            System.out.println("Nuse: " + cursor.curr().get("Nurse"));
-            
-        }
-    }*/
-
- /*public void readDoctor(String search, String basicObject, String dBCollection) {
-        collection = dataBase.getCollection(dBCollection);
-
-        BasicDBObject consultation = new BasicDBObject();
-        consultation.put(basicObject, search);
-
-        DBCursor cursor = collection.find(consultation);
-
-        while (cursor.hasNext()) {
-            System.out.println("Name: " + cursor.next().get("Name"));
-            System.out.println("Title Code: " + cursor.curr().get("Title Code"));
-        }
-    }*/
-
- /*public void readNurse(String search, String basicObject, String dBCollection) {
-        collection = dataBase.getCollection(dBCollection);
-
-        BasicDBObject consultation = new BasicDBObject();
-        consultation.put(basicObject, search);
-
-        DBCursor cursor = collection.find(consultation);
-
-        while (cursor.hasNext()) {
-            System.out.println("Name: " + cursor.next().get("Name"));
-            System.out.println("Date Of Birth: " + cursor.curr().get("Date Of Birth"));
-        }
-    }*/
- /*public String readTotal(String dBCollection) {
+    public String read(String dBCollection) {
+        openConnection();
         collection = dataBase.getCollection(dBCollection);
 
         DBCursor cursor = collection.find();
         String name = "";
-        int x;
-        for(x=0;x<=cursor.size();x++) {
+
+        while (cursor.hasNext()) {
             System.out.println(cursor.next().get("Name"));
             name = "Name: " + cursor.curr().get("Name");
             return name;
         }
         return name;
-    }*/
+    }
 
- /*public void updateClinicHistory(String object, String id) {
-
-        if (object.equalsIgnoreCase("Patient")) {
-            Patient patient = new Patient();
-            patient.register();
-            dBPatient(patient, "Clinic History");
-        }
-
-        if (object.equalsIgnoreCase("Doctor")) {
-            Doctor doctor = new Doctor();
-            doctor.register();
-            dBDoctor(doctor, "Clinic History");
-        }
-
-        if (object.equalsIgnoreCase("Diagnostic")) {
-            Diagnostic diagnostic = new Diagnostic();
-            diagnostic.resgister();
-            dBDiagnostic(diagnostic, "Clinic History");
-        }
-
-        if (object.equalsIgnoreCase("Nurse")) {
-            Nurse nurse = new Nurse();
-            nurse.register();
-            dBNurse(nurse, "Clinic History");
-        }
-
-        BasicDBObject update = new BasicDBObject();
-        update.append("$set", mainDocument);
-
-        BasicDBObject searchId = new BasicDBObject();
-        searchId.append("id", id);
-
-        collection.update(searchId, update);
-    }*/
     public void deleteObject(String search, String basicObject, String dBCollection, boolean decision) {
+        openConnection();
         collection = dataBase.getCollection(dBCollection);
         if (decision) {
             collection.remove(new BasicDBObject().append(basicObject, search));
@@ -183,6 +85,7 @@ public class MongoDBManager {
     }
 
     public String[] readPassword(String search, String dBCollection) {
+        openConnection();
         collection = dataBase.getCollection(dBCollection);
 
         String[] user = new String[2];

@@ -76,9 +76,13 @@ public class DoctorController extends MedicalStaffController{
     }
     
     @Override
-    public void read(String search) {
+    public String[] read(String search) {
         DBCollection collection;
+        database.openConnection();
         collection = database.getDataBase().getCollection("Doctor");
+        
+        
+        String[] doctor = new String[2];
 
         BasicDBObject consultation = new BasicDBObject();
         consultation.put("Name", search);
@@ -86,9 +90,10 @@ public class DoctorController extends MedicalStaffController{
         DBCursor cursor = collection.find(consultation);
 
         while (cursor.hasNext()) {
-            System.out.println("Name: " + cursor.next().get("Name"));
-            System.out.println("Title Code: " + cursor.curr().get("Title Code"));
+            doctor[0] = (String) cursor.next().get("Name");
+            doctor[1] = (String) cursor.curr().get("Title Code");
         }
+        return doctor;
     }
    
 }
