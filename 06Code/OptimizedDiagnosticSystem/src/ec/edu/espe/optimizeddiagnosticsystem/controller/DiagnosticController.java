@@ -31,4 +31,13 @@ public class DiagnosticController {
         return document;
     }
     
+    public String search(String search){
+        
+        String name = "";
+        
+        
+        
+        return name;
+    }
+    
 }

@@ -12,14 +12,11 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
-
 /**
  *
  * @author FailOverflow
  */
 public class MongoDBManager extends NoSqlDBManager {
-
-
 
     public MongoDBManager() {
 
@@ -27,12 +24,13 @@ public class MongoDBManager extends NoSqlDBManager {
 
     @Override
     public void openConnection() {
-       try {
-            MongoClientURI uri = new MongoClientURI(
-                    "mongodb+srv://tentacle:atlas1234@cluster0.pq2gf.mongodb.net/FailOverFlow?retryWrites=true&w=majority");
+        try {
+            //MongoClientURI uri = new MongoClientURI(
+              //      "mongodb+srv://tentacle:atlas1234@cluster0.pq2gf.mongodb.net/FailOverFlow?retryWrites=true&w=majority");
 
-            MongoClient mongoClient = new MongoClient(uri);
-             MongoDatabase database = mongoClient.getDatabase("FailOverflow");
+            //MongoClient mongoClient = new MongoClient(uri);
+            MongoClient mongoClient = new MongoClient("localhost", 27017);
+            MongoDatabase database = mongoClient.getDatabase("FailOverflow");
             MongoCollection<org.bson.Document> collections = database.getCollection("FailOverflow");
             dataBase = mongoClient.getDB("FailOverflow");
             collection = dataBase.getCollection("FailOverflow");
@@ -67,11 +65,10 @@ public class MongoDBManager extends NoSqlDBManager {
         String name = "";
 
         while (cursor.hasNext()) {
-            System.out.println(cursor.next().get("Name"));
-            name = "Name: " + cursor.curr().get("Name");
+            name = "Name: " + cursor.next().get("Name") + "\n";
             return name;
         }
-        return name;
+        return null;
     }
 
     @Override
@@ -100,6 +97,6 @@ public class MongoDBManager extends NoSqlDBManager {
             user[1] = (String) cursor.curr().get("Password");
         }
         return user;
-    } 
+    }
 
 }

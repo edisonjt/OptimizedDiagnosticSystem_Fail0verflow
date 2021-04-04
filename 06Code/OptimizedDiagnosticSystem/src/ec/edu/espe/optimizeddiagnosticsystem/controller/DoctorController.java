@@ -80,7 +80,7 @@ public class DoctorController extends MedicalStaffController{
         collection = dataBase.getDataBase().getCollection("Doctor");
         
         
-        String[] doctor = new String[2];
+        String[] doctor = new String[8];
 
         BasicDBObject consultation = new BasicDBObject();
         consultation.put("Name", search);
@@ -89,7 +89,13 @@ public class DoctorController extends MedicalStaffController{
 
         while (cursor.hasNext()) {
             doctor[0] = (String) cursor.next().get("Name");
-            doctor[1] = (String) cursor.curr().get("Title Code");
+            doctor[1] = (String) cursor.curr().get("Date Of Birth");
+            doctor[2] = (String) cursor.curr().get("Gender");
+            doctor[3] = (String) cursor.curr().get("Speciality");
+            doctor[4] = (String) cursor.curr().get("SubSpeciality");
+            doctor[5] = (String) cursor.curr().get("Title Code");
+            doctor[6] = (String) cursor.curr().get("Home Address");
+            doctor[7] = (String) cursor.curr().get("Emergency Number");
         }
         return doctor;
     }
