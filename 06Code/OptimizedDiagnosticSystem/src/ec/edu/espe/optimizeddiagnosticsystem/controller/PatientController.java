@@ -7,6 +7,8 @@ package ec.edu.espe.optimizeddiagnosticsystem.controller;
 
 import com.mongodb.BasicDBObject;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Patient;
+import ec.edu.espe.optimizeddiagnosticsystem.utils.MongoDBManager;
+import ec.edu.espe.optimizeddiagnosticsystem.utils.NoSqlDBManager;
 
 /**
  *
@@ -14,10 +16,11 @@ import ec.edu.espe.optimizeddiagnosticsystem.model.Patient;
  */
 public class PatientController {
 
+    NoSqlDBManager dataBase = new MongoDBManager();
     public PatientController() {
     }
     
-    public BasicDBObject register(Patient patient, String option) {
+    public BasicDBObject register(Patient patient) {
         BasicDBObject document = new BasicDBObject();
         BasicDBObject mainDocument = new BasicDBObject();
 
@@ -31,10 +34,10 @@ public class PatientController {
         document.put("Allergies", patient.getAllergies());
         document.put("Emergency Contact", patient.getEmergencyNumber());
 
-        if ("Clinic History".equals(option)) {
+        /*if ("Clinic History".equals(option)) {
             mainDocument.put("Patient", document);
             return mainDocument;
-        }
+        }*/
         return document;
     }
     

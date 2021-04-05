@@ -21,7 +21,7 @@ public abstract class NoSqlDBManager {
 
     public abstract void openConnection();
 
-    public abstract void save(String option, BasicDBObject basicObject, String dBCollection);
+    public abstract void save(BasicDBObject basicObject, String dBCollection);
 
     public abstract String read(String dBCollection);
 

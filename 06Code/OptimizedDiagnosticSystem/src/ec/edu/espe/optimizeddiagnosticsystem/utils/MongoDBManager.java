@@ -26,7 +26,7 @@ public class MongoDBManager extends NoSqlDBManager {
     public void openConnection() {
         try {
             //MongoClientURI uri = new MongoClientURI(
-              //      "mongodb+srv://tentacle:atlas1234@cluster0.pq2gf.mongodb.net/FailOverFlow?retryWrites=true&w=majority");
+            //      "mongodb+srv://tentacle:atlas1234@cluster0.pq2gf.mongodb.net/FailOverFlow?retryWrites=true&w=majority");
 
             MongoClient mongoClient = new MongoClient("localhost", 27017);
             //MongoClient mongoClient = new MongoClient(uri);
@@ -45,7 +45,7 @@ public class MongoDBManager extends NoSqlDBManager {
         mainDocument.put("id", id);
     }*/
     @Override
-    public void save(String option, BasicDBObject basicObject, String dBCollection) {
+    /*public void save(String option, BasicDBObject basicObject, String dBCollection) {
         openConnection();
         collection = dataBase.getCollection(dBCollection);
 
@@ -54,6 +54,13 @@ public class MongoDBManager extends NoSqlDBManager {
         } else if ("Clinic History".equals(option)) {
             collection.insert(basicObject);
         }
+    }*/
+    public void save(BasicDBObject basicObject, String dBCollection) {
+        openConnection();
+        collection = dataBase.getCollection(dBCollection);
+
+        collection.insert(basicObject);
+
     }
 
     @Override

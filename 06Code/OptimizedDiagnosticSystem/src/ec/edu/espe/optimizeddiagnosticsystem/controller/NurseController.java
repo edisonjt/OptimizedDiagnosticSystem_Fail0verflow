@@ -22,7 +22,7 @@ public class NurseController {
     public NurseController() {
     }
     
-    public BasicDBObject register(Nurse nurse, String option) {
+    public BasicDBObject register(Nurse nurse) {
         BasicDBObject document = new BasicDBObject();
         BasicDBObject mainDocument = new BasicDBObject();
 
@@ -34,10 +34,10 @@ public class NurseController {
         document.put("Emergency Number", nurse.getEmergencyNumber());
         document.put("Work Shift", nurse.getWorkShift());
 
-        if ("Clinic History".equals(option)) {
+        /*if ("Clinic History".equals(option)) {
             mainDocument.put("Nurse", document);
             return mainDocument;
-        }
+        }*/
         return document;
     }
     

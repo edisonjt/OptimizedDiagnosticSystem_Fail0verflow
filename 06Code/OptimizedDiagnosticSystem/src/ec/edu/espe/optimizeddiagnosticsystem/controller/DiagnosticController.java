@@ -17,17 +17,17 @@ public class DiagnosticController {
     public DiagnosticController() {
     }
     
-    public BasicDBObject register(Diagnostic diagnostic, String option) {
+    public BasicDBObject register(Diagnostic diagnostic) {
         BasicDBObject document = new BasicDBObject();
         BasicDBObject mainDocument = new BasicDBObject();
 
         document.put("Diagnostic", diagnostic.getName());
         document.put("Cie10", diagnostic.getCie10());
 
-        if ("Clinic History".equals(option)) {
+        /*if ("Clinic History".equals(option)) {
             mainDocument.put("Diagnostic", document);
             return mainDocument;
-        }
+        }*/
         return document;
     }
     

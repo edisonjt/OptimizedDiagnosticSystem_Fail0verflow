@@ -228,8 +228,8 @@ public class FrmDoctor extends javax.swing.JFrame {
                         format.format(dateOfBirth.getDate()),
                         txtEmergencyNumber.getText(), true);
 
-                basicObject = doctorController.register((Doctor) doctor, "Register");
-                dataBase.save("Register", basicObject, "Doctor");
+                basicObject = doctorController.register((Doctor) doctor);
+                dataBase.save(basicObject, "Doctor");
 
                 String dataToSave = txtFullName.getText() + "," + txtTitleCode.getText() + "," + txtSubSpeciality.getText()
                         + "," + txtSubSpeciality.getText() + "," + format.format(dateOfBirth.getDate())

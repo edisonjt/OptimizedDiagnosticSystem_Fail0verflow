@@ -13,6 +13,7 @@ import ec.edu.espe.optimizeddiagnosticsystem.controller.DiagnosticController;
 import ec.edu.espe.optimizeddiagnosticsystem.controller.DoctorController;
 import ec.edu.espe.optimizeddiagnosticsystem.controller.NurseController;
 import ec.edu.espe.optimizeddiagnosticsystem.controller.PatientController;
+import ec.edu.espe.optimizeddiagnosticsystem.model.Diagnostic;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Doctor;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Nurse;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Patient;
@@ -27,7 +28,7 @@ import javax.swing.JOptionPane;
 public class FrmNewClinicHistory extends javax.swing.JFrame {
 
     private BasicDBObject dbObject;
-    BasicDBObject mainDocument = new BasicDBObject();
+    private BasicDBObject mainDocument = new BasicDBObject();
 
     public BasicDBObject getDbObject() {
         return dbObject;
@@ -97,11 +98,11 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        txtSearchDiagnostic = new javax.swing.JTextField();
+        txtCie10 = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         btnAddDiagnostic = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
-        txtDiagnosticSave = new javax.swing.JTextField();
+        txtDiagnostic = new javax.swing.JTextField();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
         jLabel22 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -202,6 +203,11 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
         });
 
         btnAddDiagnostic.setText("Add Diagnostic");
+        btnAddDiagnostic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddDiagnosticActionPerformed(evt);
+            }
+        });
 
         btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -210,9 +216,9 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
             }
         });
 
-        txtDiagnosticSave.addActionListener(new java.awt.event.ActionListener() {
+        txtDiagnostic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDiagnosticSaveActionPerformed(evt);
+                txtDiagnosticActionPerformed(evt);
             }
         });
 
@@ -353,9 +359,9 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel21)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtSearchDiagnostic, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCie10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtDiagnosticSave, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtDiagnostic, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(48, 48, 48))))
             .addComponent(jSeparator1)
         );
@@ -447,8 +453,8 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel21)
-                            .addComponent(txtSearchDiagnostic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDiagnosticSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCie10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDiagnostic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSearch)
@@ -470,8 +476,7 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
 
         MongoDBManager mongo = new MongoDBManager();
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        PatientController patientController = new PatientController(); 
-        BasicDBObject basicObject;
+        PatientController patientController = new PatientController();
 
         Patient patient;
         int selection = JOptionPane.showConfirmDialog(null, " Are you sure to save? ", " Doctors Saving ", JOptionPane.YES_NO_CANCEL_OPTION);
@@ -483,10 +488,10 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
                         tAreaAllergies.getText(), txtIdentificationCard.getText(),
                         txtFullName.getText(), "", cmbGender.getSelectedItem().toString(),
                         format.format(dateOfBirth.getDate()), txtEmergencyContact.getText(), true);
-                
-                basicObject = patientController.register(patient, "Clinic History" );
 
-                mongo.save("Clinic History", mainDocument, "Clinic History");
+                mainDocument.put("Patient",patientController.register(patient));
+
+                mongo.save(getMainDocument(), "Clinic History");
                 JOptionPane.showMessageDialog(null, " information was saved ", txtFullName.getText() + " Saved ", JOptionPane.INFORMATION_MESSAGE);
                 this.setVisible(false);
 
@@ -534,19 +539,25 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
     private void btnAddDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDoctorActionPerformed
         // TODO add your handling code here:
         DoctorController doctorController = new DoctorController();
-        Doctor doctor;
-        String[] addDoctor = new String[8];
+
+        String[] addDoctor = new String[1];
 
         addDoctor = doctorController.read(txtNewDoctor.getText());
 
-        doctor = new Doctor(addDoctor[3], addDoctor[4], addDoctor[5], "", addDoctor[0], addDoctor[6], addDoctor[2], addDoctor[1], addDoctor[7], true);
+        if (addDoctor[0] != null) {
+            if(addDoctor[0].equals(txtNewDoctor.getText())){
+                mainDocument.put("Doctor", txtNewDoctor.getText());
+                JOptionPane.showMessageDialog(null, " information was saved ", txtNewDoctor.getText() + " Saved ", JOptionPane.INFORMATION_MESSAGE);
+            }            
+        } else {
+            JOptionPane.showMessageDialog(null, "There is no doctor, check the list", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
-        mainDocument = doctorController.register(doctor, "Clinic History");
     }//GEN-LAST:event_btnAddDoctorActionPerformed
 
-    private void txtDiagnosticSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiagnosticSaveActionPerformed
+    private void txtDiagnosticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiagnosticActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDiagnosticSaveActionPerformed
+    }//GEN-LAST:event_txtDiagnosticActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
@@ -557,15 +568,32 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
     private void btnAddNurseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNurseActionPerformed
         // TODO add your handling code here:
         NurseController nurseController = new NurseController();
-        Nurse nurse;
-        String[] addNurse = new String[7];
+
+        String[] addNurse = new String[1];
 
         addNurse = nurseController.read(txtNewNurse.getText());
 
-        nurse = new Nurse(addNurse[6], addNurse[3], "", addNurse[0], addNurse[4], addNurse[2], addNurse[1], addNurse[5], true);
+        if (addNurse[0] != null) {
+            if(addNurse[0].equals(txtNewNurse.getText())){
+                mainDocument.put("Nurse", txtNewNurse.getText());
+                JOptionPane.showMessageDialog(null, " information was saved ", txtNewNurse.getText() + " Saved ", JOptionPane.INFORMATION_MESSAGE);
+            }            
+        } else {
+            JOptionPane.showMessageDialog(null, "There is no nurse, check the list", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
-        mainDocument = nurseController.register(nurse, "Clinic History");
     }//GEN-LAST:event_btnAddNurseActionPerformed
+
+    private void btnAddDiagnosticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDiagnosticActionPerformed
+        // TODO add your handling code here:
+        DiagnosticController diagnosticController = new DiagnosticController();
+        Diagnostic diagnostic;
+        
+        diagnostic = new Diagnostic(txtCie10.getText(), txtDiagnostic.getText());
+        
+        mainDocument.put("Diagnostic", diagnosticController.register(diagnostic));
+        
+    }//GEN-LAST:event_btnAddDiagnosticActionPerformed
 
     /**
      * @param args the command line arguments
@@ -645,14 +673,28 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
     private javax.swing.JTextArea tAreaAllergies;
     private javax.swing.JTextArea tAreaDoctorList;
     private javax.swing.JTextArea tAreaNurseList;
-    private javax.swing.JTextField txtDiagnosticSave;
+    private javax.swing.JTextField txtCie10;
+    private javax.swing.JTextField txtDiagnostic;
     private javax.swing.JTextField txtEmergencyContact;
     private javax.swing.JTextField txtFullName;
     private javax.swing.JTextField txtHeight;
     private javax.swing.JTextField txtIdentificationCard;
     private javax.swing.JTextField txtNewDoctor;
     private javax.swing.JTextField txtNewNurse;
-    private javax.swing.JTextField txtSearchDiagnostic;
     private javax.swing.JTextField txtWeight;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the mainDocument
+     */
+    public BasicDBObject getMainDocument() {
+        return mainDocument;
+    }
+
+    /**
+     * @param mainDocument the mainDocument to set
+     */
+    public void setMainDocument(BasicDBObject mainDocument) {
+        this.mainDocument = mainDocument;
+    }
 }

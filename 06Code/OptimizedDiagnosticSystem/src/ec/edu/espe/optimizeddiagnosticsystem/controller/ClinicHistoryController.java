@@ -51,28 +51,28 @@ public class ClinicHistoryController {
             Patient patient = new Patient();
             PatientController patientController = new PatientController();
             //patient.register();
-            document = patientController.register(patient, "Clinic History");
+            document = patientController.register(patient);
         }
 
         if (object.equalsIgnoreCase("Doctor")) {
             Doctor doctor = new Doctor();
             DoctorController doctorController = new DoctorController();
             //doctor.register();
-            document = doctorController.register(doctor, "Clinic History");
+            document = doctorController.register(doctor);
         }
 
         if (object.equalsIgnoreCase("Diagnostic")) {
             Diagnostic diagnostic = new Diagnostic();
             DiagnosticController diagnosticController = new DiagnosticController();
             //diagnostic.resgister();
-            document = diagnosticController.register(diagnostic, "Clinic History");
+            document = diagnosticController.register(diagnostic);
         }
 
         if (object.equalsIgnoreCase("Nurse")) {
             Nurse nurse = new Nurse();
             NurseController nurseController = new NurseController();
             //nurse.register();
-            document = nurseController.register(nurse, "Clinic History");
+            document = nurseController.register(nurse);
         }
 
         BasicDBObject update = new BasicDBObject();

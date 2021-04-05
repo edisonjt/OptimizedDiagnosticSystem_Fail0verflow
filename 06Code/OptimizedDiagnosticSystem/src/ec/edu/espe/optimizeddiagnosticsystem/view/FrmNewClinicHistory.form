@@ -185,9 +185,9 @@
                           <Group type="102" attributes="0">
                               <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtSearchDiagnostic" min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="txtCie10" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="txtDiagnosticSave" min="-2" pref="440" max="-2" attributes="0"/>
+                              <Component id="txtDiagnostic" min="-2" pref="440" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
@@ -305,8 +305,8 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtSearchDiagnostic" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtDiagnosticSave" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCie10" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDiagnostic" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -531,7 +531,7 @@
         <Property name="text" type="java.lang.String" value="Cie-10"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtSearchDiagnostic">
+    <Component class="javax.swing.JTextField" name="txtCie10">
     </Component>
     <Component class="javax.swing.JButton" name="btnSearch">
       <Properties>
@@ -545,6 +545,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Add Diagnostic"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddDiagnosticActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSave">
       <Properties>
@@ -554,9 +557,9 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtDiagnosticSave">
+    <Component class="javax.swing.JTextField" name="txtDiagnostic">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDiagnosticSaveActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDiagnosticActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.Box$Filler" name="filler1">

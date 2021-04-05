@@ -210,8 +210,8 @@ public class FrmNurse extends javax.swing.JFrame {
                         tAreaHomeAdress.getText(), cmbGender.getSelectedItem().toString(),
                         format.format(dateOfBirth.getDate()), txtEmergencyNumber.getText(), true);
 
-                basicObject = nurseController.register((Nurse) nurse, "Register");
-                dataBase.save("Register", basicObject, "Nurse");
+                basicObject = nurseController.register((Nurse) nurse);
+                dataBase.save(basicObject, "Nurse");
 
                 String dataToSave = txtFullName.getText() + "," + format.format(dateOfBirth.getDate()) + "," + cmbGender.getSelectedItem().toString() + "\n";
                 Data.save("nurse.csv", dataToSave, true);

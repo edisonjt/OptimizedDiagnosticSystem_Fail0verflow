@@ -23,7 +23,7 @@ public class DoctorController{
     }
        
  
-    public BasicDBObject register(Doctor doctor, String option) {
+    public BasicDBObject register(Doctor doctor) {
         BasicDBObject document = new BasicDBObject();
         BasicDBObject mainDocument = new BasicDBObject();
 
@@ -36,10 +36,10 @@ public class DoctorController{
         document.put("Home Address", doctor.getHomeAddress());
         document.put("Emergency Number", doctor.getEmergencyNumber());
 
-        if ("Clinic History".equals(option)) {
+        /*if ("Clinic History".equals(option)) {
             mainDocument.put("Doctor", document);
             return mainDocument;
-        }
+        }*/
         return document;
     }
     
