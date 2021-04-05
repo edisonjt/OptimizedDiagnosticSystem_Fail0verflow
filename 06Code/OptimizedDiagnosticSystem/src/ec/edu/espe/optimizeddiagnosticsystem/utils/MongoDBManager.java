@@ -24,13 +24,12 @@ public class MongoDBManager extends NoSqlDBManager {
 
     @Override
     public void openConnection() {
-        try {
-            //MongoClientURI uri = new MongoClientURI(
-              //      "mongodb+srv://tentacle:atlas1234@cluster0.pq2gf.mongodb.net/FailOverFlow?retryWrites=true&w=majority");
+       try {
+            MongoClientURI uri = new MongoClientURI(
+                    "mongodb+srv://tentacle:atlas1234@cluster0.pq2gf.mongodb.net/FailOverFlow?retryWrites=true&w=majority");
 
-            //MongoClient mongoClient = new MongoClient(uri);
-            MongoClient mongoClient = new MongoClient("localhost", 27017);
-            MongoDatabase database = mongoClient.getDatabase("FailOverflow");
+            MongoClient mongoClient = new MongoClient(uri);
+             MongoDatabase database = mongoClient.getDatabase("FailOverflow");
             MongoCollection<org.bson.Document> collections = database.getCollection("FailOverflow");
             dataBase = mongoClient.getDB("FailOverflow");
             collection = dataBase.getCollection("FailOverflow");
