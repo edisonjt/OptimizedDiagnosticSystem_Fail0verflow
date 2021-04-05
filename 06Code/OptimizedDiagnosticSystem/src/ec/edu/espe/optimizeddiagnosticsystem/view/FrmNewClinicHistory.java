@@ -11,7 +11,10 @@ import com.mongodb.DBCursor;
 import ec.edu.espe.filemanager.utils.Data;
 import ec.edu.espe.optimizeddiagnosticsystem.controller.DiagnosticController;
 import ec.edu.espe.optimizeddiagnosticsystem.controller.DoctorController;
+import ec.edu.espe.optimizeddiagnosticsystem.controller.NurseController;
+import ec.edu.espe.optimizeddiagnosticsystem.controller.PatientController;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Doctor;
+import ec.edu.espe.optimizeddiagnosticsystem.model.Nurse;
 import ec.edu.espe.optimizeddiagnosticsystem.model.Patient;
 import ec.edu.espe.optimizeddiagnosticsystem.utils.MongoDBManager;
 import java.text.SimpleDateFormat;
@@ -24,6 +27,7 @@ import javax.swing.JOptionPane;
 public class FrmNewClinicHistory extends javax.swing.JFrame {
 
     private BasicDBObject dbObject;
+    BasicDBObject mainDocument = new BasicDBObject();
 
     public BasicDBObject getDbObject() {
         return dbObject;
@@ -41,6 +45,7 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
         this.connection = connection;
     }
     private MongoDBManager connection;
+
     /**
      * Creates new form FrmNewClinicHistory
      */
@@ -106,8 +111,8 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
         filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
-        dateOfBirth = new rojeru_san.componentes.RSDateChooser();
         jSeparator1 = new javax.swing.JSeparator();
+        dateOfBirth = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Clinic History Creation");
@@ -178,6 +183,11 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
         });
 
         btnAddNurse.setText("Add Nurse");
+        btnAddNurse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddNurseActionPerformed(evt);
+            }
+        });
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel20.setText("Diagnostic");
@@ -247,7 +257,8 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtIdentificationCard, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(dateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,7 +270,6 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
                                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(cmbBloodType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(dateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtEmergencyContact, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -393,81 +403,104 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel11)
                                     .addComponent(txtHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel12)))))
-                    .addComponent(dateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12))))
+                        .addGap(13, 13, 13)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(22, 22, 22)
+                                .addComponent(filler3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(81, 81, 81)
+                                .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel15)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel16)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(btnPrintDoctors))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel17)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(btnPrintNurses))
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel18)
+                                        .addComponent(txtNewDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel19)
+                                        .addComponent(txtNewNurse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btnAddDoctor))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(btnAddNurse)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel21)
+                            .addComponent(txtSearchDiagnostic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDiagnosticSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSearch)
+                            .addComponent(btnAddDiagnostic))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSave)
+                            .addComponent(jButton1))
+                        .addGap(20, 20, 20))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)
-                        .addComponent(filler3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(81, 81, 81)
-                        .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel15)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel16)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(btnPrintDoctors))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel17)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(btnPrintNurses))
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel18)
-                                .addComponent(txtNewDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel19)
-                                .addComponent(txtNewNurse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btnAddDoctor))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(btnAddNurse)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel20)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21)
-                    .addComponent(txtSearchDiagnostic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDiagnosticSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSearch)
-                    .addComponent(btnAddDiagnostic))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSave)
-                    .addComponent(jButton1))
-                .addGap(20, 20, 20))
+                        .addComponent(dateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-       
+
         MongoDBManager mongo = new MongoDBManager();
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        BasicDBObject document = new BasicDBObject();
-        
+        PatientController patientController = new PatientController(); 
+        BasicDBObject basicObject;
+
         Patient patient;
-        
-        patient = new Patient(txtWeight.getText(), txtHeight.getText(), cmbBloodType.getSelectedItem().toString(), 
-                tAreaAllergies.getText(), txtIdentificationCard.getText(), 
-                txtFullName.getText(), "", cmbGender.getSelectedItem().toString(), 
-                format.format(dateOfBirth.getDate()), txtEmergencyContact.getText(), true);
-        
-        mongo.save("Clinic History", document, "Clinic History");
+        int selection = JOptionPane.showConfirmDialog(null, " Are you sure to save? ", " Doctors Saving ", JOptionPane.YES_NO_CANCEL_OPTION);
+
+        switch (selection) {
+            case 0:
+
+                patient = new Patient(txtWeight.getText(), txtHeight.getText(), cmbBloodType.getSelectedItem().toString(),
+                        tAreaAllergies.getText(), txtIdentificationCard.getText(),
+                        txtFullName.getText(), "", cmbGender.getSelectedItem().toString(),
+                        format.format(dateOfBirth.getDate()), txtEmergencyContact.getText(), true);
+                
+                basicObject = patientController.register(patient, "Clinic History" );
+
+                mongo.save("Clinic History", mainDocument, "Clinic History");
+                JOptionPane.showMessageDialog(null, " information was saved ", txtFullName.getText() + " Saved ", JOptionPane.INFORMATION_MESSAGE);
+                this.setVisible(false);
+
+                FrmMenu frmMenu = new FrmMenu();
+                frmMenu.setVisible(true);
+                break;
+            case 1:
+                JOptionPane.showMessageDialog(null, " information was NOT saved ", txtFullName.getText() + " NOT saved ", JOptionPane.ERROR_MESSAGE);
+                //emptyFields();
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, " Action was canceled ", txtFullName.getText() + " Cancelled ", JOptionPane.WARNING_MESSAGE);
+                break;
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnPrintDoctorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintDoctorsActionPerformed
@@ -478,11 +511,10 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
         collection = database.getDataBase().getCollection("Doctor");
         DBCursor cursor = collection.find();
 
-        
-        while(cursor.hasNext()) {
+        while (cursor.hasNext()) {
             tAreaDoctorList.append("Name: " + cursor.next().get("Name") + "\n");
         }
-        
+
     }//GEN-LAST:event_btnPrintDoctorsActionPerformed
 
     private void btnPrintNursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintNursesActionPerformed
@@ -493,11 +525,10 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
         collection = database.getDataBase().getCollection("Nurse");
         DBCursor cursor = collection.find();
 
-        
-        while(cursor.hasNext()) {
+        while (cursor.hasNext()) {
             tAreaNurseList.append("Name: " + cursor.next().get("Name") + "\n");
         }
-        
+
     }//GEN-LAST:event_btnPrintNursesActionPerformed
 
     private void btnAddDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDoctorActionPerformed
@@ -505,12 +536,12 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
         DoctorController doctorController = new DoctorController();
         Doctor doctor;
         String[] addDoctor = new String[8];
-        
+
         addDoctor = doctorController.read(txtNewDoctor.getText());
-        
+
         doctor = new Doctor(addDoctor[3], addDoctor[4], addDoctor[5], "", addDoctor[0], addDoctor[6], addDoctor[2], addDoctor[1], addDoctor[7], true);
-        
-        doctorController.register(doctor, "Clinic History");
+
+        mainDocument = doctorController.register(doctor, "Clinic History");
     }//GEN-LAST:event_btnAddDoctorActionPerformed
 
     private void txtDiagnosticSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiagnosticSaveActionPerformed
@@ -522,6 +553,19 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
         DiagnosticController diagnostic = new DiagnosticController();
 
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnAddNurseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNurseActionPerformed
+        // TODO add your handling code here:
+        NurseController nurseController = new NurseController();
+        Nurse nurse;
+        String[] addNurse = new String[7];
+
+        addNurse = nurseController.read(txtNewNurse.getText());
+
+        nurse = new Nurse(addNurse[6], addNurse[3], "", addNurse[0], addNurse[4], addNurse[2], addNurse[1], addNurse[5], true);
+
+        mainDocument = nurseController.register(nurse, "Clinic History");
+    }//GEN-LAST:event_btnAddNurseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -568,7 +612,7 @@ public class FrmNewClinicHistory extends javax.swing.JFrame {
     private javax.swing.JButton btnSearch;
     private javax.swing.JComboBox<String> cmbBloodType;
     private javax.swing.JComboBox<String> cmbGender;
-    private rojeru_san.componentes.RSDateChooser dateOfBirth;
+    private com.toedter.calendar.JDateChooser dateOfBirth;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;

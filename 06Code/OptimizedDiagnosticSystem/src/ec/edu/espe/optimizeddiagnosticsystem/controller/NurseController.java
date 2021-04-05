@@ -73,7 +73,8 @@ public class NurseController {
         dataBase.openConnection();
         collection = dataBase.getDataBase().getCollection("Nurse");
         
-        String[] nurse = new String[2];
+        
+        String[] nurse = new String[7];
 
         BasicDBObject consultation = new BasicDBObject();
         consultation.put("Name", search);
@@ -83,6 +84,11 @@ public class NurseController {
         while (cursor.hasNext()) {
             nurse[0] = (String) cursor.next().get("Name");
             nurse[1] = (String) cursor.curr().get("Date Of Birth");
+            nurse[2] = (String) cursor.curr().get("Gender");
+            nurse[3] = (String) cursor.curr().get("Title Code");
+            nurse[4] = (String) cursor.curr().get("Home Address");
+            nurse[5] = (String) cursor.curr().get("Emergency Number");
+            nurse[6] = (String) cursor.curr().get("Work Shift");
         }
         return nurse;
     }

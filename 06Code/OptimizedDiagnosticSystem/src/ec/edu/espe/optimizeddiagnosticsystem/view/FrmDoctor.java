@@ -184,7 +184,7 @@ public class FrmDoctor extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(dateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(txtSpeciality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -255,11 +255,11 @@ public class FrmDoctor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
-            
+
         this.setVisible(false);
         FrmMenuClinicHistory frmMenuClinicHistory = new FrmMenuClinicHistory();
         frmMenuClinicHistory.setVisible(true);
-       
+
     }//GEN-LAST:event_buttonBackActionPerformed
 
     /**

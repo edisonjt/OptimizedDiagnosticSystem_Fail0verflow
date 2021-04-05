@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/luist/OneDrive/Documentos/LUIS%20TAVARIS/ESPE/POO/unit3/OptimizedDiagnosticSystem/test/ec/edu/espe/optimizeddiagnosticsystem/controller/LoginControllerTest.java</file>
-            <file>file:/C:/Users/luist/OneDrive/Documentos/LUIS%20TAVARIS/ESPE/POO/unit3/OptimizedDiagnosticSystem/src/ec/edu/espe/optimizeddiagnosticsystem/controller/NurseController.java</file>
-            <file>file:/C:/Users/luist/OneDrive/Documentos/LUIS%20TAVARIS/ESPE/POO/unit3/OptimizedDiagnosticSystem/src/ec/edu/espe/optimizeddiagnosticsystem/controller/DoctorController.java</file>
+            <file>file:/D:/Escritorio/subir/Nueva%20carpeta%20(2)/Proyecto/Experimento/OptimizedDiagnosticSystem/src/ec/edu/espe/optimizeddiagnosticsystem/utils/MongoDBManager.java</file>
+            <file>file:/D:/Escritorio/subir/Nueva%20carpeta%20(2)/Proyecto/Experimento/OptimizedDiagnosticSystem/src/ec/edu/espe/optimizeddiagnosticsystem/view/FrmDoctor.java</file>
+            <file>file:/D:/Escritorio/subir/Nueva%20carpeta%20(2)/Proyecto/Experimento/OptimizedDiagnosticSystem/src/ec/edu/espe/optimizeddiagnosticsystem/view/FrmNewClinicHistory.java</file>
+            <file>file:/D:/Escritorio/subir/Nueva%20carpeta%20(2)/Proyecto/Experimento/OptimizedDiagnosticSystem/src/ec/edu/espe/optimizeddiagnosticsystem/utils/NoSqlDBManager.java</file>
+            <file>file:/D:/Escritorio/subir/Nueva%20carpeta%20(2)/Proyecto/Experimento/OptimizedDiagnosticSystem/src/ec/edu/espe/optimizeddiagnosticsystem/controller/DoctorController.java</file>
         </group>
     </open-files>
 </project-private>
