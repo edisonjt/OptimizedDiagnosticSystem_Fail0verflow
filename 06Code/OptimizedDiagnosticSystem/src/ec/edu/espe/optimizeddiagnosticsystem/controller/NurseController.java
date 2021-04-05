@@ -15,7 +15,7 @@ import java.util.Scanner;
  *
  * @author Fail0verflow
  */
-public class NurseController extends MedicalStaffController {
+public class NurseController {
  
     NoSqlDBManager dataBase = new MongoDBManager();
 
@@ -41,7 +41,7 @@ public class NurseController extends MedicalStaffController {
         return document;
     }
     
-     @Override
+ 
     public void createPass(boolean option, String name) {
              if (option == true) {
             Scanner scan = new Scanner(System.in);
@@ -56,7 +56,6 @@ public class NurseController extends MedicalStaffController {
         }
     }
     
-        @Override
     public void savePassword(String name, String password) {
 
         DBCollection collection;
@@ -68,12 +67,7 @@ public class NurseController extends MedicalStaffController {
         collection.insert(document);
     }
     
-    /**
-     *
-     * @param search
-     * @return 
-     */
-    @Override
+
     public String[] read(String search) {
         DBCollection collection;
         dataBase.openConnection();
